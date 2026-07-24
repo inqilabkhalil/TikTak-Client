@@ -1,22 +1,29 @@
 .logo {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-roboto), "Roboto", sans-serif;
   font-weight: 800;
-  font-size: 50px;
-  line-height: 100%;
+  font-size: 40px;
+  line-height: 1;
   letter-spacing: 0.03em;
   color: #2B3043;
   margin: 0;
+  padding: 0;
 }
 
 
 @media (max-width: 1024px) {
   .logo {
-    font-size: 40px;
+    font-size: 36px;          
   }
 }
 
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .logo {
+    font-size: 48px;            
+  }
+}
+
+@media (max-width: 400px) {
   .logo {
     font-size: 40px;
   }
