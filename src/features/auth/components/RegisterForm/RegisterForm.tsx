@@ -6,37 +6,55 @@ import { Input as AntInput } from "antd";
 import { Input } from "@/shared/components/Input/Input";
 import { Button } from "@/shared/components/Button/Button";
 import { FormField } from "@/shared/components/FormField";
-import { loginSchema } from "./validation";
+import { registerSchema } from "./validation";
 import styles from "../../styles/AuthForm.module.css";
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const formik = useFormik({
     initialValues: {
+      name: "",
       phone: "",
       password: "",
     },
-    validationSchema: loginSchema,
+    validationSchema: registerSchema,
     onSubmit: (values) => {
-      console.log("Login data:", values);
+      console.log("Register data:", values);
     },
   });
 
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>
       <div className={styles.tabs}>
+        <Link href="/login" className={`${styles.tab} ${styles.tabInactive}`}>
+          Daxil ol
+        </Link>
         <button
           type="button"
           className={`${styles.tab} ${styles.tabActive}`}
         >
-          Daxil ol
-        </button>
-        <Link
-          href="/register"
-          className={`${styles.tab} ${styles.tabInactive}`}
-        >
           Qeydiyyatdan keç
-        </Link>
+        </button>
       </div>
+
+      <FormField
+        label="Ad"
+        error={formik.errors.name}
+        touched={formik.touched.name}
+      >
+        <Input
+          name="name"
+          type="text"
+          placeholder="Ad, Soyad"
+          size="large"
+          className={styles.input}
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          status={
+            formik.touched.name && formik.errors.name ? "error" : undefined
+          }
+        />
+      </FormField>
 
       <FormField
         label="Telefon nömrəsi"
@@ -85,13 +103,13 @@ export const LoginForm = () => {
         className={styles.submitButton}
         onClick={() => formik.handleSubmit()}
       >
-        Daxil ol
+        Tamamla
       </Button>
 
       <p className={styles.bottomText}>
-        Hesabın yoxdursa
-        <Link href="/register" className={styles.link}>
-          Qeydiyyatdan keç
+        Hesabın varsa
+        <Link href="/login" className={styles.link}>
+          Daxil ol
         </Link>
       </p>
     </form>
