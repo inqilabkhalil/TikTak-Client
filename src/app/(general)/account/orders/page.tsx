@@ -1,7 +1,10 @@
-import React from 'react'
+import OrdersTable from "@/features/account/components/OrdersTable/OrdersTable";
 
-export default function page() {
+
+export default function OrdersPage() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <OrdersTable />
+    </div>
+  );
 }

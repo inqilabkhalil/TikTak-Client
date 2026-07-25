@@ -1,0 +1,76 @@
+.tableContainer {
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+/* Ant Design cədvəlinin dizayna uyğunlaşdırılması */
+.customTable :global(.ant-table) {
+  background: transparent;
+}
+
+.customTable :global(.ant-table-thead > tr > th) {
+  background: transparent;
+  color: #6b7280;
+  font-weight: 500;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.customTable :global(.ant-table-tbody > tr > td) {
+  border-bottom: 1px solid #f9fafb;
+  color: #374151;
+  padding: 16px 8px;
+}
+
+
+
+.statusCancelled {
+  color: #6b7280;
+}
+
+.detailLink {
+  color: #fcfdff;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+  background-color: #57aa76;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.detailLink:hover {
+  color: #dbdee4;
+}
+
+
+/* Status yazısının arxasındakı kiçik qutu (badge) dizaynı */
+.statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 1. Tamamlandı üçün yaşıl rəng */
+.statusCompleted {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+/* 2. Gözləyir üçün sarı rəng */
+.statusPending {
+  background-color: #fefce8;
+  color: #ca8a04;
+}
+
+/* 3. Ləğv edildi üçün qırmızı rəng */
+.statusCancelled {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
