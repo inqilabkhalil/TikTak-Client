@@ -1,0 +1,46 @@
+"use client";
+
+import type { OrderSummaryProps } from "../../types/basket.types";
+import { calculateTotal } from "../../utils/calculateTotal";
+import { formatPrice } from "../../utils/formatPrice";
+import { DELIVERY_TEXT } from "../../constants/basket.constants";
+import styles from "./OrderSummary.module.css";
+
+export const OrderSummary = ({ products, onCheckout }: OrderSummaryProps) => {
+  const total = calculateTotal(products);
+
+  const handleCheckout = () => {
+    if (onCheckout) {
+      onCheckout();
+    } else {
+      console.log("onCheckout not implemented");
+    }
+  };
+
+  return (
+    <section className={styles.card}>
+      <h2 className={styles.title}>Yekun məbləğ</h2>
+
+      <div className={styles.row}>
+        <span className={styles.label}>Ümumi</span>
+        <span className={styles.value}>{formatPrice(total)}</span>
+      </div>
+
+      <div className={styles.row}>
+        <span className={styles.label}>Çatırılma</span>
+        <span className={styles.value}>{DELIVERY_TEXT}</span>
+      </div>
+
+      <div className={styles.divider} />
+
+      <div className={styles.row}>
+        <span className={styles.totalLabel}>Yekun məbləğ</span>
+        <span className={styles.totalValue}>{formatPrice(total)}</span>
+      </div>
+
+      <button type="button" className={styles.checkoutButton} onClick={handleCheckout}>
+        Sifarişi tamamla
+      </button>
+    </section>
+  );
+};
