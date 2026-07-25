@@ -1,0 +1,100 @@
+// src/features/account/components/PersonalInfo/PersonalInfoForm.tsx
+'use client';
+
+import React from 'react';
+import { Form, Input, message } from 'antd';
+import styles from './PersonalInfoForm.module.css';
+
+interface PersonalInfoFormValues {
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  newPassword?: string;
+  confirmPassword?: string;
+}
+
+export default function PersonalInfoForm() {
+  const [form] = Form.useForm<PersonalInfoFormValues>();
+
+  const onFinish = (values: PersonalInfoFormValues) => {
+    console.log('Form data:', values);
+    message.success('Məlumatlar uğurla yeniləndi!');
+  };
+
+  return (
+    <div className={styles.formContainer}>
+      <h2 className={styles.sectionTitle}>Əlaqə məlumatlarınız</h2>
+
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        initialValues={{
+          email: 'rahimlisarkhan@gmail.com', // Nümunə məlumat (şəkildən)
+        }}
+      >
+        <div className={styles.gridRow}>
+          <Form.Item
+            label="Adınız"
+            name="name"
+            rules={[{ required: true, message: 'Adınızı daxil edin!' }]}
+          >
+            <Input placeholder="Adınız" className={styles.inputField} />
+          </Form.Item>
+
+          <Form.Item
+            label="Telefon nömrəsi"
+            name="phone"
+            rules={[{ required: true, message: 'Telefon nömrəsini daxil edin!' }]}
+          >
+            <Input placeholder="(+994) __ ___ __ __" className={styles.inputField} />
+          </Form.Item>
+        </div>
+
+        <div className={styles.gridRow}>
+          <Form.Item
+            label="E-mail"
+            name="email"
+            rules={[
+              { required: true, message: 'E-mail daxil edin!' },
+              { type: 'email', message: 'Düzgün e-mail daxil edin!' },
+            ]}
+          >
+            <Input placeholder="E-mail" className={styles.inputField} />
+          </Form.Item>
+
+          <Form.Item
+            label="Unvan"
+            name="address"
+            rules={[{ required: true, message: 'Ünvanı daxil edin!' }]}
+          >
+            <Input placeholder="Unvaniniz" className={styles.inputField} />
+          </Form.Item>
+        </div>
+
+        <div className={styles.passwordSection}>
+          <h3 className={styles.subTitle}>Şifrənin yenilənməsi</h3>
+          <span className={styles.subText}>Ehtiyac yoxdursa boş buraxın</span>
+
+          <div className={styles.gridRow}>
+            <Form.Item label="Yeni Şifrə" name="newPassword">
+              <Input.Password placeholder="Yeni Şifrə" className={styles.inputField} />
+            </Form.Item>
+
+            <Form.Item label="Yeni Şifrənin təkrarı" name="confirmPassword">
+              <Input.Password placeholder="Yeni Şifrənin təkrarı" className={styles.inputField} />
+            </Form.Item>
+          </div>
+        </div>
+
+        {/* Qeyd: Button shared qovluğundan gəlir, əgər xüsusi shared düymən varsa burda istifadə edə bilərsən */}
+        <div className={styles.buttonWrapper}>
+          <button type="submit" className={styles.submitButton}>
+            Məlumatları yenilə
+          </button>
+        </div>
+      </Form>
+    </div>
+  );
+}

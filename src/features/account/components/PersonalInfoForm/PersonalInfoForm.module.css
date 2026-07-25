@@ -1,0 +1,77 @@
+.formContainer {
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 24px;
+}
+
+.gridRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.inputField {
+  height: 44px;
+  border-radius: 8px;
+  background-color: #f8f9fa !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.inputField:hover,
+.inputField:focus {
+  border-color: #16a34a !important;
+}
+
+.passwordSection {
+  margin-top: 16px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
+}
+
+.subTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.subText {
+  font-size: 12px;
+  color: #9ca3af;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* Şəkildəki yaşıl düymə dizaynı (Əgər shared button istifadə etmirsənsə) */
+.submitButton {
+  background-color: #84cc16;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 48px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #65a30d;
+}
+
+@media (max-width: 768px) {
+  .gridRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,76 @@
+.sidebarCard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f0f0f0;
+}
+
+.sidebarTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+  padding-left: 12px;
+}
+
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.navItem:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+/* Şəkildə gördüyün aktiv yaşıl dizayn */
+.navItem.active {
+  background-color: #f0fdf4; 
+  color: #16a34a; 
+}
+
+.icon {
+  font-size: 16px;
+}
+
+
+/* src/app/(general)/account/AccountLayout.module.css */
+/* src/app/(general)/account/AccountLayout.module.css */
+
+.accountContainer {
+  display: flex;
+  gap: 32px; /* Sidebar ilə sağ panel arasındakı məsafə (Figma-ya uyğun) */
+  width: 1500px;
+  margin: 40px auto;
+  padding: 0 24px;
+  align-items: flex-start;
+}
+
+.sidebarWrapper {
+  width: 300px; /* Sidebar-ın figma ölçüsünə uyğun sabit eni */
+  flex-shrink: 0;
+}
+
+.contentWrapper {
+  flex-grow: 1; /* Sağ tərəfin bütün boş sahəni tutmasını təmin edir */
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px; /* İçindəki formun kənarlardan boşluğu */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f0f0f0;
+}
