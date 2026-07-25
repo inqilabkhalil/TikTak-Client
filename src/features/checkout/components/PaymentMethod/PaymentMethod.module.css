@@ -1,0 +1,134 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.label {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2B3043;
+  margin: 0;
+}
+
+.options {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.card {
+  flex: 1;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  padding: 14px 16px !important;
+  height: auto !important;
+  min-height: 64px !important;
+  border-radius: 12px !important;
+  border: 1px solid #F0F0F0 !important;
+  background-color: #FAFAFA !important;
+  color: #2B3043 !important;
+  transition: all 0.2s ease !important;
+  text-align: left !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+.card.selected {
+  border-color: transparent !important;
+  background-color: #EBF9E8 !important;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2B3043;
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #D0D5DD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #FFFFFF;
+}
+
+.card.selected .radio {
+  border-color: #3BB77E;
+}
+
+.radioInner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3BB77E;
+}
+
+/* ============ RESPONSİV ============ */
+
+/* Planşet */
+@media (max-width: 1024px) {
+  .card {
+    padding: 12px 14px !important;
+    min-height: 58px !important;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+
+  .iconWrapper {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .options {
+    gap: 12px;
+  }
+
+  .card {
+    padding: 12px !important;
+    min-height: 56px !important;
+  }
+
+  .text {
+    font-size: 12.5px;
+  }
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+  .options {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card {
+    width: 100% !important;
+    padding: 14px !important;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+}
