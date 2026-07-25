@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  background-color: #f6f5fb;
+}
+
+.header {
+  width: 100%;
+  min-height: 108px;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--layout-padding-y) var(--layout-padding-x);
+}

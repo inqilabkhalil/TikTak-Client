@@ -1,0 +1,148 @@
+.main {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f6f5fb;
+  box-sizing: border-box;
+}
+
+.card {
+  width: min(1560px, calc(100% - 40px));
+  min-height: 630px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.heading {
+  margin: 0 0 24px;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  color: #1a1d28;
+  text-align: center;
+}
+
+/* Crops the "404" heading and "Go to Home" button baked into 404.png,
+   keeping only the illustration band (y: 142–420 of the 1200x680 source). */
+.illustrationWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1200 / 278;
+  overflow: hidden;
+  margin: 0 auto 24px;
+}
+
+.illustration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateY(-20.88%);
+}
+
+.text {
+  margin: 0 0 32px;
+  max-width: 420px;
+  font-size: 16px;
+  color: #2b3043;
+  text-align: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 40px;
+  border-radius: 8px;
+  background-color: var(--primarybuttoncolor);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    min-height: 520px;
+    padding: 40px 24px;
+  }
+
+  .heading {
+    font-size: 56px;
+  }
+
+  .illustrationWrapper {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 24px 16px;
+  }
+
+  .card {
+    min-height: auto;
+    padding: 36px 20px;
+  }
+
+  .heading {
+    margin-bottom: 16px;
+    font-size: 44px;
+  }
+
+  .illustrationWrapper {
+    max-width: 320px;
+    margin-bottom: 16px;
+  }
+
+  .text {
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+
+  .button {
+    height: 44px;
+    padding: 0 32px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 34px;
+  }
+
+  .illustrationWrapper {
+    max-width: 220px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 240px;
+    height: 42px;
+    padding: 0 24px;
+  }
+}

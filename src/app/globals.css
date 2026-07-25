@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
-:root {   
+:root {
   --primarybuttoncolor: rgba(146, 216, 113, 1);
+
+  --layout-padding-x: 65px;
+  --layout-padding-y: 10px;
 }
 
-
-
+@media (max-width: 768px) {
+  :root {
+    --layout-padding-x: 16px;
+    --layout-padding-y: 10px;
+  }
+}
 
