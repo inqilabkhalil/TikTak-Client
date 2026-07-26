@@ -1,3 +1,5 @@
+import { Loader } from "@/shared/components/Loader";
+
 export default function Loading() {
-  return <p>Yüklənir...</p>;
+  return <Loader />;
 }

@@ -1,0 +1,19 @@
+.wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-subtle);
+  box-sizing: border-box;
+}
+
+.spinContent {
+  width: 12rem;
+  height: 6rem;
+}
+
+.wrapper :global(.ant-spin-description) {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 0.875rem;
+}

@@ -12,8 +12,13 @@ html {
   font-size: 16px;
 }
 
+body {
+  background-color: var(--page-bg);
+}
+
 :root {
   --primarybuttoncolor: rgba(146, 216, 113, 1);
+  --banner-green: rgba(118, 203, 79, 1);
 
   --layout-padding-x: 4.0625rem;
   --layout-padding-y: 0.625rem;
@@ -23,6 +28,8 @@ html {
   --color-border: #eaeaea;
   --color-bg-subtle: #f6f5fb;
   --color-bg-white: #ffffff;
+
+  --page-bg: #f4f5fa;
 }
 
 @media (max-width: 1024px) {

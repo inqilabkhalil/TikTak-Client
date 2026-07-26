@@ -18,7 +18,6 @@ export interface BasketListProps {
   products: BasketProduct[];
   onIncrease?: (id: string) => void;
   onRemove?: (id: string) => void;
-  onClear?: () => void;
 }
 
 export interface OrderSummaryProps {
