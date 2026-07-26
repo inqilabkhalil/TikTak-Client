@@ -101,7 +101,6 @@ export const RegisterForm = () => {
         htmlType="submit"
         block
         className={styles.submitButton}
-        onClick={() => formik.handleSubmit()}
       >
         Tamamla
       </Button>

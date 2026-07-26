@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 1.125rem;
 }
 
 .infoBlock {
@@ -15,31 +15,31 @@
   font-weight: 600;
   color: #2B3043;
   margin: 0;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 100%;
 }
 
 .value {
   font-family: var(--font-roboto), "Roboto", sans-serif;
   font-weight: 400;
-  color: #6C727F;
+  color: #2B3043;
   margin: 0;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 140%;                
   word-wrap: break-word;           
 }
 
 /* Planşet */
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .wrapper {
-    gap: 14px;
+    gap: 0.875rem;
   }
 
   .label {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .value {
-    font-size: 12.5px;
+    font-size: 0.7813rem;
   }
 }

@@ -83,7 +83,6 @@ export const LoginForm = () => {
         htmlType="submit"
         block
         className={styles.submitButton}
-        onClick={() => formik.handleSubmit()}
       >
         Daxil ol
       </Button>

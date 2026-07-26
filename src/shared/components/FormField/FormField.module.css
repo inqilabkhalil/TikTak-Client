@@ -1,3 +1,9 @@
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -16,4 +22,5 @@
   color: #E53935;
   font-size: 0.75rem;
   margin-top: 0.125rem;
+  animation: shakeError 0.3s ease-in-out;
 }

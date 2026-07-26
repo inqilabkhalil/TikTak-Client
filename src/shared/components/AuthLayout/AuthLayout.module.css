@@ -1,7 +1,30 @@
+@keyframes floatImage {
+  0% {
+    transform: translateY(-40px);
+  }
+  50% {
+    transform: translateY(-52px);
+  }
+  100% {
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 .container {
   display: flex;
   min-height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 
 .leftSide {
@@ -18,18 +41,24 @@
   padding: 2rem 2.5rem;
   z-index: 2;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
-
+.logoWrapper:hover {
+  transform: scale(1.02);
+}
 .imageWrapper {
   flex: 1;
   position: relative;
   width: 100%;
   transform: translateY(-40px);
+  animation: floatImage 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .image {
   object-fit: cover !important;
   object-position: center !important;
+  transition: filter 0.5s ease;
 }
 
 
@@ -44,6 +73,7 @@
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   padding-bottom: 2.5rem;
+  animation: fadeInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @media (max-height: 850px) {

@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 130px);
-  padding: 20px;
+  min-height: calc(100vh - 5rem);
+  padding: 1.25rem;
   width: 100%;
-  max-width: 1200px;                  
+  max-width: 75rem;                  
   margin: 0 auto;                     
 }
 
@@ -14,14 +14,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 1.25rem;
   background-color: #FFFFFF;
-  border-radius: 10px;
-  padding: 60px 40px;
+  border-radius: 0.625rem;
+  padding: 3.75rem 2.5rem;
   width: 100%;
-  min-height: 480px;                 
+  min-height: 26rem;                 
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
 }
 
@@ -29,12 +29,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.25rem;
 }
-
+.iconWrapper img {
+  width: auto !important;
+  height: auto !important;
+}
 .title {
   font-family: var(--font-roboto), "Roboto", sans-serif;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #1A1D28;
   margin: 0;
@@ -42,49 +45,49 @@
 
 .description {
   font-family: var(--font-roboto), "Roboto", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
   color: #999999;
   margin: 0;
-  max-width: 500px;
+  max-width: 31.25rem;
   line-height: 1.5;
 }
 
 /* Responsiv */
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .card {
-    min-height: 420px;
-    padding: 50px 32px;
+    min-height: 22rem;
+    padding: 3rem 2rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .container {
-    padding: 16px;
+    padding: 1rem;
   }
 
   .card {
-    min-height: 380px;
-    padding: 40px 24px;
-    gap: 16px;
+    min-height: 20rem;
+    padding: 2.5rem 1.5rem;
+    gap: 1rem;
   }
 
   .title {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .description {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .card {
-    min-height: 340px;
-    padding: 32px 20px;
+    min-height: 18rem;
+    padding: 2rem 1.25rem;
   }
 
   .title {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 }

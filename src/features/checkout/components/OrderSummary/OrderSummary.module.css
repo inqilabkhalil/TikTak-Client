@@ -1,8 +1,8 @@
 .card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.02);
   width: 100%;
   box-sizing: border-box;
 }
@@ -10,16 +10,16 @@
 .products {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .productRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #2B3043;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .productName {
@@ -34,55 +34,55 @@
 }
 
 .divider {
-  height: 1px;
+  height: 0.0625rem;
   background: #F0F0F0;
-  margin: 16px 0;
+  margin: 1rem 0;
 }
 
 .totals {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .totalRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
-  color: #8C8E98;
+  font-size: 0.875rem;
+  color: #2B3043;
 }
 
 .finalTotal {
   color: #2B3043;
   font-weight: 700;
-  font-size: 16px;
-  padding-top: 8px;
-  border-top: 1px solid #F0F0F0;
-  margin-top: 4px;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  border-top: 0.0625rem solid #F0F0F0;
+  margin-top: 0.25rem;
 }
 
 /* Planşet */
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .card {
-    padding: 20px;
-    border-radius: 12px;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
   }
 }
 
 /* Mobil */
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .card {
-    padding: 18px;
-    border-radius: 10px;
+    padding: 1.125rem;
+    border-radius: 0.625rem;
   }
 
   .productRow,
   .totalRow {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .finalTotal {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 }
