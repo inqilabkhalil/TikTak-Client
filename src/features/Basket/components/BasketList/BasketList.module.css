@@ -1,40 +1,11 @@
 .card {
   width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   background-color: #ffffff;
   border-radius: 0.625rem;
   padding: 1.25rem 1.5rem;
   box-sizing: border-box;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.25rem;
-}
-
-.title {
-  margin: 0;
-  font-family: var(--font-roboto);
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #1a1d28;
-}
-
-.clearButton {
-  border: none;
-  background: transparent;
-  padding: 0;
-  font-family: var(--font-roboto);
-  font-size: 0.8125rem;
-  font-weight: 400;
-  color: #9ca3af;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.clearButton:hover {
-  color: #6b7280;
 }
 
 .list {
@@ -50,22 +21,10 @@
   .card {
     padding: 1.125rem 1.25rem;
   }
-
-  .title {
-    font-size: 1.0625rem;
-  }
 }
 
 @media (max-width: 480px) {
   .card {
     padding: 1rem;
-  }
-
-  .title {
-    font-size: 1rem;
-  }
-
-  .clearButton {
-    font-size: 0.75rem;
   }
 }

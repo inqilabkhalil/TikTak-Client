@@ -2,6 +2,7 @@
 
 import { useFormik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Input as AntInput } from "antd";
 import { Input } from "@/shared/components/Input/Input";
 import { Button } from "@/shared/components/Button/Button";
@@ -10,6 +11,8 @@ import { loginSchema } from "./validation";
 import styles from "../../styles/AuthForm.module.css";
 
 export const LoginForm = () => {
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
       phone: "",
@@ -18,6 +21,7 @@ export const LoginForm = () => {
     validationSchema: loginSchema,
     onSubmit: (values) => {
       console.log("Login data:", values);
+      router.push("/home");
     },
   });
 
