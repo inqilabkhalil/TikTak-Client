@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-weight: 600;
+  color: #2B3043;
+  margin: 0;
+  font-size: 15px;
+  line-height: 100%;
+}
+
+.value {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-weight: 400;
+  color: #6C727F;
+  margin: 0;
+  font-size: 13px;
+  line-height: 140%;                
+  word-wrap: break-word;           
+}
+
+/* Planşet */
+@media (max-width: 1024px) {
+  .wrapper {
+    gap: 14px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .value {
+    font-size: 12.5px;
+  }
+}

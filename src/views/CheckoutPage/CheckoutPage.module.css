@@ -1,0 +1,160 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px 40px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: calc(100vh - 80px);
+}
+
+.breadcrumb {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  color: #6c727f;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+
+.headerRow {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 20px;            
+}
+
+.formTitle {
+  flex: 1;
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  color: #2b3043;
+  margin: 0;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 100%;
+}
+
+.summaryTitle {
+  width: 360px;
+  flex-shrink: 0;
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  color: #2b3043;
+  margin: 0;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 100%;
+}
+
+
+.content {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.formSection {
+  flex: 1;
+  min-width: 0;
+}
+
+.summarySection {
+  width: 360px;
+  flex-shrink: 0;
+  position: sticky;                  
+  top: 20px; 
+}
+
+.mobileTitle {
+  display: none;
+}
+
+/* ============ RESPONSİV ============ */
+
+/* Böyük planşet  */
+@media (max-width: 1200px) {
+  .summaryTitle,
+  .summarySection {
+    width: 320px;
+  }
+
+  .content {
+    gap: 20px;
+  }
+
+  .headerRow {
+    gap: 20px;
+  }
+}
+
+/* Kiçik planşet */
+@media (max-width: 1024px) {
+  .summaryTitle,
+  .summarySection {
+    width: 300px;
+  }
+
+  .formTitle,
+  .summaryTitle {
+    font-size: 20px;
+  }
+}
+
+/* Kiçik planşet */
+@media (max-width: 900px) {
+  .container {
+    padding: 16px;
+  }
+
+
+  .headerRow {
+    display: none;
+  }
+
+
+  .content {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .summarySection {
+    position: static;                
+    order: -1;
+    width: 100%;
+  }
+
+  .formSection {
+    width: 100%;
+  }
+
+  .mobileTitle {
+    display: block;
+    font-family: var(--font-roboto), "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2b3043;
+    margin: 0 0 12px 0;
+    line-height: 100%;
+  }
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  .breadcrumb {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .mobileTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    gap: 20px;
+  }
+}
