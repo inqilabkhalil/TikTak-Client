@@ -3,21 +3,21 @@
 }
 
 .sectionTitle {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #1f2937;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 .gridRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .inputField {
-  height: 44px;
-  border-radius: 8px;
+  height: 2.75rem;
+  border-radius: 0.5rem;
   background-color: #f8f9fa !important;
   border: 1px solid #e5e7eb !important;
 }
@@ -28,29 +28,29 @@
 }
 
 .passwordSection {
-  margin-top: 16px;
+  margin-top: 1rem;
   border-top: 1px solid #f0f0f0;
-  padding-top: 20px;
+  padding-top: 1.25rem;
 }
 
 .subTitle {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: #1f2937;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 
 .subText {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #9ca3af;
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .buttonWrapper {
   display: flex;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 2rem;
 }
 
 /* Şəkildəki yaşıl düymə dizaynı (Əgər shared button istifadə etmirsənsə) */
@@ -58,10 +58,10 @@
   background-color: #84cc16;
   color: #ffffff;
   font-weight: 600;
-  font-size: 16px;
-  padding: 12px 48px;
+  font-size: 1rem;
+  padding: 0.75rem 3rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }

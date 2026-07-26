@@ -1,0 +1,157 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  min-height: 4.75rem;
+  box-sizing: border-box;
+  padding: 0.75rem var(--layout-padding-x);
+  background-color: var(--color-bg-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logoLink {
+  flex-shrink: 0;
+  display: flex;
+  text-decoration: none;
+}
+
+.addressBlock {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 12.625rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-subtle);
+  overflow: hidden;
+}
+
+.addressLabel {
+  font-family: var(--font-roboto);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.addressText {
+  font-family: var(--font-roboto);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.searchIcon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.searchInput {
+  width: 100%;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0.5rem !important;
+  background-color: var(--color-bg-subtle) !important;
+  box-shadow: none !important;
+}
+
+.searchInput:hover,
+.searchInput:focus,
+.searchInput:focus-within {
+  border-color: var(--color-text-secondary) !important;
+}
+
+.searchInput :global(.ant-input) {
+  font-family: var(--font-roboto);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  background-color: transparent;
+}
+
+.searchInput :global(.ant-input)::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.actionLink {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.actionIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.actionLabel {
+  font-family: var(--font-roboto);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    gap: 1rem;
+  }
+
+  .addressBlock {
+    width: 6.875rem;
+    padding: 0.5rem 0.625rem;
+  }
+
+  .actions {
+    gap: 0.75rem;
+  }
+
+  .actionLabel {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+  }
+
+  .addressBlock {
+    order: 3;
+    width: auto;
+    flex: 1 1 auto;
+  }
+
+  .searchWrapper {
+    order: 4;
+    flex-basis: 100%;
+  }
+
+  .actionLabel {
+    display: none;
+  }
+
+  .actions {
+    gap: 1rem;
+  }
+}

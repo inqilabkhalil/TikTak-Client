@@ -1,13 +1,13 @@
 .breadcrumb {
   font-family: var(--font-roboto);
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #6b7280;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 480px) {
   .breadcrumb {
-    font-size: 13px;
-    margin-bottom: 12px;
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
   }
 }

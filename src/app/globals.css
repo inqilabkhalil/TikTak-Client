@@ -1,16 +1,40 @@
 @import "tailwindcss";
 
+/*
+ * Konvensiya: yeni komponentlərdə ölçü dəyərləri (font-size, padding, gap,
+ * width/height, border-radius və s.) px yox, rem ilə yazılsın ki, brauzer
+ * zoom-u (Ctrl/Cmd + +/-) zamanı layout proporsional böyüyüb-kiçilsin.
+ * Baza: html { font-size: 16px } => 1rem = 16px.
+ * İstisna: @media breakpoint dəyərləri (max-width və s.) px-də qalır, çünki
+ * onlar ekranın fiziki eninə aiddir, zoom-a yox.
+ */
+html {
+  font-size: 16px;
+}
+
 :root {
   --primarybuttoncolor: rgba(146, 216, 113, 1);
 
-  --layout-padding-x: 65px;
-  --layout-padding-y: 10px;
+  --layout-padding-x: 4.0625rem;
+  --layout-padding-y: 0.625rem;
+
+  --color-text-primary: #2b3043;
+  --color-text-secondary: #6b7280;
+  --color-border: #eaeaea;
+  --color-bg-subtle: #f6f5fb;
+  --color-bg-white: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --layout-padding-x: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   :root {
-    --layout-padding-x: 16px;
-    --layout-padding-y: 10px;
+    --layout-padding-x: 1rem;
+    --layout-padding-y: 0.625rem;
   }
 }
 

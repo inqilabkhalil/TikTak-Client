@@ -1,33 +1,33 @@
 .sidebarCard {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 24px 16px;
+  border-radius: 0.75rem;
+  padding: 1.5rem 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   border: 1px solid #f0f0f0;
 }
 
 .sidebarTitle {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #1f2937;
-  margin-bottom: 20px;
-  padding-left: 12px;
+  margin-bottom: 1.25rem;
+  padding-left: 0.75rem;
 }
 
 .navMenu {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 8px;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
   color: #4b5563;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -40,10 +40,10 @@
 
 /* Şəkildə gördüyün aktiv yaşıl vəziyyət */
 .navItem.active {
-  background-color: #f0fdf4; 
-  color: #16a34a; 
+  background-color: #f0fdf4;
+  color: #16a34a;
 }
 
 .icon {
-  font-size: 16px;
+  font-size: 1rem;
 }

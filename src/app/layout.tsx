@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 
@@ -11,6 +11,11 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "TikTak",
   description: "TikTak — onlayn market",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

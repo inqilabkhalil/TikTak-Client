@@ -1,3 +1,4 @@
+import { Header } from "@/shared/components/Header";
 import styles from "./layout.module.css";
 
 export default function MainLayout({
@@ -7,7 +8,7 @@ export default function MainLayout({
 }) {
   return (
     <div className={styles.wrapper}>
-      <header className={styles.header} />
+      <Header />
       <main className={styles.content}>{children}</main>
     </div>
   );

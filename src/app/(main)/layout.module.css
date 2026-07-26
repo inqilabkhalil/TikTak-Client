@@ -7,11 +7,6 @@
  
 }
 
-.header {
-  width: 100%;
-  min-height: 108px;
-}
-
 .content {
   flex: 1;
   width: 100%;

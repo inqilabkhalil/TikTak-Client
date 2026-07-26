@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 24px;
+  gap: 1.5rem;
   align-items: start;
 }
 
@@ -15,6 +15,6 @@
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 1rem;
   }
 }

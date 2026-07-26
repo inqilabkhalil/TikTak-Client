@@ -15,7 +15,7 @@
 }
 
 .logoWrapper {
-  padding: 32px 40px;
+  padding: 2rem 2.5rem;
   z-index: 2;
   flex-shrink: 0;
 }
@@ -40,15 +40,15 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 240px;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
+  padding-top: 15rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 @media (max-height: 850px) {
   .rightSide {
-    padding-top: 160px; 
+    padding-top: 10rem;
   }
 }
 
@@ -56,32 +56,32 @@
   .container {
     flex-direction: column;
   }
-  
+
   .leftSide {
     width: 100%;
     flex: initial;
-    min-height: 300px;              
+    min-height: 18.75rem;
     display: flex;
-    align-items: center;          
-    justify-content: center;       
+    align-items: center;
+    justify-content: center;
   }
-  
+
 
   .logoWrapper {
-    padding: 0;                     
-    position: static;              
+    padding: 0;
+    position: static;
   }
-  
+
 
   .imageWrapper {
-    display: none;                 
+    display: none;
   }
-  
+
 
   .rightSide {
     width: 100%;
     flex: 1;
-    padding: 40px 20px;
-    align-items: flex-start;      
+    padding: 2.5rem 1.25rem;
+    align-items: flex-start;
   }
 }
