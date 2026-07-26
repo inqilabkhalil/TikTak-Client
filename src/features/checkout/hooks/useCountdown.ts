@@ -1,13 +1,12 @@
-"use client"
+'use client';
 
-import { useEffect, useState } from "react";
-import type { UseCountdownReturn } from "@/features/checkout/types";
-
+import { useEffect, useState } from 'react';
+import type { UseCountdownReturn } from '@/Features/checkout/types';
 
 export const useCountdown = (
   initialSeconds: number,
   onFinish?: () => void,
-  isActive: boolean = true
+  isActive: boolean = true,
 ): UseCountdownReturn => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
@@ -29,7 +28,7 @@ export const useCountdown = (
   const formatTime = (totalSeconds: number): string => {
     const minutes = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
-    return `${minutes}:${secs.toString().padStart(2, "0")}`;
+    return `${minutes}:${secs.toString().padStart(2, '0')}`;
   };
 
   const reset = () => {
