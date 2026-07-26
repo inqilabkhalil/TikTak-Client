@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect } from "react";
-import { Modal } from "@/shared/components/Modal";
-import { Button } from "@/shared/components/Button/Button";
-import { useCountdown } from "@/features/checkout/hooks";
-import type { ConfirmModalProps } from "@/features/checkout/types";
-import clockIcon from "@/shared/assets/clock.png";
-import styles from "./ConfirmModal.module.css";
+import Image from 'next/image';
+import { useEffect } from 'react';
+import { Modal } from '@/shared/components/Modal';
+import { Button } from '@/shared/components/Button/Button';
+import { useCountdown } from '@/Features/checkout/hooks';
+import type { ConfirmModalProps } from '@/Features/checkout/types';
+import clockIcon from '@/shared/assets/clock.png';
+import styles from './ConfirmModal.module.css';
 
 export const ConfirmModal = ({
   isOpen,
@@ -28,8 +28,8 @@ export const ConfirmModal = ({
           <Image
             src={clockIcon}
             alt="Clock"
-            width={160}          
-            height={160}          
+            width={160}
+            height={160}
             priority
           />
         </div>
@@ -42,13 +42,10 @@ export const ConfirmModal = ({
         </div>
 
         <div className={styles.buttons}>
-          <Button
-            onClick={onConfirm}
-            className={styles.confirmButton}
-          >
+          <Button onClick={onConfirm} className={styles.confirmButton}>
             Təsdiqlə
           </Button>
-          
+
           <Button
             color="#FFFFFF"
             onClick={onClose}

@@ -1,5 +1,4 @@
-import OrdersTable from "@/features/account/components/OrdersTable/OrdersTable";
-
+import OrdersTable from '@/Features/account/components/OrdersTable/OrdersTable';
 
 export default function OrdersPage() {
   return (
