@@ -1,0 +1,2 @@
+export { LandigPage } from "./LandigPage";
+
