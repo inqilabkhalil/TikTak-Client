@@ -23,7 +23,7 @@ export const useCheckout = () => {
    tesdiqle duymesine basanda
    */
   const handleConfirm = () => {
-    console.log("✅ Sifariş göndərildi:", formValues);
+    console.log("Sifariş göndərildi:", formValues);
     setIsModalOpen(false);
     setStep("success");
   };

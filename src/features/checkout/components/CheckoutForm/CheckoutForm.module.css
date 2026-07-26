@@ -1,17 +1,17 @@
 .form {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 28px;
+  border-radius: 1rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 1.75rem;
   width: 100%;
   box-sizing: border-box;
 }
 
 .row {
   display: flex;
-  gap: 32px;
+  gap: 2rem;
   width: 100%;
   align-items: flex-start;
 }
@@ -24,128 +24,145 @@
 .noteSection {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 100%;                      
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .label {
   font-family: var(--font-roboto), "Roboto", sans-serif;
   font-weight: 600;
-  color: #2B3043;
-  font-size: 16px;
+  color: #2b3043;
+  font-size: 1rem;
   line-height: 100%;
   margin: 0;
 }
 
 .textarea {
-  background-color: #F6F5FB !important;
-  border: 1px solid transparent !important;
-  border-radius: 12px !important;
-  padding: 12px 14px !important;
+  background-color: #f6f5fb !important;
+  border: 0.0625rem solid transparent !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 0.875rem !important;
   font-family: var(--font-roboto), "Roboto", sans-serif !important;
-  font-size: 13px !important;
-  color: #2B3043 !important;
+  font-size: 0.8125rem !important;
+  color: #2b3043 !important;
   resize: none !important;
-  min-height: 120px !important;
-  width: 100% !important;           
+  min-height: 7.5rem !important;
+  width: 100% !important;
 }
 
 .textarea::placeholder {
-  color: #9EA5B5;
+  color: #676767;
 }
 
 .textarea:focus,
 .textarea:hover {
-  border-color: #3BB77E !important;
+  border-color: #3bb77e !important;
   background-color: #ffffff !important;
   box-shadow: none !important;
 }
 
 .error {
-  color: #E53935;
-  font-size: 12px;
-  margin-top: 2px;
+  color: #e53935;
+  font-size: 0.75rem;
+  margin-top: 0.125rem;
 }
 
 .submitWrapper {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 0.5rem;
 }
 
 .submitButton {
-  background-color: #2B3043 !important;
-  width: 280px !important;
-  height: 48px !important;
-  border-radius: 10px !important;
-  font-size: 15px !important;
+  background-color: #2b3043 !important;
+  width: 17.5rem !important;
+  height: 3rem !important;
+  border-radius: 0.625rem !important;
+  font-size: 0.9375rem !important;
   font-weight: 600 !important;
   color: #ffffff !important;
   border: none !important;
   cursor: pointer;
-  transition: opacity 0.2s;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .submitButton:hover {
-  opacity: 0.9;
+  background-color: #1F2333 !important;
+  transform: translateY(-0.125rem);              
+  box-shadow: 0 0.5rem 1.25rem rgba(43, 48, 67, 0.25) !important;
+}
+.submitButton:active {
+  transform: translateY(0.0625rem) scale(0.98);   
+  box-shadow: 0 0.125rem 0.25rem rgba(43, 48, 67, 0.15) !important;
+  transition: 
+    transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
+.submitButton:focus-visible {
+  outline: 0.1875rem solid rgba(59, 183, 126, 0.3);
+  outline-offset: 0.125rem;
+}
 /* ============ RESPONSİV ============ */
 
 /* Planşet */
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .form {
-    padding: 24px;
-    gap: 24px;
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
 
   .row {
-    gap: 20px;
+    gap: 1.25rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .form {
-    padding: 20px;
-    gap: 20px;
-    border-radius: 12px;
+    padding: 1.25rem;
+    gap: 1.25rem;
+    border-radius: 0.75rem;
   }
 
   .row {
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
   }
 
-
   .textarea {
-    min-height: 140px !important;      
+    min-height: 8.75rem !important;
   }
 
   .label {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .submitButton {
     width: 100% !important;
-    height: 52px !important;
-    font-size: 16px !important;
+    height: 3.25rem !important;
+    font-size: 1rem !important;
   }
 }
 
 /* Mobil */
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .form {
-    padding: 16px;
-    gap: 16px;
-    border-radius: 10px;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 0.625rem;
   }
 
   .label {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .textarea {
-    min-height: 120px !important;
-    font-size: 13px !important;
+    min-height: 7.5rem !important;
+    font-size: 0.8125rem !important;
   }
 }

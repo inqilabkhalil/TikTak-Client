@@ -35,7 +35,6 @@ export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
           return (
             <Button
               key={option.id}
-              color="#FFFFFF"
               onClick={() => onChange(option.id)}
               className={`${styles.card} ${isSelected ? styles.selected : ""}`}
             >
@@ -45,6 +44,7 @@ export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
                   alt={option.label}
                   width={40}
                   height={40}
+                  priority 
                 />
               </div>
 

@@ -9,7 +9,7 @@
 
 .breadcrumb {
   font-family: var(--font-roboto), "Roboto", sans-serif;
-  color: #6c727f;
+  color: #2B3043;
   margin-bottom: 20px;
   font-weight: 400;
   font-size: 14px;
@@ -67,6 +67,7 @@
 
 .mobileTitle {
   display: none;
+  color: #2B3043;
 }
 
 /* ============ RESPONSİV ============ */

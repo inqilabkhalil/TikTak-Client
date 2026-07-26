@@ -57,7 +57,6 @@ export const CheckoutForm = ({ user, onSubmit }: CheckoutFormProps) => {
 
       <div className={styles.submitWrapper}>
         <Button
-          color="#2B3043"
           htmlType="submit"
           onClick={() => formik.handleSubmit()}
           className={styles.submitButton}
