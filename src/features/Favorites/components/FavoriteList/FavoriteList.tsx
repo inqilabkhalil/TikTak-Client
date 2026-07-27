@@ -1,16 +1,35 @@
 import { FavoriteCard } from '../FavoriteCard';
 import styles from './FavoriteList.module.css';
 
-export const FavoriteList = () => {
+interface FavoriteItem {
+  id: string;
+  title: string;
+  price: number;
+  emoji: string;
+}
+
+interface FavoriteListProps {
+  favorites: FavoriteItem[];
+}
+
+export const FavoriteList = ({ favorites }: FavoriteListProps) => {
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>Sevimlilər</h2>
 
-      <div className={styles.grid}>
-        <FavoriteCard title="Banan" price={4.99} />
-        <FavoriteCard title="Alma" price={2.5} />
-        <FavoriteCard title="Çiyələk" price={8.2} />
-      </div>
+      {favorites.length > 0 && (
+        <div className={styles.grid}>
+          {favorites.map((favorite) => (
+            <FavoriteCard
+              key={favorite.id}
+              title={favorite.title}
+              price={favorite.price}
+              emoji={favorite.emoji}
+              className={styles.card}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
