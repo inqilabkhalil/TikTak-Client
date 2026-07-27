@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-import { FavoriteList } from '@/features/Favorites';
-=======
 import {
   BasketList,
   OrderSummary,
   type BasketProduct,
-} from '@/Features/Basket';
-import { FavoriteList } from '@/Features/Favorites';
-import { EmptyCart } from '@/Features/Favorites/components/EmptyCart/EmptyCart';
->>>>>>> 8f07bdaa6d410956a7edd741e550e41b22364845
+} from '@/features/Basket';
+import { FavoriteList } from '@/features/Favorites';
+import { EmptyCart } from '@/features/Favorites/components/EmptyCart/EmptyCart';
 import styles from './FavoritesPage.module.css';
 
 const favorites = [
