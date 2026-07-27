@@ -1,12 +1,17 @@
-"use client";
+'use client';
 
-import { Breadcrumb } from "@/shared/components/Breadcrumb";
-import { BasketList, OrderSummary, MOCK_BASKET_PRODUCTS, BASKET_BREADCRUMB_ITEMS } from "@/features/Basket";
-import styles from "./BasketPage.module.css";
+import { Breadcrumb } from '@/shared/components/Breadcrumb';
+import {
+  BasketList,
+  OrderSummary,
+  MOCK_BASKET_PRODUCTS,
+  BASKET_BREADCRUMB_ITEMS,
+} from '@/features/Basket';
+import styles from './BasketPage.module.css';
 
 export function BasketPage() {
   const handleClear = () => {
-    console.log("onClear not implemented");
+    console.log('onClear not implemented');
   };
 
   return (
@@ -16,7 +21,11 @@ export function BasketPage() {
 
         <div className={styles.listHeading}>
           <h2 className={styles.listTitle}>Səbətim</h2>
-          <button type="button" className={styles.clearButton} onClick={handleClear}>
+          <button
+            type="button"
+            className={styles.clearButton}
+            onClick={handleClear}
+          >
             Səbəti təmizlə
           </button>
         </div>

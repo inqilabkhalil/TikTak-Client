@@ -1,12 +1,16 @@
-"use client";
+'use client';
 
-import { Button as AntButton, ButtonProps as AntButtonProps } from "antd";
+import { Button as AntButton, ButtonProps as AntButtonProps } from 'antd';
 
-interface ButtonProps extends Omit<AntButtonProps, "color"> {
+export interface ButtonProps extends Omit<AntButtonProps, 'color'> {
   color?: string;
 }
 
-export function Button({ color = "var(--primarybuttoncolor)", style, ...props }: ButtonProps) {
+export function Button({
+  color = 'var(--primarybuttoncolor)',
+  style,
+  ...props
+}: ButtonProps) {
   return (
     <AntButton
       type="primary"

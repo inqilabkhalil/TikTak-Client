@@ -1,10 +1,10 @@
-import { RegisterForm } from '@/features/auth/components/RegisterForm'
-import { AuthLayout } from '@/shared/components/AuthLayout'
+import { RegisterForm } from '@/features/auth/components/RegisterForm';
+import { AuthLayout } from '@/shared/components/AuthLayout';
 
 export function RegisterPage() {
   return (
     <AuthLayout>
-     <RegisterForm/>
+      <RegisterForm />
     </AuthLayout>
-  )
+  );
 }

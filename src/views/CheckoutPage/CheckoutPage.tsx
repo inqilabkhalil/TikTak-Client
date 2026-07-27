@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { OrderSummary } from "@/features/checkout/components/OrderSummary";
-import { ConfirmModal } from "@/features/checkout/components/ConfirmModal";
-import { SuccessScreen } from "@/features/checkout/components/SuccessScreen";
-import { useCheckout } from "@/features/checkout/hooks";
-import { MOCK_USER, MOCK_SUMMARY } from "./mockData";
-import styles from "./CheckoutPage.module.css";
-import { CheckoutForm } from "@/features/checkout/components/CheckoutForm/CheckoutForm";
+import { OrderSummary } from '@/features/checkout/components/OrderSummary';
+import { ConfirmModal } from '@/features/checkout/components/ConfirmModal';
+import { SuccessScreen } from '@/features/checkout/components/SuccessScreen';
+import { useCheckout } from '@/features/checkout/hooks';
+import { MOCK_USER, MOCK_SUMMARY } from './mockData';
+import styles from './CheckoutPage.module.css';
+import { CheckoutForm } from '@/features/checkout/components/CheckoutForm/CheckoutForm';
 
 export const CheckoutPage = () => {
   const { step, isModalOpen, handleFormSubmit, handleConfirm, handleCancel } =
     useCheckout();
 
-  if (step === "success") {
+  if (step === 'success') {
     return <SuccessScreen />;
   }
 

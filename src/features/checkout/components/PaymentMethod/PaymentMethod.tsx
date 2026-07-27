@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { Button } from "@/shared/components/Button/Button";
-import moneyIcon from "@/shared/assets/money.png";
-import cardIcon from "@/shared/assets/card.png";
+import Image from 'next/image';
+import { Button } from '@/shared/components/Button/Button';
+import moneyIcon from '@/shared/assets/money.png';
+import cardIcon from '@/shared/assets/card.png';
 import type {
   PaymentMethodProps,
   PaymentOption,
-} from "@/features/checkout/types";
-import styles from "./PaymentMethod.module.css";
+} from '@/features/checkout/types';
+import styles from './PaymentMethod.module.css';
 
 const PAYMENT_OPTIONS: PaymentOption[] = [
   {
-    id: "CASH",
-    label: "Qapıda nağd ödəmə",
+    id: 'CASH',
+    label: 'Qapıda nağd ödəmə',
     icon: moneyIcon,
   },
   {
-    id: "CARD",
-    label: "Qapıda kart ilə ödəmə",
+    id: 'CARD',
+    label: 'Qapıda kart ilə ödəmə',
     icon: cardIcon,
   },
 ];
@@ -36,7 +36,7 @@ export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
             <Button
               key={option.id}
               onClick={() => onChange(option.id)}
-              className={`${styles.card} ${isSelected ? styles.selected : ""}`}
+              className={`${styles.card} ${isSelected ? styles.selected : ''}`}
             >
               <div className={styles.iconWrapper}>
                 <Image
@@ -44,7 +44,6 @@ export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
                   alt={option.label}
                   width={40}
                   height={40}
-                  priority 
                 />
               </div>
 

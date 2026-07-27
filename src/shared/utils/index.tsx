@@ -1,1 +1,1 @@
-export {};
+export const formatPrice = (value: number): string => `${value.toFixed(2)} AZN`;

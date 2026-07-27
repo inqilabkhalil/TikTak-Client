@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 import type {
   CheckoutFormValues,
   CheckoutStep,
-} from "@/features/checkout/types";
+} from '@/features/checkout/types';
 
 export const useCheckout = () => {
-  const [step, setStep] = useState<CheckoutStep>("form");
+  const [step, setStep] = useState<CheckoutStep>('form');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formValues, setFormValues] = useState<CheckoutFormValues | null>(null);
 
@@ -23,9 +23,9 @@ export const useCheckout = () => {
    tesdiqle duymesine basanda
    */
   const handleConfirm = () => {
-    console.log("Sifariş göndərildi:", formValues);
+    console.log('Sifariş göndərildi:', formValues);
     setIsModalOpen(false);
-    setStep("success");
+    setStep('success');
   };
 
   /**

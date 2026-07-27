@@ -6,3 +6,8 @@ export interface ModalProps {
     children: ReactNode;
     closeOnOverlayClick?: boolean;
 }
+
+export interface HeaderProps {
+    showPlace?: boolean;
+    showInput?: boolean;
+}

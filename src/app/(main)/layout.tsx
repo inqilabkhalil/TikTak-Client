@@ -1,4 +1,8 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Header } from "@/shared/components/Header";
+import { PageTransition } from "@/shared/components/PageTransition";
 import styles from "./layout.module.css";
 
 export default function MainLayout({
@@ -6,10 +10,15 @@ export default function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isLandingPage = pathname === "/landig";
+
   return (
     <div className={styles.wrapper}>
-      <Header />
-      <main className={styles.content}>{children}</main>
+      <Header showPlace={!isLandingPage} showInput={!isLandingPage} />
+      <main className={styles.content}>
+        <PageTransition>{children}</PageTransition>
+      </main>
     </div>
   );
 }

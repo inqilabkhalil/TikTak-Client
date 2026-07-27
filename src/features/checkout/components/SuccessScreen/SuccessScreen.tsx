@@ -16,7 +16,6 @@ export const SuccessScreen = ({
                 alt="Sucess"
                 width={140}
                 height={140}
-                priority
                 />
             </div>
             <h2 className={styles.title}>{title}</h2>
