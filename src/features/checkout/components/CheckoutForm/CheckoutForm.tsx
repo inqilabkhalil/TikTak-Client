@@ -1,28 +1,31 @@
-'use client';
+"use client";
 
-import { useFormik } from 'formik';
-import { Input as AntInput } from 'antd';
-import { Button } from '@/shared/components/Button/Button';
-import { UserInfoDisplay } from '@/Features/checkout/components/UserInfoDisplay';
-import { PaymentMethod } from '@/Features/checkout/components/PaymentMethod';
-import { checkoutSchema } from '@/Features/checkout/validation';
+import { Input as AntInput } from "antd";
+import { Button } from "@/shared/components/Button/Button";
+import { UserInfoDisplay } from "@/features/checkout/components/UserInfoDisplay";
+import { PaymentMethod } from "@/features/checkout/components/PaymentMethod";
+import { useCheckoutForm } from "@/features/checkout/hooks";
+import { checkoutSchema } from "@/features/checkout/validation";
 import type {
   CheckoutFormProps,
   CheckoutFormValues,
-} from '@/Features/checkout/types';
-import styles from './CheckoutForm.module.css';
+} from "@/features/checkout/types";
+import styles from "./CheckoutForm.module.css";
 
 export const CheckoutForm = ({ user, onSubmit }: CheckoutFormProps) => {
-  const formik = useFormik<CheckoutFormValues>({
-    initialValues: {
-      note: '',
-      paymentMethod: 'CASH',
-    },
-    validationSchema: checkoutSchema,
-    onSubmit: (values) => {
-      onSubmit(values);
-    },
-  });
+  const { formik, getFieldProps, getFieldError } =
+    useCheckoutForm<CheckoutFormValues>({
+      initialValues: {
+        note: "",
+        paymentMethod: "CASH",
+      },
+      validationSchema: checkoutSchema,
+      onSubmit: (values) => {
+        onSubmit(values);
+      },
+    });
+
+  const noteError = getFieldError("note");
 
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>
@@ -32,34 +35,24 @@ export const CheckoutForm = ({ user, onSubmit }: CheckoutFormProps) => {
         <div className={styles.noteSection}>
           <label className={styles.label}>Əlavə qeyd</label>
           <AntInput.TextArea
-            name="note"
+            {...getFieldProps("note")}
             placeholder="Əlavə qeydiniz varsa buraya daxil edin"
-            value={formik.values.note}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             rows={6}
             className={styles.textarea}
-            status={
-              formik.touched.note && formik.errors.note ? 'error' : undefined
-            }
           />
-          {formik.touched.note && formik.errors.note && (
-            <span className={styles.error}>{formik.errors.note}</span>
+          {noteError.touched && noteError.error && (
+            <span className={styles.error}>{noteError.error}</span>
           )}
         </div>
       </div>
 
       <PaymentMethod
         value={formik.values.paymentMethod}
-        onChange={(method) => formik.setFieldValue('paymentMethod', method)}
+        onChange={(method) => formik.setFieldValue("paymentMethod", method)}
       />
 
       <div className={styles.submitWrapper}>
-        <Button
-          htmlType="submit"
-          onClick={() => formik.handleSubmit()}
-          className={styles.submitButton}
-        >
+        <Button htmlType="submit" className={styles.submitButton}>
           Sifarişi tamamla
         </Button>
       </div>
