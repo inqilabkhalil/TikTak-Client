@@ -2,9 +2,9 @@ import {
   BasketList,
   OrderSummary,
   type BasketProduct,
-} from '@/features/Basket';
-import { FavoriteList } from '@/features/Favorites';
-import { EmptyCart } from '@/features/Favorites/components/EmptyCart/EmptyCart';
+} from '@/Features/Basket';
+import { FavoriteList } from '@/Features/Favorites';
+import { EmptyCart } from '@/Features/Favorites/components/EmptyCart/EmptyCart';
 import styles from './FavoritesPage.module.css';
 
 const favorites = [

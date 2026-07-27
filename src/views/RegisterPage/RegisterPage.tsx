@@ -1,4 +1,4 @@
-import { RegisterForm } from '@/features/auth/components/RegisterForm';
+import { RegisterForm } from '@/Features/auth/components/RegisterForm';
 import { AuthLayout } from '@/shared/components/AuthLayout';
 
 export function RegisterPage() {
