@@ -7,7 +7,7 @@ import cardIcon from '@/shared/assets/card.png';
 import type {
   PaymentMethodProps,
   PaymentOption,
-} from '@/features/checkout/types';
+} from '@/Features/checkout/types';
 import styles from './PaymentMethod.module.css';
 
 const PAYMENT_OPTIONS: PaymentOption[] = [

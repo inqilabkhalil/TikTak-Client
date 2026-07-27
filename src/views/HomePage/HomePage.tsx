@@ -1,5 +1,5 @@
-import { Banner } from '@/features/home/components/Banner';
-import { CategoryGrid } from '@/features/home/components/CategoryGrid';
+import { Banner } from '@/Features/home/components/Banner';
+import { CategoryGrid } from '@/Features/home/components/CategoryGrid';
 import styles from './HomePage.module.css';
 
 export const HomePage = () => {

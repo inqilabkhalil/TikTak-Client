@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { Modal } from '@/shared/components/Modal';
 import { Button } from '@/shared/components/Button/Button';
-import { useCountdown } from '@/features/checkout/hooks';
-import type { ConfirmModalProps } from '@/features/checkout/types';
+import { useCountdown } from '@/Features/checkout/hooks';
+import type { ConfirmModalProps } from '@/Features/checkout/types';
 import clockIcon from '@/shared/assets/clock.png';
 import styles from './ConfirmModal.module.css';
 
@@ -25,12 +25,7 @@ export const ConfirmModal = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={styles.container}>
         <div className={styles.iconWrapper}>
-          <Image
-            src={clockIcon}
-            alt="Clock"
-            width={160}
-            height={160}
-          />
+          <Image src={clockIcon} alt="Clock" width={160} height={160} />
         </div>
 
         <div className={styles.textWrapper}>

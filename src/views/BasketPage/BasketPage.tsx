@@ -6,7 +6,7 @@ import {
   OrderSummary,
   MOCK_BASKET_PRODUCTS,
   BASKET_BREADCRUMB_ITEMS,
-} from '@/features/Basket';
+} from '@/Features/Basket';
 import styles from './BasketPage.module.css';
 
 export function BasketPage() {
