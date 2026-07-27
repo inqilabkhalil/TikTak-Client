@@ -1,3 +1,5 @@
+import type { StaticImageData } from "next/image";
+
 export type BannerTheme = "green" | "red";
 
 export interface Banner {
@@ -21,7 +23,7 @@ export interface Stat {
   id: number;
   value: string;
   label: string;
-  icon: string;
+  icon: StaticImageData;
 }
 
 export interface BannerCardProps {
