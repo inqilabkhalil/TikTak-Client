@@ -3,13 +3,13 @@
 import { useFormik } from 'formik';
 import { Input as AntInput } from 'antd';
 import { Button } from '@/shared/components/Button/Button';
-import { UserInfoDisplay } from '@/Features/checkout/components/UserInfoDisplay';
-import { PaymentMethod } from '@/Features/checkout/components/PaymentMethod';
-import { checkoutSchema } from '@/Features/checkout/validation';
+import { UserInfoDisplay } from '@/features/checkout/components/UserInfoDisplay';
+import { PaymentMethod } from '@/features/checkout/components/PaymentMethod';
+import { checkoutSchema } from '@/features/checkout/validation';
 import type {
   CheckoutFormProps,
   CheckoutFormValues,
-} from '@/Features/checkout/types';
+} from '@/features/checkout/types';
 import styles from './CheckoutForm.module.css';
 
 export const CheckoutForm = ({ user, onSubmit }: CheckoutFormProps) => {

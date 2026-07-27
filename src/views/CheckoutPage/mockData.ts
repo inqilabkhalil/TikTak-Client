@@ -1,7 +1,7 @@
 import type {
   CheckoutUserInfo,
   OrderSummaryData,
-} from '@/Features/checkout/types';
+} from '@/features/checkout/types';
 
 export const MOCK_USER: CheckoutUserInfo = {
   name: 'Sarkhan Rahimli',

@@ -7,7 +7,7 @@ import cardIcon from '@/shared/assets/card.png';
 import type {
   PaymentMethodProps,
   PaymentOption,
-} from '@/Features/checkout/types';
+} from '@/features/checkout/types';
 import styles from './PaymentMethod.module.css';
 
 const PAYMENT_OPTIONS: PaymentOption[] = [
@@ -44,7 +44,6 @@ export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
                   alt={option.label}
                   width={40}
                   height={40}
-                  priority
                 />
               </div>
 
