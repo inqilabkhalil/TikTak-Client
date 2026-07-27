@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FiTrash2, FiPlus } from "react-icons/fi";
 import type { BasketItemProps } from "../../types/basket.types";
-import { formatPrice } from "../../utils/formatPrice";
+import { formatPrice } from "@/shared/utils";
 import styles from "./BasketItem.module.css";
 
 export const BasketItem = ({ product, onIncrease, onRemove }: BasketItemProps) => {

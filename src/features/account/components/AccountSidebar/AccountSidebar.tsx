@@ -9,7 +9,7 @@ import { UserOutlined, HomeOutlined } from '@ant-design/icons';
 import styles from './AccountSidebar.module.css';
 import { ROUTES } from '@/shared/constants';
 
-export default function AccountSidebar() {
+export function AccountSidebar() {
   const pathname = usePathname();
 
   return (

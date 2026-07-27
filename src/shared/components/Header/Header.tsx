@@ -5,16 +5,16 @@ import Link from "next/link";
 import { FiSearch, FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
 import { Logo } from "@/shared/components/Logo";
 import { Input } from "@/shared/components/Input/Input";
+import { HeaderProps } from "@/shared/types";
 import styles from "./Header.module.css";
 
 const MOCK_ADDRESS = "55 Zarifa Əliyeva, Bakı, Azərbaycan";
 
-export const Header = () => {
+export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
   const [search, setSearch] = useState("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -23,24 +23,28 @@ export const Header = () => {
         <Logo />
       </Link>
 
-      <div className={styles.addressBlock}>
-        <span className={styles.addressLabel}>Unvan</span>
-        <span className={styles.addressText}>{MOCK_ADDRESS}</span>
-      </div>
+      {showPlace && (
+        <div className={styles.addressBlock}>
+          <span className={styles.addressLabel}>Unvan</span>
+          <span className={styles.addressText}>{MOCK_ADDRESS}</span>
+        </div>
+      )}
 
-      <div className={styles.searchWrapper}>
-        <Input
-          type="text"
-          className={styles.searchInput}
-          placeholder="Axtarış"
-          prefix={<FiSearch className={styles.searchIcon} />}
-          value={search}
-          onChange={handleSearchChange}
-        />
-      </div>
+      {showInput && (
+        <div className={styles.searchWrapper}>
+          <Input
+            type="text"
+            className={styles.searchInput}
+            placeholder="Axtarış"
+            prefix={<FiSearch className={styles.searchIcon} />}
+            value={search}
+            onChange={handleSearchChange}
+          />
+        </div>
+      )}
 
       <nav className={styles.actions} aria-label="user actions">
-        <Link href="/profile" className={styles.actionLink}>
+        <Link href="/account" className={styles.actionLink}>
           <FiUser className={styles.actionIcon} />
           <span className={styles.actionLabel}>Hesabım</span>
         </Link>

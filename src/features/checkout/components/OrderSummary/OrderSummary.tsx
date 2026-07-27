@@ -1,4 +1,5 @@
 import { OrderSummaryProps } from "../../types";
+import { formatPrice } from "@/shared/utils";
 import styles from "./OrderSummary.module.css";
 
 export const OrderSummary = ({ data }: OrderSummaryProps) => {
@@ -12,7 +13,7 @@ export const OrderSummary = ({ data }: OrderSummaryProps) => {
               {product.quantity} x {product.name}
             </span>
             <span className={styles.productPrice}>
-              {product.price.toFixed(2)} AZN
+              {formatPrice(product.price)}
             </span>
           </div>
         ))}
@@ -23,18 +24,16 @@ export const OrderSummary = ({ data }: OrderSummaryProps) => {
       <div className={styles.totals}>
         <div className={styles.totalRow}>
           <span>Ümumi:</span>
-          <span>{subtotal.toFixed(2)} AZN</span>
+          <span>{formatPrice(subtotal)}</span>
         </div>
 
         <div className={styles.totalRow}>
           <span>Çatdırılma:</span>
-          <span>
-            {deliveryFee === 0 ? "Pulsuz" : `${deliveryFee.toFixed(2)} AZN`}
-          </span>
+          <span>{deliveryFee === 0 ? "Pulsuz" : formatPrice(deliveryFee)}</span>
         </div>
         <div className={`${styles.totalRow} ${styles.finalTotal}`}>
           <span>Yekun məbləğ</span>
-          <span>{total.toFixed(2)} AZN</span>
+          <span>{formatPrice(total)}</span>
         </div>
       </div>
     </div>
