@@ -75,4 +75,8 @@
   .sidebar {
     position: static;
   }
+
+  .cartPanel {
+    grid-column: auto;
+  }
 }

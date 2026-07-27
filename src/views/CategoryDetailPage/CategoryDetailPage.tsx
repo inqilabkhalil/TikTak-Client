@@ -1,5 +1,6 @@
 import { CategoryList } from '@/Features/Categories';
 import { ProductsGrid } from '@/Features/ProductsGrid/ProductsGrid';
+import { BasketCard } from '@/shared/components/BasketCard';
 import styles from './CategoryDetailPage.module.css';
 
 export const CategoryDetailPage = () => {
@@ -17,8 +18,7 @@ export const CategoryDetailPage = () => {
       </section>
 
       <aside className={styles.cartPanel}>
-        <h3 className={styles.cartTitle}>Səbət</h3>
-        <p className={styles.cartText}>Məhsullar əlavə edin</p>
+        <BasketCard />
       </aside>
     </div>
   );
