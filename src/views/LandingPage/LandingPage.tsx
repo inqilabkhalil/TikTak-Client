@@ -1,7 +1,6 @@
 import { HeroBanner } from "@/features/Landing/components/HeroBanner";
 import { SpecialOffers } from "@/features/Landing/components/SpecialOffers";
 import { StatsSection } from "@/features/Landing/components/StatsSection";
-import { Footer } from "@/shared/components/Footer";
 import styles from "./LandingPage.module.css";
 
 export const LandingPage = () => {
@@ -10,7 +9,6 @@ export const LandingPage = () => {
       <HeroBanner />
       <SpecialOffers />
       <StatsSection />
-      <Footer />
     </div>
   );
 };
