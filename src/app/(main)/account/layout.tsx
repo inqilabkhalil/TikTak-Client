@@ -1,4 +1,4 @@
-// src/app/(general)/account/layout.tsx
+// src/app/(main)/account/layout.tsx
 import React from 'react';
 import { AccountSidebar } from '@/Features/account';
 import styles from './AccountLayout.module.css';

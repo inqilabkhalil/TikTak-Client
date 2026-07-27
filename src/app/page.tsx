@@ -1,5 +1,10 @@
 import { LoginPage } from "@/views/LoginPage";
+import { AuthLayout } from "@/shared/components/AuthLayout";
 
 export default function Page() {
-  return <LoginPage />;
+  return (
+    <AuthLayout>
+      <LoginPage />
+    </AuthLayout>
+  );
 }
