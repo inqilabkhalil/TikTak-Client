@@ -4,15 +4,9 @@
 import React from 'react';
 import { Form, Input, message } from 'antd';
 import styles from './PersonalInfoForm.module.css';
+import { PersonalInfoFormValues } from '../../types';
 
-interface PersonalInfoFormValues {
-  name: string;
-  phone: string;
-  email: string;
-  address: string;
-  newPassword?: string;
-  confirmPassword?: string;
-}
+
 
 export default function PersonalInfoForm() {
   const [form] = Form.useForm<PersonalInfoFormValues>();

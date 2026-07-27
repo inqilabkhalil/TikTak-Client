@@ -33,20 +33,22 @@
   color: #6b7280;
 }
 
-.detailLink {
-  color: #fcfdff;
-  font-size: 0.8125rem;
-  text-decoration: none;
+.detailButton {
+  background-color: #ecfdf5; /* Çox açıq yaşıl fon */
+  color: #10b981;          /* Canlı yaşıl mətn rəngi */
+  border: 1px solid #d1fae5; /* İncə açıq yaşıl sərhəd */
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
   font-weight: 500;
-  background-color: #57aa76;
-  border-radius: 0.625rem;
-  padding: 0.625rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.detailLink:hover {
-  color: #dbdee4;
+.detailButton:hover {
+  background-color: #d1fae5; /* Üzərinə gələndə fon biraz tündləşir */
+  color: #059669;
 }
-
 
 /* Status yazısının arxasındakı kiçik qutu (badge) dizaynı */
 .statusBadge {

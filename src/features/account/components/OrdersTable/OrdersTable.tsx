@@ -1,22 +1,27 @@
-// src/features/account/components/OrderTable/OrdersTable.tsx
+
+// src/features/account/components/OrdersTable/OrdersTable.tsx
 "use client";
 
-import React from "react";
-import { Table } from "antd";
+import React, { useState } from "react";
+import { Modal, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import styles from "./OrdersTable.module.css";
+import Link from "next/link";
+import OrderDetails from "../OrderDetailModal/OrderDetailModal";
+import { OrderItem } from "../../types";
 
-interface OrderItem {
-  key: string;
-  no: string;
-  date: string;
-  address: string;
-  quantity: number;
-  total: string;
-  status: "Tamamlandı" | "Ləğv edildi" | "Sifariş verildi" | "Gözləyir";
-}
+
 
 export default function OrdersTable() {
+const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
+
+  // Düyməyə kliklədikdə işləyən funksiya
+  const handleOpenDetails = (record: any) => {
+    setSelectedOrder(record);
+    setIsModalOpen(true);
+  };
+
   const columns: ColumnsType<OrderItem> = [
     {
       title: "No",
@@ -59,11 +64,19 @@ export default function OrdersTable() {
         return <span className={statusClass}>{status}</span>;
       },
     },
-    {
+   {
       title: "",
       key: "action",
-      render: () => <a className={styles.detailLink}>detallar</a>,
-    },
+      render: (_, record) => (
+        <span 
+          className={styles.detailButton} 
+          onClick={() => handleOpenDetails(record)}
+          style={{ cursor: 'pointer' }}
+        >
+          detallar
+        </span>
+      ),
+    },  
   ];
 
   const data: OrderItem[] = [
@@ -123,6 +136,17 @@ export default function OrdersTable() {
         pagination={false}
         className={styles.customTable}
       />
+
+      <Modal
+        title="Sifariş detalları"
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        footer={null}
+        width={800}
+      >
+
+        <OrderDetails orderData={selectedOrder} />
+      </Modal>
     </div>
   );
 }
