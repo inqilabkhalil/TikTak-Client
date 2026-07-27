@@ -11,7 +11,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isLandingPage = pathname === "/landig";
+  const isLandingPage = pathname === "/landing";
 
   return (
     <div className={styles.wrapper}>
