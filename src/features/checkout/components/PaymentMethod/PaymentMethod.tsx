@@ -1,27 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { Button } from '@/shared/components/Button/Button';
-import moneyIcon from '@/shared/assets/money.png';
-import cardIcon from '@/shared/assets/card.png';
-import type {
-  PaymentMethodProps,
-  PaymentOption,
-} from '@/Features/checkout/types';
-import styles from './PaymentMethod.module.css';
-
-const PAYMENT_OPTIONS: PaymentOption[] = [
-  {
-    id: 'CASH',
-    label: 'Qapıda nağd ödəmə',
-    icon: moneyIcon,
-  },
-  {
-    id: 'CARD',
-    label: 'Qapıda kart ilə ödəmə',
-    icon: cardIcon,
-  },
-];
+import Image from "next/image";
+import { Button } from "@/shared/components/Button/Button";
+import type { PaymentMethodProps } from "@/features/checkout/types";
+import styles from "./PaymentMethod.module.css";
+import { PAYMENT_OPTIONS } from "../../constants";
 
 export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
   return (
@@ -36,7 +19,7 @@ export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
             <Button
               key={option.id}
               onClick={() => onChange(option.id)}
-              className={`${styles.card} ${isSelected ? styles.selected : ''}`}
+              className={`${styles.card} ${isSelected ? styles.selected : ""}`}
             >
               <div className={styles.iconWrapper}>
                 <Image
