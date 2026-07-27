@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { HeroBanner } from "@/features/Landig/components/HeroBanner/HeroBanner";
-import styles from "./LandigPage.module.css";
+import { HeroBanner } from '@/Features/Landig/components/HeroBanner/HeroBanner';
+import styles from './LandigPage.module.css';
 
 export const LandigPage = () => {
   return (
