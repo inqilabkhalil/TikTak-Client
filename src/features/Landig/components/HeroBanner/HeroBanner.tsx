@@ -14,7 +14,7 @@ const banners = [
   {
     id: 2,
     title: "TikTak-da Yeni il endirimləri",
-    subtitle: "26 dekabr - 8 yanvar",
+    subtitle: "26 dekabr - 8 yanvar", 
     image:
       "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=1200&q=80",
     theme: "red",

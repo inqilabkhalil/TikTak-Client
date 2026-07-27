@@ -16,7 +16,7 @@ interface OrderItem {
   status: "Tamamlandı" | "Ləğv edildi" | "Sifariş verildi" | "Gözləyir";
 }
 
-export default function OrdersTable() {
+export function OrdersTable() {
   const columns: ColumnsType<OrderItem> = [
     {
       title: "No",

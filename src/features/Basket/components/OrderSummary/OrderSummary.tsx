@@ -2,7 +2,7 @@
 
 import type { OrderSummaryProps } from "../../types/basket.types";
 import { calculateTotal } from "../../utils/calculateTotal";
-import { formatPrice } from "../../utils/formatPrice";
+import { formatPrice } from "@/shared/utils";
 import { DELIVERY_TEXT } from "../../constants/basket.constants";
 import styles from "./OrderSummary.module.css";
 

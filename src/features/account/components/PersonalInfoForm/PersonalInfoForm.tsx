@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { Form, Input, message } from 'antd';
+import { Button } from '@/shared/components/Button';
 import styles from './PersonalInfoForm.module.css';
 
 interface PersonalInfoFormValues {
@@ -14,7 +15,7 @@ interface PersonalInfoFormValues {
   confirmPassword?: string;
 }
 
-export default function PersonalInfoForm() {
+export function PersonalInfoForm() {
   const [form] = Form.useForm<PersonalInfoFormValues>();
 
   const onFinish = (values: PersonalInfoFormValues) => {
@@ -88,11 +89,10 @@ export default function PersonalInfoForm() {
           </div>
         </div>
 
-        {/* Qeyd: Button shared qovluğundan gəlir, əgər xüsusi shared düymən varsa burda istifadə edə bilərsən */}
         <div className={styles.buttonWrapper}>
-          <button type="submit" className={styles.submitButton}>
+          <Button htmlType="submit" color="#84cc16" className={styles.submitButton}>
             Məlumatları yenilə
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
