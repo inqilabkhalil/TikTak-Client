@@ -1,5 +1,6 @@
 import { Card } from '@/shared/components/Card';
 import { Button } from '@/shared/components/Button';
+import { formatPrice } from '@/shared/utils';
 import styles from './FavoriteCard.module.css';
 
 interface FavoriteCardProps {
@@ -15,7 +16,7 @@ export const FavoriteCard = ({ title, price }: FavoriteCardProps) => {
 
         <h3 className={styles.title}>{title}</h3>
 
-        <p className={styles.price}>{price} AZN</p>
+        <p className={styles.price}>{formatPrice(price)}</p>
 
         <Button> Səbətə əlavə et </Button>
       </div>
