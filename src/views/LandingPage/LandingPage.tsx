@@ -1,5 +1,6 @@
-import { HeroBanner } from "@/features/Landing/components/HeroBanner/HeroBanner";
-import { SpecialOffers } from "@/features/Landing/components/SpecialOffers/SpecialOffers";
+import { HeroBanner } from "@/features/Landing/components/HeroBanner";
+import { SpecialOffers } from "@/features/Landing/components/SpecialOffers";
+import { StatsSection } from "@/features/Landing/components/StatsSection";
 import styles from "./LandingPage.module.css";
 
 export const LandingPage = () => {
@@ -7,6 +8,7 @@ export const LandingPage = () => {
     <div className={styles.wrapper}>
       <HeroBanner />
       <SpecialOffers />
+      <StatsSection />
     </div>
   );
 };
