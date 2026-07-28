@@ -1,5 +1,5 @@
-import { StatCard } from '@/Features/landing/components/StatCard';
-import { STATS } from '@/Features/landing/constants';
+import { StatCard } from '@/features/landing/components/StatCard';
+import { STATS } from '@/features/landing/constants';
 import styles from './StatsSection.module.css';
 
 export const StatsSection = () => {

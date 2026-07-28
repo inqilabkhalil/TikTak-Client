@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type {
   CheckoutFormValues,
   CheckoutStep,
-} from '@/Features/checkout/types';
+} from '@/features/checkout/types';
 
 export const useCheckout = () => {
   const [step, setStep] = useState<CheckoutStep>('form');

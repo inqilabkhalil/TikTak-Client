@@ -1,12 +1,12 @@
 'use client';
 
-import { OrderSummary } from '@/Features/checkout/components/OrderSummary';
-import { ConfirmModal } from '@/Features/checkout/components/ConfirmModal';
-import { SuccessScreen } from '@/Features/checkout/components/SuccessScreen';
-import { useCheckout } from '@/Features/checkout/hooks';
+import { OrderSummary } from '@/features/checkout/components/OrderSummary';
+import { ConfirmModal } from '@/features/checkout/components/ConfirmModal';
+import { SuccessScreen } from '@/features/checkout/components/SuccessScreen';
+import { useCheckout } from '@/features/checkout/hooks';
 import { MOCK_USER, MOCK_SUMMARY } from './mockData';
 import styles from './CheckoutPage.module.css';
-import { CheckoutForm } from '@/Features/checkout/components/CheckoutForm/CheckoutForm';
+import { CheckoutForm } from '@/features/checkout/components/CheckoutForm/CheckoutForm';
 
 export const CheckoutPage = () => {
   const { step, isModalOpen, handleFormSubmit, handleConfirm, handleCancel } =

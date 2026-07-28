@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { PersonalInfoForm } from '@/Features/account';
+import { PersonalInfoForm } from '@/features/account';
 
 export const metadata: Metadata = {
   title: 'Hesab məlumatlarım | TikTak',

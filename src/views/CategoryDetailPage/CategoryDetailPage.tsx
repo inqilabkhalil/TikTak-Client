@@ -1,5 +1,5 @@
-import { CategoryList } from '@/Features/Categories';
-import { ProductsGrid } from '@/Features/ProductsGrid/ProductsGrid';
+import { CategoryList } from '@/features/Categories';
+import { ProductsGrid } from '@/features/ProductsGrid/ProductsGrid';
 import { BasketCard } from '@/shared/components/BasketCard';
 import { DiscountBanner } from '@/shared/components/DiscountBanner/DiscountBanner';
 import appleImage from '@/shared/assets/alma.png'; // Layihəndə olan şəkli seç

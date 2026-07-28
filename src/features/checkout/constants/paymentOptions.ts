@@ -1,6 +1,6 @@
 import moneyIcon from '@/shared/assets/money.png';
 import cardIcon from '@/shared/assets/card.png';
-import type { PaymentOption } from '@/Features/checkout/types';
+import type { PaymentOption } from '@/features/checkout/types';
 
 export const PAYMENT_OPTIONS: PaymentOption[] = [
   {

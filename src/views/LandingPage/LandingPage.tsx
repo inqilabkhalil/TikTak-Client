@@ -1,6 +1,6 @@
-import { HeroBanner } from '@/Features/landing/components/HeroBanner';
-import { SpecialOffers } from '@/Features/landing/components/SpecialOffers';
-import { StatsSection } from '@/Features/landing/components/StatsSection';
+import { HeroBanner } from '@/features/landing/components/HeroBanner';
+import { SpecialOffers } from '@/features/landing/components/SpecialOffers';
+import { StatsSection } from '@/features/landing/components/StatsSection';
 import { Footer } from '@/shared/components/Footer';
 import styles from './LandingPage.module.css';
 
