@@ -1,11 +1,11 @@
 import { StaticImageData } from "next/image";
 
-export type PaymentMethod = "CASH" | "CARD";
+export type PaymentMethodType = "CASH" | "CARD";
 
 export type CheckoutStep = "form" | "success";
 
 export interface CheckoutRequest {
-  paymentMethod: PaymentMethod;
+  paymentMethod: PaymentMethodType;
   note: string;
   address: string;
   phone: string;
@@ -43,12 +43,12 @@ export interface ConfirmModalProps {
 }
 
 export interface PaymentMethodProps {
-  value: PaymentMethod;              
-  onChange: (method: PaymentMethod) => void;   
+  value: PaymentMethodType;              
+  onChange: (method: PaymentMethodType) => void;   
 }
 
 export interface PaymentOption {
-  id: PaymentMethod;
+  id: PaymentMethodType;
   label: string;
   icon: StaticImageData;
 }
@@ -72,13 +72,9 @@ export interface OrderSummaryProps {
   data: OrderSummaryData;
 }
 
-export interface OrderSummaryProps {
-  data: OrderSummaryData;
-}
-
 export interface CheckoutFormValues {
   note: string;
-  paymentMethod: PaymentMethod;
+  paymentMethod: PaymentMethodType;
 }
 
 export interface CheckoutFormProps {

@@ -7,17 +7,17 @@ import { Input as AntInput } from "antd";
 import { Input } from "@/shared/components/Input/Input";
 import { Button } from "@/shared/components/Button/Button";
 import { FormField } from "@/shared/components/FormField";
-import { loginSchema } from "./validation";
+import { loginSchema } from "../../utils/validation";
 import styles from "../../styles/AuthForm.module.css";
+import { AuthTabs } from "../AuthTabs";
+import { useAuthForm } from "../../hooks/useAuthForm";
+import { LoginValues } from "../../types/authType";
 
 export const LoginForm = () => {
   const router = useRouter();
 
-  const formik = useFormik({
-    initialValues: {
-      phone: "",
-      password: "",
-    },
+  const { formik, getFieldProps, getFieldError } = useAuthForm<LoginValues>({
+    initialValues: { phone: "", password: "" },
     validationSchema: loginSchema,
     onSubmit: (values) => {
       console.log("Login data:", values);
@@ -27,67 +27,34 @@ export const LoginForm = () => {
 
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>
-      <div className={styles.tabs}>
-        <button
-          type="button"
-          className={`${styles.tab} ${styles.tabActive}`}
-        >
-          Daxil ol
-        </button>
-        <Link
-          href="/register"
-          className={`${styles.tab} ${styles.tabInactive}`}
-        >
-          Qeydiyyatdan keç
-        </Link>
-      </div>
+      <AuthTabs active="login" />
 
       <FormField
         label="Telefon nömrəsi"
-        error={formik.errors.phone}
-        touched={formik.touched.phone}
+        {...getFieldError("phone")}
       >
         <Input
-          name="phone"
           type="tel"
           placeholder="(+994) __ / __ / __ / __"
           size="large"
           className={styles.input}
-          value={formik.values.phone}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          status={
-            formik.touched.phone && formik.errors.phone ? "error" : undefined
-          }
+          {...getFieldProps("phone")}
         />
       </FormField>
 
       <FormField
         label="Parol"
-        error={formik.errors.password}
-        touched={formik.touched.password}
+        {...getFieldError("password")}
       >
         <AntInput.Password
-          name="password"
           placeholder="********************"
           size="large"
           className={styles.input}
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          status={
-            formik.touched.password && formik.errors.password
-              ? "error"
-              : undefined
-          }
+          {...getFieldProps("password")}
         />
       </FormField>
 
-      <Button
-        htmlType="submit"
-        block
-        className={styles.submitButton}
-      >
+      <Button htmlType="submit" block className={styles.submitButton}>
         Daxil ol
       </Button>
 

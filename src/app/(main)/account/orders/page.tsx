@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { OrdersTable } from '@/Features/account';
+import { OrdersTable } from '@/features/account';
 
 export const metadata: Metadata = {
   title: 'Sifarişlərim | TikTak',

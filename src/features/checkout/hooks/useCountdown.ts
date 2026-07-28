@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import type { UseCountdownReturn } from '@/Features/checkout/types';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { UseCountdownReturn } from '@/features/checkout/types';
 
 export const useCountdown = (
   initialSeconds: number,
@@ -10,30 +10,38 @@ export const useCountdown = (
 ): UseCountdownReturn => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
+  const onFinishRef = useRef(onFinish);
+
+  useEffect(() => {
+    onFinishRef.current = onFinish;
+  }, [onFinish]);
+
   useEffect(() => {
     if (!isActive) return;
 
-    if (seconds <= 0) {
-      onFinish?.();
-      return;
-    }
-
     const interval = setInterval(() => {
-      setSeconds((prev) => prev - 1);
+      setSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          onFinishRef.current?.();
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [seconds, onFinish, isActive]);
+  }, [isActive]);
 
-  const formatTime = (totalSeconds: number): string => {
+  const formatTime = useCallback((totalSeconds: number): string => {
     const minutes = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
     return `${minutes}:${secs.toString().padStart(2, '0')}`;
-  };
+  }, []);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setSeconds(initialSeconds);
-  };
+  }, [initialSeconds]);
 
   return {
     formattedTime: formatTime(seconds),

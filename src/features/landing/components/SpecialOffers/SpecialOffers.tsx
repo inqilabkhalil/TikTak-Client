@@ -1,6 +1,6 @@
-import { OfferCard } from "@/features/landing/components/OfferCard";
-import { OFFERS } from "@/features/landing/constants";
-import styles from "./SpecialOffers.module.css";
+import { OfferCard } from '@/features/landing/components/OfferCard';
+import { OFFERS } from '@/features/landing/constants';
+import styles from './SpecialOffers.module.css';
 
 export const SpecialOffers = () => {
   return (

@@ -18,58 +18,6 @@
   animation: formFadeIn 0.4s ease-out forwards;
 }
 
-.tabs {
-  display: flex;
-  width: 100%;
-  border-bottom: 2px solid #EAEAEA;
-  margin-bottom: 0.75rem;
-  position: relative;
-}
-
-.tab {
-  flex: 1 1 50%;
-  min-width: 0;
-  font-family: var(--font-roboto), "Roboto", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.75rem 0;
-  cursor: pointer;
-  background: none;
-  border: none;
-  text-decoration: none;
-  text-align: center;
-  position: relative;
-  line-height: 1;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.25s ease;
-}
-
-.tabActive {
-  color: #1A1D28;
-}
-
-.tabActive::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #7FD858;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.tabInactive {
-  color: #999999;
-}
-
-.tabInactive:hover {
-  color: #666666;
-}
-
 .input {
   height: 2.875rem !important;
   border-radius: 0.5rem !important;

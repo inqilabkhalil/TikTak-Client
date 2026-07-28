@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import type { StatCardProps } from "@/features/landing/types";
-import { useCountUp } from "@/features/landing/hooks/useCountUp";
-import styles from "./StatCard.module.css";
+import Image from 'next/image';
+import type { StatCardProps } from '@/features/landing/types';
+import { useCountUp } from '@/features/landing/hooks/useCountUp';
+import styles from './StatCard.module.css';
 
 export const StatCard = ({ stat }: StatCardProps) => {
   const { value, label, icon } = stat;

@@ -1,9 +1,11 @@
 .page {
+  --category-top-offset: 20px;
   width: 100%;
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr) 260px;
   gap: 24px;
   align-items: start;
+  align-content: start;
 }
 
 .sidebar,
@@ -15,7 +17,11 @@
 
 .sidebar {
   position: sticky;
-  top: 20px;
+  top: var(--category-top-offset);
+}
+
+.discountBannerWrapper {
+  margin-top: 12px;
 }
 
 .banner {
@@ -36,13 +42,15 @@
 
 .content {
   min-width: 0;
+  align-self: start;
 }
 
 .cartPanel {
   padding: 20px;
   border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  background: transparent;
+  box-shadow: none;
+  align-self: start;
 }
 
 .cartTitle {
@@ -74,5 +82,9 @@
 
   .sidebar {
     position: static;
+  }
+
+  .cartPanel {
+    grid-column: auto;
   }
 }

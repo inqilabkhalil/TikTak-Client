@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const sectionKey = pathname.split("/")[1] ?? "";
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={pathname}
+        key={sectionKey}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}

@@ -11,3 +11,10 @@ export interface HeaderProps {
     showPlace?: boolean;
     showInput?: boolean;
 }
+
+export interface FormFieldProps {
+  label: string;
+  error?: string;
+  touched?: boolean;
+  children: ReactNode;
+}

@@ -2,26 +2,9 @@
 
 import Image from 'next/image';
 import { Button } from '@/shared/components/Button/Button';
-import moneyIcon from '@/shared/assets/money.png';
-import cardIcon from '@/shared/assets/card.png';
-import type {
-  PaymentMethodProps,
-  PaymentOption,
-} from '@/Features/checkout/types';
+import type { PaymentMethodProps } from '@/features/checkout/types';
 import styles from './PaymentMethod.module.css';
-
-const PAYMENT_OPTIONS: PaymentOption[] = [
-  {
-    id: 'CASH',
-    label: 'Qapıda nağd ödəmə',
-    icon: moneyIcon,
-  },
-  {
-    id: 'CARD',
-    label: 'Qapıda kart ilə ödəmə',
-    icon: cardIcon,
-  },
-];
+import { PAYMENT_OPTIONS } from '../../constants';
 
 export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
   return (

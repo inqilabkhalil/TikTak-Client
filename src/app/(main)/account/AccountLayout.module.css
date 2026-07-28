@@ -49,15 +49,16 @@
 }
 
 
-/* src/app/(general)/account/AccountLayout.module.css */
-/* src/app/(general)/account/AccountLayout.module.css */
+/* src/app/(main)/account/AccountLayout.module.css */
 
 .accountContainer {
   display: flex;
   gap: 2rem; /* Sidebar ilə sağ panel arasındakı məsafə (Figma-ya uyğun) */
-  width: 93.75rem;
+  width: 100%;
+  max-width: 93.75rem;
   margin: 2.5rem auto;
   padding: 0 1.5rem;
+  box-sizing: border-box;
   align-items: flex-start;
 }
 
