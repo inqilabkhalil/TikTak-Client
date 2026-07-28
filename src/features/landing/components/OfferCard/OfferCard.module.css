@@ -44,3 +44,19 @@
   font-size: 0.875rem;
   opacity: 0.9;
 }
+
+@media (max-width: 768px) {
+  .text {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .text h3 {
+    font-size: 1.125rem;
+  }
+
+  .text p {
+    font-size: 0.8125rem;
+  }
+}
