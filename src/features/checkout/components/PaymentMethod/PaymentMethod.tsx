@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { Button } from "@/shared/components/Button/Button";
-import type { PaymentMethodProps } from "@/features/checkout/types";
-import styles from "./PaymentMethod.module.css";
-import { PAYMENT_OPTIONS } from "../../constants";
+import Image from 'next/image';
+import { Button } from '@/shared/components/Button/Button';
+import type { PaymentMethodProps } from '@/Features/checkout/types';
+import styles from './PaymentMethod.module.css';
+import { PAYMENT_OPTIONS } from '../../constants';
 
 export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
   return (
@@ -19,7 +19,7 @@ export const PaymentMethod = ({ value, onChange }: PaymentMethodProps) => {
             <Button
               key={option.id}
               onClick={() => onChange(option.id)}
-              className={`${styles.card} ${isSelected ? styles.selected : ""}`}
+              className={`${styles.card} ${isSelected ? styles.selected : ''}`}
             >
               <div className={styles.iconWrapper}>
                 <Image

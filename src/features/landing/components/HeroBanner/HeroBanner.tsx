@@ -1,6 +1,6 @@
-import { BannerCard } from "@/features/landing/components/BannerCard";
-import { BANNERS } from "@/features/landing/constants";
-import styles from "./HeroBanner.module.css";
+import { BannerCard } from '@/Features/landing/components/BannerCard';
+import { BANNERS } from '@/Features/landing/constants';
+import styles from './HeroBanner.module.css';
 
 export const HeroBanner = () => {
   return (

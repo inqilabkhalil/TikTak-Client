@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
-import type { OfferCardProps } from "@/features/landing/types";
-import styles from "./OfferCard.module.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import type { OfferCardProps } from '@/Features/landing/types';
+import styles from './OfferCard.module.css';
 
 export const OfferCard = ({ offer }: OfferCardProps) => {
   const { title, date, image, href } = offer;

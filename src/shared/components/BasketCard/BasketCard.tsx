@@ -1,5 +1,15 @@
-import styles from './BasketCard.module.css';
+import { EmptyBasket } from './EmptyBasket';
+import { BasketSummary } from './BasketSummary';
+import type { BasketItemType } from './types';
 
-export const BasketCard = () => {
-  return <div className={styles.container}>Səbətim</div>;
+type BasketCardProps = {
+  items?: BasketItemType[];
+};
+
+export const BasketCard = ({ items = [] }: BasketCardProps) => {
+  if (!items.length) {
+    return <EmptyBasket />;
+  }
+
+  return <BasketSummary items={items} />;
 };
