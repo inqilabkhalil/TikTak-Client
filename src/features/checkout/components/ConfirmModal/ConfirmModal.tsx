@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useEffect } from "react";
-import { Modal } from "@/shared/components/Modal";
-import { Button } from "@/shared/components/Button/Button";
-import { useCountdown } from "@/features/checkout/hooks";
-import type { ConfirmModalProps } from "@/features/checkout/types";
-import clockIcon from "@/shared/assets/clock.png";
-import styles from "./ConfirmModal.module.css";
+import Image from 'next/image';
+import { useEffect } from 'react';
+import { Modal } from '@/shared/components/Modal';
+import { Button } from '@/shared/components/Button/Button';
+import { useCountdown } from '@/Features/checkout/hooks';
+import type { ConfirmModalProps } from '@/Features/checkout/types';
+import clockIcon from '@/shared/assets/clock.png';
+import styles from './ConfirmModal.module.css';
 
 export const ConfirmModal = ({
   isOpen,
