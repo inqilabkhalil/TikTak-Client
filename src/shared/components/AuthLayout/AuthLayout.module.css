@@ -75,7 +75,12 @@
   padding-bottom: 2.5rem;
   animation: fadeInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
+.rightSide > * {          
+  width: 100%;
+  max-width: 26.25rem;
+  display: flex;
+  justify-content: center;
+}
 @media (max-height: 850px) {
   .rightSide {
     padding-top: 10rem;
