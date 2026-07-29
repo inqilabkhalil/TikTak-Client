@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import type {
-  CheckoutFormValues,
-  CheckoutStep,
-} from '@/Features/checkout/types';
+import { useRouter } from 'next/navigation';
+import type { CheckoutFormValues } from '@/features/checkout/types';
+
+const generateOrderNumber = () =>
+  Math.floor(100000 + Math.random() * 900000).toString();
 
 export const useCheckout = () => {
-  const [step, setStep] = useState<CheckoutStep>('form');
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formValues, setFormValues] = useState<CheckoutFormValues | null>(null);
 
@@ -25,7 +26,8 @@ export const useCheckout = () => {
   const handleConfirm = () => {
     console.log('Sifariş göndərildi:', formValues);
     setIsModalOpen(false);
-    setStep('success');
+    const orderNumber = generateOrderNumber();
+    router.push(`/order-success?orderNumber=${orderNumber}`);
   };
 
   /**
@@ -36,7 +38,6 @@ export const useCheckout = () => {
   };
 
   return {
-    step,
     isModalOpen,
     handleFormSubmit,
     handleConfirm,

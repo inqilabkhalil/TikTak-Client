@@ -1,10 +1,6 @@
-import { LoginPage } from "@/views/LoginPage";
-import { AuthLayout } from "@/shared/components/AuthLayout";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/shared/constants";
 
 export default function Page() {
-  return (
-    <AuthLayout>
-      <LoginPage />
-    </AuthLayout>
-  );
+  redirect(ROUTES.LANDING);
 }

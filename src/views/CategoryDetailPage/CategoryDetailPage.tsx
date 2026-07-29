@@ -2,42 +2,35 @@ import { CategoryList } from '@/Features/Categories';
 import { ProductsGrid } from '@/Features/ProductsGrid/ProductsGrid';
 import { BasketCard } from '@/shared/components/BasketCard';
 import { DiscountBanner } from '@/shared/components/DiscountBanner/DiscountBanner';
-import appleImage from '@/shared/assets/alma.png'; // Layihəndə olan şəkli seç
+import { Breadcrumb } from '@/shared/components/Breadcrumb';
+import { getCategoryBySlug } from '@/shared/data/catalog';
 import styles from './CategoryDetailPage.module.css';
 
-export const CategoryDetailPage = () => {
-  const demoItems = [
-    {
-      id: 1,
-      image: appleImage.src,
-      title: 'Yaşıl Alma',
-      price: 2.5,
-      quantity: 2,
-    },
-    {
-      id: 2,
-      image: appleImage.src,
-      title: 'Qırmızı Alma',
-      price: 3.2,
-      quantity: 1,
-    },
-  ];
+interface CategoryDetailPageProps {
+  categorySlug: string;
+}
+
+export const CategoryDetailPage = ({ categorySlug }: CategoryDetailPageProps) => {
+  const category = getCategoryBySlug(categorySlug);
+  const categoryName = category?.name ?? '';
 
   return (
     <div className={styles.page}>
       <aside className={styles.sidebar}>
-        <CategoryList />
+        <CategoryList activeSlug={categorySlug} />
         <div className={styles.discountBannerWrapper}>
           <DiscountBanner />
         </div>
       </aside>
 
       <section className={styles.content}>
-        <ProductsGrid />
+        <Breadcrumb items={['Ana səhifə', categoryName]} />
+        <h2 className={styles.categoryTitle}>{categoryName}</h2>
+        <ProductsGrid categorySlug={categorySlug} />
       </section>
 
       <aside className={styles.cartPanel}>
-        <BasketCard items={demoItems} />
+        <BasketCard />
       </aside>
     </div>
   );

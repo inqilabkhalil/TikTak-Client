@@ -1,4 +1,4 @@
-import type { Offer } from '@/Features/landing/types';
+import type { Offer } from '@/features/landing/types';
 
 export const OFFERS: Offer[] = [
   {

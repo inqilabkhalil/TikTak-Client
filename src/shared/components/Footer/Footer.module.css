@@ -9,7 +9,7 @@
   font-size: 1.75rem;
   font-weight: 800;
   margin-bottom: 2rem;
-  color: #1b1b1b;
+  color: #2e7d32;
 }
 
 .grid {
@@ -100,7 +100,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: #eef6ee;
+  background: rgba(46, 125, 50, 0.1);
   color: #2e7d32;
   display: flex;
   align-items: center;

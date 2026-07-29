@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { UseCountdownReturn } from '@/Features/checkout/types';
+import type { UseCountdownReturn } from '@/features/checkout/types';
 
 export const useCountdown = (
   initialSeconds: number,

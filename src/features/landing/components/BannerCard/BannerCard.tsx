@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { BannerCardProps } from '@/Features/landing/types';
+import type { BannerCardProps } from '@/features/landing/types';
 import styles from './BannerCard.module.css';
 
 export const BannerCard = ({ banner }: BannerCardProps) => {
