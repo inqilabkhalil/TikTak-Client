@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { AuthAwareLink } from '@/shared/components/AuthAwareLink';
 import type { BannerCardProps } from '@/features/landing/types';
 import styles from './BannerCard.module.css';
 
 export const BannerCard = ({ banner }: BannerCardProps) => {
-  const { title, subtitle, image, theme, href } = banner;
+  const { title, subtitle, image, theme } = banner;
 
   return (
     <div className={styles.card}>
@@ -24,9 +24,7 @@ export const BannerCard = ({ banner }: BannerCardProps) => {
       <div className={styles.text}>
         <h3>{title}</h3>
         <p>{subtitle}</p>
-        <Link href={href} className={styles.moreBtn}>
-          Ətraflı
-        </Link>
+        <AuthAwareLink className={styles.moreBtn}>Ətraflı</AuthAwareLink>
       </div>
     </div>
   );
