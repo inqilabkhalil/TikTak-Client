@@ -1,39 +1,23 @@
-'use client';
-
-import type { StaticImageData } from 'next/image';
-import apple from '@/shared/assets/alma.png';
 import { ProductCard } from '../Products/ProductCard';
+import { EmptyCategoryState } from './EmptyCategoryState/EmptyCategoryState';
+import { getProductsByCategory } from '@/shared/data/catalog';
 import styles from './ProductsGrid.module.css';
 
-interface ProductItem {
-  id: number;
-  title: string;
-  price: number;
-  image: StaticImageData;
+interface ProductsGridProps {
+  categorySlug: string;
 }
 
-const products: ProductItem[] = [
-  { id: 1, title: 'Qırmızı alma', price: 3.3, image: apple },
-  { id: 2, title: 'Yaşıl alma', price: 4, image: apple },
-  { id: 3, title: 'Golden alma', price: 5, image: apple },
-  { id: 4, title: 'Fuji alma', price: 4.5, image: apple },
+export const ProductsGrid = ({ categorySlug }: ProductsGridProps) => {
+  const products = getProductsByCategory(categorySlug);
 
-  { id: 5, title: 'Qırmızı alma', price: 3.3, image: apple },
-  { id: 6, title: 'Yaşıl alma', price: 4, image: apple },
-  { id: 7, title: 'Golden alma', price: 5, image: apple },
-  { id: 8, title: 'Fuji alma', price: 4.5, image: apple },
-];
+  if (products.length === 0) {
+    return <EmptyCategoryState />;
+  }
 
-export const ProductsGrid = () => {
   return (
     <div className={styles.grid}>
       {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          image={product.image}
-          title={product.title}
-          price={product.price}
-        />
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

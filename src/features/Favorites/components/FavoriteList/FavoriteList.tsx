@@ -1,11 +1,12 @@
+import type { StaticImageData } from 'next/image';
 import { FavoriteCard } from '../FavoriteCard';
 import styles from './FavoriteList.module.css';
 
 interface FavoriteItem {
-  id: string;
+  id: number;
   title: string;
   price: number;
-  emoji: string;
+  image: StaticImageData;
 }
 
 interface FavoriteListProps {
@@ -22,9 +23,10 @@ export const FavoriteList = ({ favorites }: FavoriteListProps) => {
           {favorites.map((favorite) => (
             <FavoriteCard
               key={favorite.id}
+              id={favorite.id}
               title={favorite.title}
               price={favorite.price}
-              emoji={favorite.emoji}
+              image={favorite.image}
               className={styles.card}
             />
           ))}

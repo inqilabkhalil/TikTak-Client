@@ -24,17 +24,17 @@ export const BasketSummary = ({ items = [] }: BasketSummaryProps) => {
 
       <div className={styles.summary}>
         <div className={styles.row}>
-          <span className={styles.label}>Ümumi</span>
+          <span className={styles.label}>Ümumi:</span>
           <span className={styles.value}>{total.toFixed(2)} AZN</span>
         </div>
 
         <div className={styles.row}>
-          <span className={styles.label}>Çatdırılma</span>
+          <span className={styles.label}>Çatdırılma:</span>
           <span className={styles.value}>Pulsuz</span>
         </div>
 
         <div className={styles.total}>
-          <span className={styles.totalLabel}>Yekun məbləğ</span>
+          <span className={styles.totalLabel}>Yekun məbləğ:</span>
           <span className={styles.totalValue}>{total.toFixed(2)} AZN</span>
         </div>
 

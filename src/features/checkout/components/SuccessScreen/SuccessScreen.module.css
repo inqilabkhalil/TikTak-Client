@@ -53,6 +53,14 @@
   line-height: 1.5;
 }
 
+.orderNumber {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #1A1D28;
+  margin: 0;
+}
+
 /* Responsiv */
 @media (max-width: 64rem) {
   .card {

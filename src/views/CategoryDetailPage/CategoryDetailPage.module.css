@@ -1,9 +1,11 @@
 .page {
   --category-top-offset: 20px;
+
   width: 100%;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr) 260px;
+  grid-template-columns: 260px minmax(0, 1fr) 375px;
   gap: 24px;
+
   align-items: start;
   align-content: start;
 }
@@ -43,16 +45,31 @@
 .content {
   min-width: 0;
   align-self: start;
+  text-align: left;
+  padding-left: 0;
+}
+
+.categoryTitle {
+  margin: 8px 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary, #2b3043);
 }
 
 .cartPanel {
-  padding: 20px;
-  border-radius: 16px;
+  width: 375px;
+  min-width: 375px;
+  max-width: 375px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
   background: transparent;
   box-shadow: none;
+
   align-self: start;
 }
-
 .cartTitle {
   margin: 0;
   font-size: 18px;

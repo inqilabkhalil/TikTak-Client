@@ -2,8 +2,6 @@ import { StaticImageData } from "next/image";
 
 export type PaymentMethodType = "CASH" | "CARD";
 
-export type CheckoutStep = "form" | "success";
-
 export interface CheckoutRequest {
   paymentMethod: PaymentMethodType;
   note: string;
@@ -56,6 +54,7 @@ export interface PaymentOption {
 export interface SuccessScreenProps {
   title?: string;
   description?: string;
+  orderNumber?: string;
 }
 
 export interface CheckoutUserInfo {

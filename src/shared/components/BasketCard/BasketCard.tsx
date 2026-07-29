@@ -1,12 +1,12 @@
+'use client';
+
 import { EmptyBasket } from './EmptyBasket';
 import { BasketSummary } from './BasketSummary';
-import type { BasketItemType } from './types';
+import { useBasket } from '@/shared/store';
 
-type BasketCardProps = {
-  items?: BasketItemType[];
-};
+export const BasketCard = () => {
+  const { items } = useBasket();
 
-export const BasketCard = ({ items = [] }: BasketCardProps) => {
   if (!items.length) {
     return <EmptyBasket />;
   }

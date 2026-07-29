@@ -1,14 +1,16 @@
+import Link from 'next/link';
 import styles from './CategoryItem.module.css';
 
 interface CategoryItemProps {
   title: string;
+  href: string;
   active?: boolean;
 }
 
-export const CategoryItem = ({ title, active = false }: CategoryItemProps) => {
+export const CategoryItem = ({ title, href, active = false }: CategoryItemProps) => {
   return (
-    <button className={`${styles.item} ${active ? styles.active : ''}`}>
+    <Link href={href} className={`${styles.item} ${active ? styles.active : ''}`}>
       {title}
-    </button>
+    </Link>
   );
 };
