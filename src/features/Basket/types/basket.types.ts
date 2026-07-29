@@ -1,23 +1,23 @@
-import type { StaticImageData } from "next/image";
-
 export interface BasketProduct {
-  id: string;
+  id: number;
   name: string;
   price: number;
   quantity: number;
-  image: StaticImageData;
+  image: string;
 }
 
 export interface BasketItemProps {
   product: BasketProduct;
-  onIncrease?: (id: string) => void;
-  onRemove?: (id: string) => void;
+  onIncrease?: (id: number) => void;
+  onDecrease?: (id: number) => void;
+  onRemove?: (id: number) => void;
 }
 
 export interface BasketListProps {
   products: BasketProduct[];
-  onIncrease?: (id: string) => void;
-  onRemove?: (id: string) => void;
+  onIncrease?: (id: number) => void;
+  onDecrease?: (id: number) => void;
+  onRemove?: (id: number) => void;
 }
 
 export interface OrderSummaryProps {
