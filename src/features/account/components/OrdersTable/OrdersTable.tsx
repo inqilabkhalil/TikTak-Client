@@ -22,7 +22,6 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     setIsModalOpen(true);
   };
 
-export function OrdersTable() {
   const columns: ColumnsType<OrderItem> = [
     {
       title: "No",
@@ -150,5 +149,4 @@ export function OrdersTable() {
       </Modal>
     </div>
   );
-}
 }
