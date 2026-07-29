@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Button } from '@/shared/components/Button/Button';
-import type { PaymentMethodProps } from '@/Features/checkout/types';
+import type { PaymentMethodProps } from '@/features/checkout/types';
 import styles from './PaymentMethod.module.css';
 import { PAYMENT_OPTIONS } from '../../constants';
 

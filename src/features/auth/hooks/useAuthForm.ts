@@ -18,5 +18,18 @@ export const useAuthForm = <T extends FormikValues>(config: FormikConfig<T>) => 
     touched: formik.touched[name] as boolean | undefined,
   });
 
-  return { formik, getFieldProps, getFieldError };
+  const getPhoneFieldProps = (name: keyof T) => ({
+    name: name as string,
+    value: formik.values[name],
+    onBlur: formik.handleBlur,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 9);
+      formik.setFieldValue(name as string, digitsOnly);
+    },
+    status: (formik.touched[name] && formik.errors[name] ? "error" : undefined) as
+      | "error"
+      | undefined,
+  });
+
+  return { formik, getFieldProps, getFieldError, getPhoneFieldProps };
 };
