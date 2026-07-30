@@ -8,7 +8,7 @@ import styles from "./BasketItem.module.css";
 export const BasketItem = ({ product, onIncrease, onDecrease }: BasketItemProps) => {
   const handleIncrease = () => {
     if (onIncrease) {
-      onIncrease(product.id);
+      onIncrease(product.productId);
     } else {
       console.log("onIncrease not implemented", product.id);
     }
@@ -16,7 +16,7 @@ export const BasketItem = ({ product, onIncrease, onDecrease }: BasketItemProps)
 
   const handleDecrease = () => {
     if (onDecrease) {
-      onDecrease(product.id);
+      onDecrease(product.productId);
     } else {
       console.log("onDecrease not implemented", product.id);
     }

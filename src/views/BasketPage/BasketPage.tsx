@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import {
@@ -8,26 +9,28 @@ import {
   BASKET_BREADCRUMB_ITEMS,
 } from '@/features/Basket';
 import { EmptyBasket } from '@/shared/components/BasketCard/EmptyBasket';
-import { useBasket } from '@/shared/store';
 import styles from './BasketPage.module.css';
+import { useBasketStore } from '@/features/Basket/store';
 
 export function BasketPage() {
   const router = useRouter();
-  const { items, increment, decrement, clearBasket } = useBasket();
 
-  const products = items.map((item) => ({
-    id: item.id,
-    name: item.title,
-    price: item.price,
-    quantity: item.quantity,
-    image: item.image,
-  }));
+  const items = useBasketStore((state) => state.items);
+  const total = useBasketStore((state) => state.total);
+  const fetchBasket = useBasketStore((state) => state.fetchBasket);
+  const addItem = useBasketStore((state) => state.addItem);
+  const decreaseItem = useBasketStore((state) => state.decreaseItem);
+  const clearBasket = useBasketStore((state) => state.clearBasket);
+
+  useEffect(() => {
+    fetchBasket();
+  }, [fetchBasket]);
 
   const handleCheckout = () => {
     router.push('/checkout');
   };
 
-  if (products.length === 0) {
+  if (items.length === 0) {
     return (
       <div className={styles.page}>
         <div className={styles.listColumn}>
@@ -59,7 +62,7 @@ export function BasketPage() {
           </button>
         </div>
 
-        <BasketList products={products} onIncrease={increment} onDecrease={decrement} />
+        <BasketList products={items} onIncrease={addItem} onDecrease={decreaseItem} />
       </div>
 
       <div className={styles.summaryColumn}>
@@ -69,7 +72,7 @@ export function BasketPage() {
 
         <h2 className={styles.summaryTitle}>Yekun məbləğ</h2>
 
-        <OrderSummary products={products} onCheckout={handleCheckout} />
+        <OrderSummary total={total} onCheckout={handleCheckout} />
       </div>
     </div>
   );

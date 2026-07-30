@@ -1,13 +1,11 @@
 "use client";
 
 import type { OrderSummaryProps } from "../../types/basket.types";
-import { calculateTotal } from "../../utils/calculateTotal";
 import { formatPrice } from "@/shared/utils";
 import { DELIVERY_TEXT } from "../../constants/basket.constants";
 import styles from "./OrderSummary.module.css";
 
-export const OrderSummary = ({ products, onCheckout }: OrderSummaryProps) => {
-  const total = calculateTotal(products);
+export const OrderSummary = ({ total, onCheckout }: OrderSummaryProps) => {
 
   const handleCheckout = () => {
     if (onCheckout) {
