@@ -31,14 +31,14 @@ export interface AuthTokens {
   refresh_token: string;
 }
 
-// Response data (backend "data" qatı)
+// Response data 
 export interface LoginResponseData {
   tokens: AuthTokens;
   profile: User;
   result: boolean;
 }
 
-// Backend-in tam cavabı (xarici qat)
+// Backend-in tam cavabı 
 export interface LoginResponse {
   message: string;
   data: LoginResponseData;
@@ -47,4 +47,27 @@ export interface RegisterResponse {
   message: string;
   data: null;
   result: boolean;
+}
+
+// STORE TYPE
+export interface AuthState {
+  user: User | null;
+  isLoading: boolean;
+  error: string | null;
+
+  login: (values: LoginValues) => Promise<boolean>;
+  register: (values: RegisterValues) => Promise<boolean>;
+  logout: () => void;
+  clearError: () => void;
+}
+
+export interface PhoneFieldProps {
+  label?: string;
+  error?: string;
+  touched?: boolean;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  status?: "error" | undefined;
 }

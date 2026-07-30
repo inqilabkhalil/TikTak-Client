@@ -1,27 +1,32 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Input as AntInput } from "antd";
 import { Input } from "@/shared/components/Input/Input";
 import { Button } from "@/shared/components/Button/Button";
 import { FormField } from "@/shared/components/FormField";
-import { registerSchema } from "../../utils/validation";
-import styles from "../../styles/AuthForm.module.css";
 import { AuthTabs } from "../AuthTabs";
+import { PhoneField } from "../PhoneField";
 import { useAuthForm } from "../../hooks/useAuthForm";
-import type { RegisterValues } from "@/features/auth/types/authType";
 import { useAuthStore } from "@/features/auth/store";
-import { useEffect } from "react";
+import { registerSchema } from "../../utils/validation";
+import { ROUTES } from "@/shared/constants";
+import type { RegisterValues } from "@/features/auth/types/authType";
+import styles from "../../styles/AuthForm.module.css";
 
 export const RegisterForm = () => {
-   const router = useRouter();
+  const router = useRouter();
   const register = useAuthStore((state) => state.register);
-  const isLoading = useAuthStore((state) => state.isLoading);
-  const error = useAuthStore((state) => state.error);
-  const clearError = useAuthStore((state) => state.clearError);
 
-  const { formik, getFieldProps, getFieldError, getPhoneFieldProps } = useAuthForm<RegisterValues>({
+  const {
+    formik,
+    getFieldProps,
+    getFieldError,
+    getPhoneFieldProps,
+    isLoading,
+    error,
+  } = useAuthForm<RegisterValues>({
     initialValues: { full_name: "", phone: "", password: "" },
     validationSchema: registerSchema,
     onSubmit: async (values) => {
@@ -29,17 +34,11 @@ export const RegisterForm = () => {
       const success = await register(payload);
 
       if (success) {
-        router.push("/login");
+        router.push(ROUTES.LOGIN);
       }
     },
   });
 
-  useEffect(() => {
-    return () => {
-      clearError();
-    };
-  }, [clearError]);
- 
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>
       <AuthTabs active="register" />
@@ -54,18 +53,10 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <FormField label="Telefon nömrəsi" {...getFieldError("phone")}>
-         <div className={styles.phoneWrapper}>
-          <span className={styles.phonePrefix}>+994</span>
-          <Input
-            type="tel"
-            placeholder="__ ___ __ __"
-            size="large"
-            className={styles.phoneInput}
-            {...getPhoneFieldProps("phone")}
-          />
-        </div>
-      </FormField>
+      <PhoneField
+        {...getFieldError("phone")}
+        {...getPhoneFieldProps("phone")}
+      />
 
       <FormField label="Parol" {...getFieldError("password")}>
         <AntInput.Password
@@ -75,17 +66,21 @@ export const RegisterForm = () => {
           {...getFieldProps("password")}
         />
       </FormField>
+
       {error && <p className={styles.errorText}>{error}</p>}
-      <Button 
-      htmlType="submit" 
-      block className={styles.submitButton} 
-      loading={isLoading}>
+
+      <Button
+        htmlType="submit"
+        loading={isLoading}
+        block
+        className={styles.submitButton}
+      >
         Tamamla
       </Button>
 
       <p className={styles.bottomText}>
         Hesabın varsa
-        <Link href="/login" className={styles.link}>
+        <Link href={ROUTES.LOGIN} className={styles.link}>
           Daxil ol
         </Link>
       </p>

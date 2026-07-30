@@ -1,21 +1,8 @@
 import { create } from "zustand";
 import { authService } from "@/features/auth/services";
-import type {
-  LoginValues,
-  RegisterValues,
-  User,
-} from "@/features/auth/types/authType";
-
-interface AuthState {
-  user: User | null;
-  isLoading: boolean;
-  error: string | null;
-
-  login: (values: LoginValues) => Promise<boolean>;
-  register: (values: RegisterValues) => Promise<boolean>;
-  logout: () => void;
-  clearError: () => void; 
-}
+import { setCookie, removeCookie } from "@/features/auth/utils";
+import { STORAGE_KEYS, AUTH_MESSAGES } from "@/features/auth/constants";
+import type { AuthState } from "@/features/auth/types/authType";
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
@@ -24,43 +11,50 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   login: async (values) => {
     set({ isLoading: true, error: null });
+
     try {
       const data = await authService.login(values);
+      const { access_token, refresh_token } = data.tokens;
 
-      localStorage.setItem("access_token", data.tokens.access_token);
-      localStorage.setItem("refresh_token", data.tokens.refresh_token);
+      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, access_token);
+      localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
+      setCookie(STORAGE_KEYS.ACCESS_TOKEN, access_token);
 
       set({ user: data.profile, isLoading: false });
       return true;
     } catch (err: any) {
       set({
-        error: err?.response?.data?.message ?? "Xəta baş verdi",
+        error: err?.response?.data?.message ?? AUTH_MESSAGES.DEFAULT_ERROR,
         isLoading: false,
       });
       return false;
     }
   },
 
-// Signup token/profile qaytarmır — sadəcə uğur/uğursuzluq
+
   register: async (values) => {
     set({ isLoading: true, error: null });
+
     try {
       await authService.register(values);
       set({ isLoading: false });
       return true;
     } catch (err: any) {
-      const message = err?.response?.data?.message ?? "Xəta baş verdi";
       set({
-        error: message,
+        error: err?.response?.data?.message ?? AUTH_MESSAGES.DEFAULT_ERROR,
         isLoading: false,
       });
       return false;
     }
   },
+
+
   logout: () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
+    localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
+    localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
+    removeCookie(STORAGE_KEYS.ACCESS_TOKEN);
     set({ user: null, error: null });
   },
-  clearError: () => set({ error:null}),
+
+  clearError: () => set({ error: null }),
 }));
