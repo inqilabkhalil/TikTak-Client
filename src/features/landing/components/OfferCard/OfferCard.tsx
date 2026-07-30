@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { AuthAwareLink } from '@/shared/components/AuthAwareLink';
 import type { OfferCardProps } from '@/features/landing/types';
 import styles from './OfferCard.module.css';
 
 export const OfferCard = ({ offer }: OfferCardProps) => {
-  const { title, date, image, href } = offer;
+  const { title, date, image } = offer;
 
   return (
-    <Link href={href} className={styles.card}>
+    <AuthAwareLink className={styles.card}>
       <Image
         src={image}
         alt={title}
@@ -22,6 +22,6 @@ export const OfferCard = ({ offer }: OfferCardProps) => {
         <h3>{title}</h3>
         <p>{date}</p>
       </div>
-    </Link>
+    </AuthAwareLink>
   );
 };
