@@ -1,0 +1,43 @@
+.phoneWrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #F6F5FB;
+  height: 2.875rem;
+  transition: all 0.25s ease;
+}
+
+.phoneWrapper:hover,
+.phoneWrapper:focus-within {
+  border-color: #7FD858;
+}
+
+.phonePrefix {
+  padding: 0 0.5rem 0 0.875rem;  
+  color: #666;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.phoneInput {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  flex: 1;
+  height: 100% !important;
+}
+
+.phoneInput :global(.ant-input) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 0.875rem !important;
+  color: #2B3043 !important;
+  padding: 0 !important;   
+  letter-spacing: 0.05em;
+}
