@@ -1,29 +1,30 @@
 import { create } from "zustand";
-import type { BasketProduct, BasketState } from "../types/basket.types";
-
-const STORAGE_KEY = "tiktak:basket";
-
-const loadItems = (): BasketProduct[] => {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-};
-
-const persistItems = (items: BasketProduct[]) => {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-};
-
-const computeTotals = (items: BasketProduct[]) => ({
-  total: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
-  count: items.reduce((sum, item) => sum + item.quantity, 0),
-});
+import { basketService } from "../services";
+import { BASKET_MESSAGES } from "../constants/basket.constants";
+import type { BasketState, BasketServiceResponse } from "../types/basket.types";
 
 export const useBasketStore = create<BasketState>((set) => {
+  const executeAction = async (
+    action: () => Promise<BasketServiceResponse>,
+    errorMessage: string,
+  ) => {
+    set({ isLoading: true, error: null });
+    try {
+      const data = await action();
+      set({
+        items: data.items,
+        total: data.total,
+        count: data.count,
+        isLoading: false,
+      });
+    } catch (err: any) {
+      set({
+        error: err?.response?.data?.message ?? errorMessage,
+        isLoading: false,
+      });
+    }
+  };
+
   return {
     items: [],
     total: 0,
@@ -31,67 +32,35 @@ export const useBasketStore = create<BasketState>((set) => {
     isLoading: false,
     error: null,
 
-    fetchBasket: () => {
-      const items = loadItems();
-      set({ items, ...computeTotals(items), isLoading: false, error: null });
-    },
+    fetchBasket: () =>
+      executeAction(
+        () => basketService.getBasket(),
+        BASKET_MESSAGES.FETCH_ERROR,
+      ),
 
-    addItem: (productId, product) =>
-      set((state) => {
-        const existing = state.items.find((item) => item.productId === productId);
-
-        let items: BasketProduct[];
-        if (existing) {
-          items = state.items.map((item) =>
-            item.productId === productId
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          );
-        } else if (product) {
-          items = [
-            ...state.items,
-            {
-              id: productId,
-              productId,
-              name: product.name,
-              price: product.price,
-              image: product.image,
-              quantity: 1,
-            },
-          ];
-        } else {
-          items = state.items;
-        }
-
-        persistItems(items);
-        return { items, ...computeTotals(items) };
-      }),
+    addItem: (productId) =>
+      executeAction(
+        () => basketService.addItem(productId),
+        BASKET_MESSAGES.ADD_ERROR,
+      ),
 
     decreaseItem: (productId) =>
-      set((state) => {
-        const items = state.items
-          .map((item) =>
-            item.productId === productId
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          )
-          .filter((item) => item.quantity > 0);
-
-        persistItems(items);
-        return { items, ...computeTotals(items) };
-      }),
+      executeAction(
+        () => basketService.decreaseItem(productId),
+        BASKET_MESSAGES.DECREASE_ERROR,
+      ),
 
     removeItem: (productId) =>
-      set((state) => {
-        const items = state.items.filter((item) => item.productId !== productId);
-        persistItems(items);
-        return { items, ...computeTotals(items) };
-      }),
+      executeAction(
+        () => basketService.removeItem(productId),
+        BASKET_MESSAGES.REMOVE_ERROR,
+      ),
 
-    clearBasket: () => {
-      persistItems([]);
-      set({ items: [], total: 0, count: 0 });
-    },
+    clearBasket: () =>
+      executeAction(
+        () => basketService.clearBasket(),
+        BASKET_MESSAGES.CLEAR_ERROR,
+      ),
 
     clearError: () => set({ error: null }),
   };
