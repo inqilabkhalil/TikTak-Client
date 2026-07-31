@@ -1,10 +1,19 @@
+'use client';
+
+import { useSyncExternalStore } from 'react';
 import Image from 'next/image';
-import { AuthAwareLink } from '@/shared/components/AuthAwareLink';
+import Link from 'next/link';
+import { isAuthenticated } from '@/shared/utils/auth';
 import type { BannerCardProps } from '@/features/landing/types';
 import styles from './BannerCard.module.css';
 
+const subscribe = () => () => {};
+const getServerSnapshot = () => false;
+
 export const BannerCard = ({ banner }: BannerCardProps) => {
   const { title, subtitle, image, theme } = banner;
+  const authed = useSyncExternalStore(subscribe, isAuthenticated, getServerSnapshot);
+  const moreHref = authed ? '/' : '/login';
 
   return (
     <div className={styles.card}>
@@ -24,7 +33,9 @@ export const BannerCard = ({ banner }: BannerCardProps) => {
       <div className={styles.text}>
         <h3>{title}</h3>
         <p>{subtitle}</p>
-        <AuthAwareLink className={styles.moreBtn}>Ətraflı</AuthAwareLink>
+        <Link href={moreHref} className={styles.moreBtn}>
+          Ətraflı
+        </Link>
       </div>
     </div>
   );
