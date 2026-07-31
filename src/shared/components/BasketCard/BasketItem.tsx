@@ -4,7 +4,7 @@ import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import styles from './BasketCard.module.css';
 import type { BasketItemType } from './types';
-import { useBasket } from '@/shared/store';
+import { useBasketStore } from '@/features/Basket/store';
 
 type BasketItemProps = {
   item: BasketItemType;
@@ -12,7 +12,8 @@ type BasketItemProps = {
 };
 
 export const BasketItem = ({ item, qtyTextColor = '#ffffff' }: BasketItemProps) => {
-  const { increment, decrement } = useBasket();
+  const addItem = useBasketStore((state) => state.addItem);
+  const decreaseItem = useBasketStore((state) => state.decreaseItem);
 
   return (
     <div className={styles.item}>
@@ -37,7 +38,7 @@ export const BasketItem = ({ item, qtyTextColor = '#ffffff' }: BasketItemProps) 
           type="button"
           className={styles.qtyBtn}
           aria-label="Decrease quantity"
-          onClick={() => decrement(item.id)}
+          onClick={() => decreaseItem(item.productId)}
         >
           −
         </button>
@@ -46,7 +47,7 @@ export const BasketItem = ({ item, qtyTextColor = '#ffffff' }: BasketItemProps) 
           type="button"
           className={styles.qtyBtn}
           aria-label="Increase quantity"
-          onClick={() => increment(item.id)}
+          onClick={() => addItem(item.productId)}
         >
           +
         </button>

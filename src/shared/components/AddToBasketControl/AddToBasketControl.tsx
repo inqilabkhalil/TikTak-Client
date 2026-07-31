@@ -2,7 +2,7 @@
 
 import { Button } from '@/shared/components/Button';
 import { QuantityStepper } from '@/shared/components/QuantityStepper';
-import { useBasket } from '@/shared/store';
+import { useBasketStore } from '@/features/Basket/store';
 import styles from './AddToBasketControl.module.css';
 
 interface AddToBasketControlProps {
@@ -16,14 +16,13 @@ interface AddToBasketControlProps {
 
 export const AddToBasketControl = ({
   id,
-  image,
-  title,
-  price,
   inStock,
   unitLabel,
 }: AddToBasketControlProps) => {
-  const { items, addItem, increment, decrement } = useBasket();
-  const quantity = items.find((item) => item.id === id)?.quantity ?? 0;
+  const items = useBasketStore((state) => state.items);
+  const addItem = useBasketStore((state) => state.addItem);
+  const decreaseItem = useBasketStore((state) => state.decreaseItem);
+  const quantity = items.find((item) => item.productId === id)?.quantity ?? 0;
 
   if (!inStock) {
     return (
@@ -35,10 +34,7 @@ export const AddToBasketControl = ({
 
   if (quantity === 0) {
     return (
-      <Button
-        className={styles.button}
-        onClick={() => addItem({ id, image, title, price })}
-      >
+      <Button className={styles.button} onClick={() => addItem(id)}>
         Səbətə əlavə et
       </Button>
     );
@@ -48,8 +44,8 @@ export const AddToBasketControl = ({
     <QuantityStepper
       value={quantity}
       unitLabel={unitLabel}
-      onIncrement={() => increment(id)}
-      onDecrement={() => decrement(id)}
+      onIncrement={() => addItem(id)}
+      onDecrement={() => decreaseItem(id)}
       size="sm"
     />
   );

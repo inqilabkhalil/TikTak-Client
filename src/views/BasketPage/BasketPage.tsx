@@ -1,18 +1,35 @@
 'use client';
 
+import { useEffect } from 'react';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import {
   BasketList,
   BasketSummary,
   EmptyBasket,
 } from '@/shared/components/BasketCard';
-import { useBasket } from '@/shared/store';
+import { useBasketStore } from '@/features/Basket/store';
 import styles from './BasketPage.module.css';
 
 const BASKET_BREADCRUMB_ITEMS = ['Ana səhifə', 'Səbətim'];
 
 export function BasketPage() {
-  const { items, total, clearBasket } = useBasket();
+  const items = useBasketStore((state) => state.items);
+  const total = useBasketStore((state) => state.total);
+  const fetchBasket = useBasketStore((state) => state.fetchBasket);
+  const clearBasket = useBasketStore((state) => state.clearBasket);
+
+  useEffect(() => {
+    fetchBasket();
+  }, [fetchBasket]);
+
+  const basketItems = items.map((item) => ({
+    id: item.id,
+    productId: item.productId,
+    title: item.name,
+    price: item.price,
+    quantity: item.quantity,
+    image: item.image,
+  }));
 
   if (items.length === 0) {
     return (
@@ -46,7 +63,7 @@ export function BasketPage() {
           </button>
         </div>
 
-        <BasketList items={items} />
+        <BasketList items={basketItems} />
       </div>
 
       <div className={styles.summaryColumn}>
