@@ -3,10 +3,14 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
+  useRef,
   type ReactNode,
 } from 'react';
+
+const STORAGE_KEY = 'tiktak:favorites';
 
 type FavoritesState = {
   ids: number[];
@@ -14,7 +18,8 @@ type FavoritesState = {
 
 type FavoritesAction =
   | { type: 'TOGGLE'; payload: { id: number } }
-  | { type: 'CLEAR' };
+  | { type: 'CLEAR' }
+  | { type: 'HYDRATE'; payload: { ids: number[] } };
 
 function favoritesReducer(
   state: FavoritesState,
@@ -31,6 +36,8 @@ function favoritesReducer(
     }
     case 'CLEAR':
       return { ids: [] };
+    case 'HYDRATE':
+      return { ids: action.payload.ids };
     default:
       return state;
   }
@@ -49,6 +56,26 @@ const FavoritesContext = createContext<FavoritesContextValue | undefined>(
 
 export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(favoritesReducer, { ids: [] });
+  const isFirstPersist = useRef(true);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        dispatch({ type: 'HYDRATE', payload: { ids: JSON.parse(raw) } });
+      }
+    } catch {
+      // corrupted/inaccessible storage — start from an empty favorites list
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isFirstPersist.current) {
+      isFirstPersist.current = false;
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.ids));
+  }, [state.ids]);
 
   const value = useMemo<FavoritesContextValue>(
     () => ({

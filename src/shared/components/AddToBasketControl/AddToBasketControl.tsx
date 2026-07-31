@@ -16,6 +16,9 @@ interface AddToBasketControlProps {
 
 export const AddToBasketControl = ({
   id,
+  image,
+  title,
+  price,
   inStock,
   unitLabel,
 }: AddToBasketControlProps) => {
@@ -23,6 +26,8 @@ export const AddToBasketControl = ({
   const addItem = useBasketStore((state) => state.addItem);
   const decreaseItem = useBasketStore((state) => state.decreaseItem);
   const quantity = items.find((item) => item.productId === id)?.quantity ?? 0;
+
+  const handleAdd = () => addItem(id, { name: title, price, image });
 
   if (!inStock) {
     return (
@@ -34,7 +39,7 @@ export const AddToBasketControl = ({
 
   if (quantity === 0) {
     return (
-      <Button className={styles.button} onClick={() => addItem(id)}>
+      <Button className={styles.button} onClick={handleAdd}>
         Səbətə əlavə et
       </Button>
     );
@@ -44,7 +49,7 @@ export const AddToBasketControl = ({
     <QuantityStepper
       value={quantity}
       unitLabel={unitLabel}
-      onIncrement={() => addItem(id)}
+      onIncrement={handleAdd}
       onDecrement={() => decreaseItem(id)}
       size="sm"
     />
