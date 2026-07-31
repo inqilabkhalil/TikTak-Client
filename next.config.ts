@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "api.sarkhanrahimli.dev",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "uploads.sarkhanrahimli.dev",
+        pathname: "/**",
       },
     ],
   },
