@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/shared/components/Button';
+import { QuantityStepper } from '@/shared/components/QuantityStepper';
 import { useBasket } from '@/shared/store';
 import styles from './AddToBasketControl.module.css';
 
@@ -44,27 +45,12 @@ export const AddToBasketControl = ({
   }
 
   return (
-    <div className={styles.stepper}>
-      <button
-        type="button"
-        className={styles.minus}
-        aria-label="Decrease quantity"
-        onClick={() => decrement(id)}
-      >
-        −
-      </button>
-      <span>
-        {quantity}
-        {unitLabel ? ` ${unitLabel}` : ''}
-      </span>
-      <button
-        type="button"
-        className={styles.plus}
-        aria-label="Increase quantity"
-        onClick={() => increment(id)}
-      >
-        +
-      </button>
-    </div>
+    <QuantityStepper
+      value={quantity}
+      unitLabel={unitLabel}
+      onIncrement={() => increment(id)}
+      onDecrement={() => decrement(id)}
+      size="sm"
+    />
   );
 };

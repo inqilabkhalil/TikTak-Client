@@ -1,12 +1,6 @@
-"use client";
+'use client';
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function Error({ reset }: { reset: () => void }) {
   return (
     <div>
       <h1>Xəta baş verdi</h1>

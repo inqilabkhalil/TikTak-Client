@@ -1,5 +1,5 @@
-import { CategoryList } from '@/Features/Categories';
-import { ProductsGrid } from '@/Features/ProductsGrid/ProductsGrid';
+import { CategoryList } from '@/features/Categories';
+import { ProductsGrid } from '@/features/ProductsGrid/ProductsGrid';
 import { BasketCard } from '@/shared/components/BasketCard';
 import { DiscountBanner } from '@/shared/components/DiscountBanner/DiscountBanner';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
@@ -15,23 +15,25 @@ export const CategoryDetailPage = ({ categorySlug }: CategoryDetailPageProps) =>
   const categoryName = category?.name ?? '';
 
   return (
-    <div className={styles.page}>
-      <aside className={styles.sidebar}>
-        <CategoryList activeSlug={categorySlug} />
-        <div className={styles.discountBannerWrapper}>
-          <DiscountBanner />
-        </div>
-      </aside>
+    <>
+      <Breadcrumb items={['Ana səhifə', categoryName]} />
 
-      <section className={styles.content}>
-        <Breadcrumb items={['Ana səhifə', categoryName]} />
-        <h2 className={styles.categoryTitle}>{categoryName}</h2>
-        <ProductsGrid categorySlug={categorySlug} />
-      </section>
+      <div className={styles.page}>
+        <aside className={styles.sidebar}>
+          <CategoryList activeSlug={categorySlug} />
+          <div className={styles.discountBannerWrapper}>
+            <DiscountBanner />
+          </div>
+        </aside>
 
-      <aside className={styles.cartPanel}>
-        <BasketCard />
-      </aside>
-    </div>
+        <section className={styles.content}>
+          <ProductsGrid categorySlug={categorySlug} />
+        </section>
+
+        <aside className={styles.cartPanel}>
+          <BasketCard />
+        </aside>
+      </div>
+    </>
   );
 };

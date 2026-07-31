@@ -47,13 +47,7 @@
   align-self: start;
   text-align: left;
   padding-left: 0;
-}
-
-.categoryTitle {
-  margin: 8px 0 16px;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--color-text-primary, #2b3043);
+  margin-top: 40px;
 }
 
 .cartPanel {

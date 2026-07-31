@@ -1,4 +1,5 @@
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +9,33 @@
   text-align: center;
   padding: 12px 10px 10px;
   gap: 8px;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.favoriteBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.favoriteActive {
+  fill: #f28b94;
+  color: #f28b94;
 }
 
 .linkArea {
@@ -50,7 +78,7 @@
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-  color: #2f9e44;
+  color: #262b3d;
 }
 
 .outOfStock {

@@ -1,33 +1,20 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import {
   BasketList,
-  OrderSummary,
-  BASKET_BREADCRUMB_ITEMS,
-} from '@/features/Basket';
-import { EmptyBasket } from '@/shared/components/BasketCard/EmptyBasket';
+  BasketSummary,
+  EmptyBasket,
+} from '@/shared/components/BasketCard';
 import { useBasket } from '@/shared/store';
 import styles from './BasketPage.module.css';
 
+const BASKET_BREADCRUMB_ITEMS = ['Ana səhifə', 'Səbətim'];
+
 export function BasketPage() {
-  const router = useRouter();
-  const { items, increment, decrement, clearBasket } = useBasket();
+  const { items, total, clearBasket } = useBasket();
 
-  const products = items.map((item) => ({
-    id: item.id,
-    name: item.title,
-    price: item.price,
-    quantity: item.quantity,
-    image: item.image,
-  }));
-
-  const handleCheckout = () => {
-    router.push('/checkout');
-  };
-
-  if (products.length === 0) {
+  if (items.length === 0) {
     return (
       <div className={styles.page}>
         <div className={styles.listColumn}>
@@ -59,7 +46,7 @@ export function BasketPage() {
           </button>
         </div>
 
-        <BasketList products={products} onIncrease={increment} onDecrease={decrement} />
+        <BasketList items={items} />
       </div>
 
       <div className={styles.summaryColumn}>
@@ -69,7 +56,7 @@ export function BasketPage() {
 
         <h2 className={styles.summaryTitle}>Yekun məbləğ</h2>
 
-        <OrderSummary products={products} onCheckout={handleCheckout} />
+        <BasketSummary total={total} className={styles.summaryCard} />
       </div>
     </div>
   );
