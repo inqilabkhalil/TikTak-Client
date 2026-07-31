@@ -1,4 +1,4 @@
-// ==================== UI TYPES ====================
+// ==================== API TYPES ====================
 
 export interface BasketProduct {
   id: number;
@@ -7,25 +7,6 @@ export interface BasketProduct {
   price: number;
   quantity: number;
   image: string;
-}
-
-export interface BasketItemProps {
-  product: BasketProduct;
-  onIncrease?: (id: number) => void;
-  onDecrease?: (id: number) => void;
-  onRemove?: (id: number) => void;
-}
-
-export interface BasketListProps {
-  products: BasketProduct[];
-  onIncrease?: (id: number) => void;
-  onDecrease?: (id: number) => void;
-  onRemove?: (id: number) => void;
-}
-
-export interface OrderSummaryProps {
-  total: number;
-  onCheckout?: () => void;
 }
 
 export interface BasketApiProduct {
@@ -64,6 +45,12 @@ export interface BasketApiResponse {
   result: boolean;
 }
 
+export interface NewBasketProduct {
+  name: string;
+  price: number;
+  image: string;
+}
+
 export interface BasketState {
   items: BasketProduct[];
   total: number;
@@ -71,11 +58,11 @@ export interface BasketState {
   isLoading: boolean;
   error: string | null;
 
-  fetchBasket: () => Promise<void>;
-  addItem: (productId: number) => Promise<void>;
-  decreaseItem: (productId: number) => Promise<void>;
-  removeItem: (productId: number) => Promise<void>;
-  clearBasket: () => Promise<void>;
+  fetchBasket: () => void;
+  addItem: (productId: number, product?: NewBasketProduct) => void;
+  decreaseItem: (productId: number) => void;
+  removeItem: (productId: number) => void;
+  clearBasket: () => void;
   clearError: () => void;
 }
 

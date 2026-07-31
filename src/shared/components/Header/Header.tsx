@@ -1,33 +1,34 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FiSearch, FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
-import { Logo } from "@/shared/components/Logo";
-import { Input } from "@/shared/components/Input/Input";
-import { HeaderProps } from "@/shared/types";
-import { searchProducts } from "@/shared/data/catalog";
-import { useClickOutside } from "@/shared/hooks";
-import styles from "./Header.module.css";
+import Image from 'next/image';
+import { useRef, useState, type ChangeEvent } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { FiSearch, FiUser, FiHeart, FiShoppingCart } from 'react-icons/fi';
+import { Logo } from '@/shared/components/Logo';
+import { Input } from '@/shared/components/Input/Input';
+import { HeaderProps } from '@/shared/types';
+import { searchProducts } from '@/shared/data/catalog';
+import { useClickOutside } from '@/shared/hooks';
+import styles from './Header.module.css';
 
-const MOCK_ADDRESS = "55 Zarifa Əliyeva, Bakı, Azərbaycan";
+const MOCK_ADDRESS = '55 Zarifa Əliyeva, Bakı, Azərbaycan';
 
 export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
   const searchBoxRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(searchBoxRef, () => setIsDropdownOpen(false));
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     setIsDropdownOpen(true);
   };
 
   const handleResultClick = (id: number) => {
-    setSearch("");
+    setSearch('');
     setIsDropdownOpen(false);
     router.push(`/product/${id}`);
   };
@@ -71,14 +72,20 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
                       className={styles.searchResultItem}
                       onClick={() => handleResultClick(product.id)}
                     >
-                      <img
-                        src={product.image.src}
+                      <Image
+                        src={product.image}
                         alt={product.title}
                         className={styles.searchResultImage}
+                        width={48}
+                        height={48}
                       />
                       <span className={styles.searchResultInfo}>
-                        <span className={styles.searchResultTitle}>{product.title}</span>
-                        <span className={styles.searchResultPrice}>{product.price} AZN</span>
+                        <span className={styles.searchResultTitle}>
+                          {product.title}
+                        </span>
+                        <span className={styles.searchResultPrice}>
+                          {product.price} AZN
+                        </span>
                       </span>
                     </button>
                   ))

@@ -1,8 +1,9 @@
-import { create } from "zustand";
-import { authService } from "@/features/auth/services";
-import { setCookie, removeCookie } from "@/features/auth/utils";
-import { STORAGE_KEYS, AUTH_MESSAGES } from "@/features/auth/constants";
-import type { AuthState } from "@/features/auth/types/authType";
+import axios from 'axios';
+import { create } from 'zustand';
+import { authService } from '@/features/auth/services';
+import { setCookie, removeCookie } from '@/features/auth/utils';
+import { STORAGE_KEYS, AUTH_MESSAGES } from '@/features/auth/constants';
+import type { AuthState } from '@/features/auth/types/authType';
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
@@ -22,15 +23,19 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       set({ user: data.profile, isLoading: false });
       return true;
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const errorMessage = axios.isAxiosError(err)
+        ? ((err.response?.data as { message?: string } | undefined)?.message ??
+          AUTH_MESSAGES.DEFAULT_ERROR)
+        : AUTH_MESSAGES.DEFAULT_ERROR;
+
       set({
-        error: err?.response?.data?.message ?? AUTH_MESSAGES.DEFAULT_ERROR,
+        error: errorMessage,
         isLoading: false,
       });
       return false;
     }
   },
-
 
   register: async (values) => {
     set({ isLoading: true, error: null });
@@ -39,15 +44,19 @@ export const useAuthStore = create<AuthState>((set) => ({
       await authService.register(values);
       set({ isLoading: false });
       return true;
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const errorMessage = axios.isAxiosError(err)
+        ? ((err.response?.data as { message?: string } | undefined)?.message ??
+          AUTH_MESSAGES.DEFAULT_ERROR)
+        : AUTH_MESSAGES.DEFAULT_ERROR;
+
       set({
-        error: err?.response?.data?.message ?? AUTH_MESSAGES.DEFAULT_ERROR,
+        error: errorMessage,
         isLoading: false,
       });
       return false;
     }
   },
-
 
   logout: () => {
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);

@@ -1,34 +1,35 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import {
   BasketList,
-  OrderSummary,
-  BASKET_BREADCRUMB_ITEMS,
-} from '@/features/Basket';
-import { EmptyBasket } from '@/shared/components/BasketCard/EmptyBasket';
-import styles from './BasketPage.module.css';
+  BasketSummary,
+  EmptyBasket,
+} from '@/shared/components/BasketCard';
 import { useBasketStore } from '@/features/Basket/store';
+import styles from './BasketPage.module.css';
+
+const BASKET_BREADCRUMB_ITEMS = ['Ana səhifə', 'Səbətim'];
 
 export function BasketPage() {
-  const router = useRouter();
-
   const items = useBasketStore((state) => state.items);
   const total = useBasketStore((state) => state.total);
   const fetchBasket = useBasketStore((state) => state.fetchBasket);
-  const addItem = useBasketStore((state) => state.addItem);
-  const decreaseItem = useBasketStore((state) => state.decreaseItem);
   const clearBasket = useBasketStore((state) => state.clearBasket);
 
   useEffect(() => {
     fetchBasket();
   }, [fetchBasket]);
 
-  const handleCheckout = () => {
-    router.push('/checkout');
-  };
+  const basketItems = items.map((item) => ({
+    id: item.id,
+    productId: item.productId,
+    title: item.name,
+    price: item.price,
+    quantity: item.quantity,
+    image: item.image,
+  }));
 
   if (items.length === 0) {
     return (
@@ -62,7 +63,7 @@ export function BasketPage() {
           </button>
         </div>
 
-        <BasketList products={items} onIncrease={addItem} onDecrease={decreaseItem} />
+        <BasketList items={basketItems} />
       </div>
 
       <div className={styles.summaryColumn}>
@@ -72,7 +73,7 @@ export function BasketPage() {
 
         <h2 className={styles.summaryTitle}>Yekun məbləğ</h2>
 
-        <OrderSummary total={total} onCheckout={handleCheckout} />
+        <BasketSummary total={total} className={styles.summaryCard} />
       </div>
     </div>
   );

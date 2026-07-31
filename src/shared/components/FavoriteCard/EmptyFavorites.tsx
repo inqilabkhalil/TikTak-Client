@@ -1,9 +1,9 @@
-import styles from './EmptyCart.module.css';
+import styles from './EmptyFavorites.module.css';
 
-export const EmptyCart = () => {
+export const EmptyFavorites = () => {
   return (
     <div className={styles.emptyState}>
-      <p className={styles.title}>Səbətiniz boşdur</p>
+      <p className={styles.title}>Sevimliləriniz boşdur</p>
       <p className={styles.subtitle}>Sevimli məhsullarınızı əlavə edin.</p>
     </div>
   );

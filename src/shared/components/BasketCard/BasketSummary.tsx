@@ -1,45 +1,40 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import styles from './BasketCard.module.css';
-import { BasketItem } from './BasketItem';
-import type { BasketItemType } from './types';
 
 type BasketSummaryProps = {
-  items?: BasketItemType[];
+  total: number;
+  className?: string;
 };
 
-export const BasketSummary = ({ items = [] }: BasketSummaryProps) => {
-  const total = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
+export const BasketSummary = ({ total, className }: BasketSummaryProps) => {
+  const router = useRouter();
 
   return (
-    <div className={styles.container}>
-      <h3 className={styles.title}>Səbətim</h3>
-
-      <div className={styles.items}>
-        {items.map((item) => (
-          <BasketItem key={item.id} item={item} />
-        ))}
+    <div className={[styles.summary, className].filter(Boolean).join(' ')}>
+      <div className={styles.row}>
+        <span className={styles.label}>Ümumi:</span>
+        <span className={styles.value}>{total.toFixed(2)} AZN</span>
       </div>
 
-      <div className={styles.summary}>
-        <div className={styles.row}>
-          <span className={styles.label}>Ümumi:</span>
-          <span className={styles.value}>{total.toFixed(2)} AZN</span>
-        </div>
-
-        <div className={styles.row}>
-          <span className={styles.label}>Çatdırılma:</span>
-          <span className={styles.value}>Pulsuz</span>
-        </div>
-
-        <div className={styles.total}>
-          <span className={styles.totalLabel}>Yekun məbləğ:</span>
-          <span className={styles.totalValue}>{total.toFixed(2)} AZN</span>
-        </div>
-
-        <button className={styles.checkoutBtn}>Sifarişi tamamla</button>
+      <div className={styles.row}>
+        <span className={styles.label}>Çatdırılma:</span>
+        <span className={styles.value}>Pulsuz</span>
       </div>
+
+      <div className={styles.total}>
+        <span className={styles.totalLabel}>Yekun məbləğ:</span>
+        <span className={styles.totalValue}>{total.toFixed(2)} AZN</span>
+      </div>
+
+      <button
+        type="button"
+        className={styles.checkoutBtn}
+        onClick={() => router.push('/checkout')}
+      >
+        Sifarişi tamamla
+      </button>
     </div>
   );
 };

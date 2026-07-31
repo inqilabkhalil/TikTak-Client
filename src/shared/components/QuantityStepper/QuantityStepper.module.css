@@ -1,0 +1,97 @@
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stepper button {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.minus {
+  background: #f28b94;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.plus {
+  background: #5cb85c;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.icon {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sm {
+  width: 100%;
+}
+
+.sm .minus {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.sm .plus {
+  flex: 1;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 6px;
+}
+
+.md .minus {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+}
+
+.md .plus {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 9px;
+}
+
+.split {
+  gap: 8px;
+}
+
+.split .minus,
+.split .plus {
+  padding: 0;
+  gap: 0;
+  justify-content: center;
+}
+
+.split.sm .minus,
+.split.sm .plus {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.split.md .minus,
+.split.md .plus {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+}
+
+.split .value {
+  color: #1a1a1a;
+  min-width: 12px;
+  text-align: center;
+}

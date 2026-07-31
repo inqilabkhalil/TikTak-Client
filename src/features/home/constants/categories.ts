@@ -3,13 +3,13 @@ import type { CategoryItem } from "../types";
 
 export const CATEGORIES: CategoryItem[] = [
   { id: "meyveler", title: "Meyvələr", image: almaImage },
-  { id: "tereveze", title: "Tərəvəz" },
+  { id: "terevezler", title: "Tərəvəz" },
   { id: "qis-meyveleri", title: "Qış meyvələri" },
-  { id: "dietik-et", title: "Dietik ət" },
-  { id: "xlebcorek", title: "Xləbçörək" },
-  { id: "diabetik", title: "Diabetik" },
+  { id: "dietik-batonlar", title: "Dietik ət" },
+  { id: "xleb", title: "Xləbçörək" },
+  { id: "diabetik-mehsullar", title: "Diabetik" },
   { id: "dietik-ickiler", title: "Dietik içkilər" },
-  { id: "qlutensiz", title: "Qlütensiz" },
+  { id: "qlutensiz-mehsullar", title: "Qlütensiz" },
   { id: "sut-mehsullari", title: "Süd məhsulları" },
   { id: "ev-kimyasi", title: "Ev kimyası" },
   { id: "ickiler", title: "İçkilər" },
