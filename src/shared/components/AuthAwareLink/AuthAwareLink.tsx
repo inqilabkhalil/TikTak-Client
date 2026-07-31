@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { isAuthenticated } from "@/shared/utils/auth";
 
 export interface AuthAwareLinkProps {
@@ -10,7 +10,7 @@ export interface AuthAwareLinkProps {
 }
 
 export const AuthAwareLink = ({ className, children }: AuthAwareLinkProps) => {
-  const targetHref = isAuthenticated() ? "/login" : "/";
+  const targetHref = isAuthenticated() ? "/" : "/login";
 
   return (
     <Link href={targetHref} className={className}>
