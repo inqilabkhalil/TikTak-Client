@@ -16,7 +16,7 @@ export const StatCard = ({ stat }: StatCardProps) => {
       </span>
       <div className={styles.bottom}>
         <span className={styles.label}>{label}</span>
-        <Image src={icon} alt="" className={styles.icon} />
+        <Image src={icon} alt={label} className={styles.icon} />
       </div>
     </div>
   );

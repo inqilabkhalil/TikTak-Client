@@ -1,4 +1,6 @@
 // src/features/landing/types/index.ts
+import type { StaticImageData } from 'next/image';
+
 export interface Banner {
   id: number;
   title: string;
@@ -22,4 +24,13 @@ export interface OfferCardProps {
   offer: Offer;
 }
 
-// ... digərləri
+export interface Stat {
+  id: number;
+  value: string;
+  label: string;
+  icon: StaticImageData;
+}
+
+export interface StatCardProps {
+  stat: Stat;
+}
