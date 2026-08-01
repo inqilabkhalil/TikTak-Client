@@ -24,7 +24,11 @@ export interface User {
   role: string;
   created_at: string;
 }
-
+export interface ProfileResponse {
+  message: string;
+  data: User;
+  result: boolean;
+}
 // Token pair
 export interface AuthTokens {
   access_token: string;
@@ -53,10 +57,12 @@ export interface RegisterResponse {
 export interface AuthState {
   user: User | null;
   isLoading: boolean;
+  isInitialized: boolean;   
   error: string | null;
 
   login: (values: LoginValues) => Promise<boolean>;
   register: (values: RegisterValues) => Promise<boolean>;
+  fetchProfile: () => Promise<void>;  
   logout: () => void;
   clearError: () => void;
 }
