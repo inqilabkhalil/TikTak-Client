@@ -11,7 +11,7 @@ import {
   mapBasketToSummary,
 } from "@/features/checkout/utils";
 import { useAuthStore } from "@/features/auth/store";
-import { useBasketStore } from "@/features/Basket/store";
+import { useBasketStore } from "@/shared/store";
 import { ROUTES } from "@/shared/constants";
 import styles from "./CheckoutPage.module.css";
 

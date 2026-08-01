@@ -1,14 +1,22 @@
 "use client";
 
 import { FiMinus, FiPlus } from "react-icons/fi";
-import type { BasketItemProps } from "../../types/basket.types";
+import type { BasketProduct } from "@/shared/types/basket.types";
 import { formatPrice } from "@/shared/utils";
 import styles from "./BasketItem.module.css";
+
+interface BasketItemProps {
+  product: BasketProduct;
+  onIncrease?: (id: number) => void;
+  onDecrease?: (id: number) => void;
+  variant?: "full" | "compact";
+}
 
 export const BasketItem = ({
   product,
   onIncrease,
   onDecrease,
+  variant = "full",
 }: BasketItemProps) => {
   const handleIncrease = () => {
     if (onIncrease) {
@@ -25,6 +33,43 @@ export const BasketItem = ({
       console.log("onDecrease not implemented", product.id);
     }
   };
+
+  if (variant === "compact") {
+    return (
+      <div className={styles.compactItem}>
+        <img
+          src={product.image}
+          alt={product.name}
+          className={styles.compactImage}
+        />
+
+        <div className={styles.compactInfo}>
+          <h4 className={styles.compactName}>{product.name}</h4>
+          <p className={styles.compactPrice}>{formatPrice(product.price)}</p>
+        </div>
+
+        <div className={styles.compactQty}>
+          <button
+            type="button"
+            className={styles.compactQtyBtn}
+            aria-label="Sayı azalt"
+            onClick={handleDecrease}
+          >
+            −
+          </button>
+          <span className={styles.compactQtyValue}>{product.quantity}</span>
+          <button
+            type="button"
+            className={styles.compactQtyBtn}
+            aria-label="Sayı artır"
+            onClick={handleIncrease}
+          >
+            +
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.item}>

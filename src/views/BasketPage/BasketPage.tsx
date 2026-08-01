@@ -3,11 +3,11 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
-import { BasketList } from '@/features/Basket/components/BasketList';
-import { OrderSummary } from '@/features/Basket/components/OrderSummary';
+import { BasketList } from '@/shared/components/BasketList';
+import { OrderSummary } from '@/shared/components/OrderSummary';
 import { EmptyState } from '@/shared/components/EmptyState';
-import { useBasketStore } from '@/features/Basket/store';
-import { BASKET_BREADCRUMB_ITEMS } from '@/features/Basket/constants/basket.constants';
+import { useBasketStore } from '@/shared/store';
+import { BASKET_BREADCRUMB_ITEMS } from '@/shared/constants/basket.constants';
 import styles from './BasketPage.module.css';
 
 export function BasketPage() {

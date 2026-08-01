@@ -1,7 +1,7 @@
 'use client';
 
 import { FavoriteList } from '@/shared/components/FavoriteCard';
-import { BasketCard } from '@/shared/components/BasketCard';
+import { BasketWidget } from '@/shared/components/BasketWidget';
 import { useFavorites } from '@/shared/store';
 import { getProductById } from '@/shared/data/catalog';
 import styles from './FavoritesPage.module.css';
@@ -20,7 +20,7 @@ export const FavoritesPage = () => {
       </div>
 
       <div className={styles.cartColumn}>
-        <BasketCard />
+        <BasketWidget />
       </div>
     </div>
   );

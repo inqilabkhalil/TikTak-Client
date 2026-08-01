@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+export * from "./basket.types";
+
 export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;

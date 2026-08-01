@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/features/checkout/store";
-import { useBasketStore } from "@/features/Basket/store";
+import { useBasketStore } from "@/shared/store";
 import type {
   CheckoutFormValues,
   UseCheckoutProps,

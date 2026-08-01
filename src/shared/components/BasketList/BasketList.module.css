@@ -28,3 +28,13 @@
     padding: 1rem;
   }
 }
+
+/* compact variant — used inside the sidebar mini-basket (BasketWidget) */
+
+.compactList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
