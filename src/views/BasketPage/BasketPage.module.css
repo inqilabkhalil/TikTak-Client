@@ -69,7 +69,13 @@
   padding: 1.5rem;
   box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.05);
 }
-
+.emptyCard {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
 @media (max-width: 1024px) {
   .listColumn {
     flex: 0 0 60%;

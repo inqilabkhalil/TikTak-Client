@@ -2,7 +2,7 @@
 
 import { Button } from '@/shared/components/Button';
 import { QuantityStepper } from '@/shared/components/QuantityStepper';
-import { useBasketStore } from '@/features/Basket/store';
+import { useMockBasketStore as useBasketStore } from '@/shared/components/BasketCard/mockBasketStore';
 import styles from './AddToBasketControl.module.css';
 
 interface AddToBasketControlProps {

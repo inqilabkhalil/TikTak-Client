@@ -4,7 +4,7 @@ import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import styles from './BasketCard.module.css';
 import type { BasketItemType } from './types';
-import { useBasketStore } from '@/features/Basket/store';
+import { useMockBasketStore as useBasketStore } from './mockBasketStore';
 
 type BasketItemProps = {
   item: BasketItemType;
