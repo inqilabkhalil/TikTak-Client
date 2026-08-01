@@ -27,6 +27,9 @@
 .content {
   min-width: 0;
   align-self: start;
+  /* matches CategoryList/BasketWidget's heading height (18px/24px line-height + 16px margin)
+     so this column's card top aligns with the sidebar/cart panel boxes */
+  padding-top: 40px;
 }
 
 .cartPanel {
@@ -40,7 +43,6 @@
 }
 
 .card {
-  margin-top: 8px;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);

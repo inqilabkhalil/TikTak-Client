@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  z-index: 30;
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -8,6 +10,23 @@
   padding: 0.75rem var(--layout-padding-x);
   background-color: var(--color-bg-white);
   border-bottom: 1px solid var(--color-border);
+}
+
+.searchBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  background-color: rgba(15, 15, 20, 0.45);
+  animation: searchBackdropFadeIn 0.15s ease;
+}
+
+@keyframes searchBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .logoLink {
@@ -137,11 +156,28 @@
 }
 
 .searchNoResults {
-  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1.5rem 0.75rem;
   font-family: var(--font-roboto);
   font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--color-text-secondary);
   text-align: center;
+}
+
+.searchNoResultsIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #e9e9ee;
+  color: #b8b8c2;
+  font-size: 1.25rem;
 }
 
 .searchInput:hover,
