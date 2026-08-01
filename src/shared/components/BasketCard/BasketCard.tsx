@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { EmptyBasket } from './EmptyBasket';
 import { BasketList } from './BasketList';
 import { BasketSummary } from './BasketSummary';
-import { useBasketStore } from '@/features/Basket/store';
+import { useMockBasketStore as useBasketStore } from './mockBasketStore';
 import styles from './BasketCard.module.css';
 
 export const BasketCard = () => {
