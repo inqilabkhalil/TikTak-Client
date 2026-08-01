@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiHeart, FiArrowLeft } from 'react-icons/fi';
 import { CategoryList } from '@/features/Categories';
-import { BasketCard } from '@/shared/components/BasketCard';
+import { BasketWidget } from '@/shared/components/BasketWidget';
 import { DiscountBanner } from '@/shared/components/DiscountBanner/DiscountBanner';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import { AddToBasketControl } from '@/shared/components/AddToBasketControl';
@@ -86,7 +86,7 @@ export const ProductDetailPage = ({ productId }: ProductDetailPageProps) => {
         </section>
 
         <aside className={styles.cartPanel}>
-          <BasketCard />
+          <BasketWidget />
         </aside>
       </div>
     </>

@@ -106,3 +106,64 @@
     font-size: 0.875rem;
   }
 }
+
+/* compact variant — used inside the sidebar mini-basket (BasketWidget) */
+
+.compactCard {
+  margin-top: 24px;
+  padding-top: 0;
+}
+
+.compactRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.compactLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8fa3;
+}
+
+.compactValue {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5060;
+}
+
+.compactTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #ececec;
+}
+
+.compactTotalLabel,
+.compactTotalValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #262b3d;
+}
+
+.compactCheckoutButton {
+  width: 100%;
+  height: 52px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 14px;
+  background: var(--primarybuttoncolor, #92d871);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.compactCheckoutButton:hover {
+  opacity: 0.9;
+}

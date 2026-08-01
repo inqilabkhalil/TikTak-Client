@@ -1,5 +1,5 @@
 import type { User } from "@/features/auth/types/authType";
-import { BasketProduct } from "@/features/Basket/types/basket.types";
+import { BasketProduct } from "@/shared/types/basket.types";
 
 import type {
   CheckoutUserInfo,

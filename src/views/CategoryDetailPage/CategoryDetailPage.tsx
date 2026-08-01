@@ -1,6 +1,6 @@
 import { CategoryList } from '@/features/Categories';
 import { ProductsGrid } from '@/features/ProductsGrid/ProductsGrid';
-import { BasketCard } from '@/shared/components/BasketCard';
+import { BasketWidget } from '@/shared/components/BasketWidget';
 import { DiscountBanner } from '@/shared/components/DiscountBanner/DiscountBanner';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import { getCategoryBySlug } from '@/shared/data/catalog';
@@ -31,7 +31,7 @@ export const CategoryDetailPage = ({ categorySlug }: CategoryDetailPageProps) =>
         </section>
 
         <aside className={styles.cartPanel}>
-          <BasketCard />
+          <BasketWidget />
         </aside>
       </div>
     </>

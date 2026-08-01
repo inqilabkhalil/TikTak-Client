@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { basketService } from "../services";
-import { BASKET_MESSAGES } from "../constants/basket.constants";
-import type { BasketState, BasketServiceResponse } from "../types/basket.types";
+import { basketService } from "@/shared/services/basketService";
+import { BASKET_MESSAGES } from "@/shared/constants/basket.constants";
+import type { BasketState, BasketServiceResponse } from "@/shared/types/basket.types";
 
 export const useBasketStore = create<BasketState>((set) => {
   const executeAction = async (

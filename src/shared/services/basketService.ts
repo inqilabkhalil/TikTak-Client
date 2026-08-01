@@ -2,8 +2,8 @@ import api from "@/shared/services/api";
 import {
   BasketApiResponse,
   BasketServiceResponse,
-} from "../types/basket.types";
-import { adaptBasketItems } from "../utils/basketAdapter";
+} from "@/shared/types/basket.types";
+import { adaptBasketItems } from "@/shared/utils/basketAdapter";
 
 const transformResponse = (response: {
   data: BasketApiResponse;
