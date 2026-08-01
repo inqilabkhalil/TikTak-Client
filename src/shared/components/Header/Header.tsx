@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef, useState, type ChangeEvent } from 'react';
+import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FiSearch, FiUser, FiHeart, FiShoppingCart } from 'react-icons/fi';
@@ -10,6 +10,7 @@ import { Input } from '@/shared/components/Input/Input';
 import { HeaderProps } from '@/shared/types';
 import { searchProducts } from '@/shared/data/catalog';
 import { useClickOutside } from '@/shared/hooks';
+import { ROUTES } from '@/shared/constants';
 import styles from './Header.module.css';
 
 const MOCK_ADDRESS = '55 Zarifa Əliyeva, Bakı, Azərbaycan';
@@ -21,6 +22,12 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
   const searchBoxRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(searchBoxRef, () => setIsDropdownOpen(false));
+
+  // TEMP DEBUG — remount testi üçün, sınadıqdan sonra sil
+  useEffect(() => {
+    console.log('MOUNTED: Header');
+    return () => console.log('UNMOUNTED: Header');
+  }, []);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -38,7 +45,7 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
 
   return (
     <header className={styles.header}>
-      <Link href="/home" className={styles.logoLink} aria-label="TIK TAK">
+      <Link href={ROUTES.LANDING} className={styles.logoLink} aria-label="TIK TAK">
         <Logo />
       </Link>
 
