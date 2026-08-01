@@ -1,13 +1,14 @@
-import axios from 'axios';
-import { create } from 'zustand';
-import { authService } from '@/features/auth/services';
-import { setCookie, removeCookie } from '@/features/auth/utils';
-import { STORAGE_KEYS, AUTH_MESSAGES } from '@/features/auth/constants';
-import type { AuthState } from '@/features/auth/types/authType';
+import axios from "axios";
+import { create } from "zustand";
+import { authService } from "@/features/auth/services";
+import { setCookie, removeCookie } from "@/features/auth/utils";
+import { STORAGE_KEYS, AUTH_MESSAGES } from "@/features/auth/constants";
+import type { AuthState } from "@/features/auth/types/authType";
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   isLoading: false,
+  isInitialized: false,
   error: null,
 
   login: async (values) => {
@@ -21,7 +22,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
       setCookie(STORAGE_KEYS.ACCESS_TOKEN, access_token);
 
-      set({ user: data.profile, isLoading: false });
+      set({ user: data.profile, isLoading: false, isInitialized: true });
       return true;
     } catch (err: unknown) {
       const errorMessage = axios.isAxiosError(err)
@@ -55,6 +56,22 @@ export const useAuthStore = create<AuthState>((set) => ({
         isLoading: false,
       });
       return false;
+    }
+  },
+
+  fetchProfile: async () => {
+    const token = localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
+
+    if (!token) {
+      set({ isInitialized: true });
+      return;
+    }
+
+    try {
+      const user = await authService.getProfile();
+      set({ user, isInitialized: true });
+    } catch {
+      set({ user: null, isInitialized: true });
     }
   },
 
