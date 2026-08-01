@@ -7,6 +7,7 @@ import { Card } from '@/shared/components/Card';
 import { AddToBasketControl } from '@/shared/components/AddToBasketControl';
 import type { Product } from '@/shared/data/catalog';
 import { useFavorites } from '@/shared/store';
+import { formatPrice } from '@/shared/utils';
 import styles from './ProductCard.module.css';
 
 interface ProductCardProps {
@@ -19,7 +20,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const favorite = isFavorite(id);
 
   return (
-    <Card>
+    <Card className={styles.card}>
       <div className={styles.content}>
         <button
           type="button"
@@ -38,10 +39,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
           <h3 className={styles.title}>{title}</h3>
 
-          <p className={styles.price}>{price} AZN</p>
-
-          {!inStock && <p className={styles.outOfStock}>Stokda yoxdur</p>}
+          <p className={styles.price}>{formatPrice(price)}</p>
         </Link>
+
+        {!inStock && <span className={styles.outOfStock}>Stokda yoxdur</span>}
 
         <AddToBasketControl
           id={id}
