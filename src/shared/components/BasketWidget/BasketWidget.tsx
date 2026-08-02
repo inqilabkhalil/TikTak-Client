@@ -16,6 +16,7 @@ export const BasketWidget = () => {
   const fetchBasket = useBasketStore((state) => state.fetchBasket);
   const addItem = useBasketStore((state) => state.addItem);
   const decreaseItem = useBasketStore((state) => state.decreaseItem);
+  const removeItem = useBasketStore((state) => state.removeItem); 
 
   useEffect(() => {
     fetchBasket();
@@ -35,9 +36,7 @@ export const BasketWidget = () => {
               width={140}
               height={140}
             />
-
             <h3>Səbətiniz boşdur</h3>
-
             <p>
               Sifariş vermək üçün
               <br />
@@ -58,6 +57,7 @@ export const BasketWidget = () => {
           products={items}
           onIncrease={addItem}
           onDecrease={decreaseItem}
+          onRemove={removeItem}  
           variant="compact"
         />
         <OrderSummary
