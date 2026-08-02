@@ -1,5 +1,6 @@
-import { LoginPage } from "@/views/LoginPage";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/shared/constants";
 
 export default function Page() {
-  return <LoginPage />;
+  redirect(ROUTES.LANDING);
 }

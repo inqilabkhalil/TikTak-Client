@@ -1,21 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FiSearch, FiUser, FiHeart, FiShoppingCart } from "react-icons/fi";
 import { Logo } from "@/shared/components/Logo";
 import { Input } from "@/shared/components/Input/Input";
 import { HeaderProps } from "@/shared/types";
+import { searchProducts } from "@/shared/data/catalog";
+import { useClickOutside } from "@/shared/hooks";
 import styles from "./Header.module.css";
 
 const MOCK_ADDRESS = "55 Zarifa Əliyeva, Bakı, Azərbaycan";
 
 export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
   const [search, setSearch] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const router = useRouter();
+  const searchBoxRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(searchBoxRef, () => setIsDropdownOpen(false));
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+    setIsDropdownOpen(true);
   };
+
+  const handleResultClick = (id: number) => {
+    setSearch("");
+    setIsDropdownOpen(false);
+    router.push(`/product/${id}`);
+  };
+
+  const trimmedQuery = search.trim();
+  const results = trimmedQuery ? searchProducts(trimmedQuery) : [];
 
   return (
     <header className={styles.header}>
@@ -32,14 +50,44 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
 
       {showInput && (
         <div className={styles.searchWrapper}>
-          <Input
-            type="text"
-            className={styles.searchInput}
-            placeholder="Axtarış"
-            prefix={<FiSearch className={styles.searchIcon} />}
-            value={search}
-            onChange={handleSearchChange}
-          />
+          <div className={styles.searchBox} ref={searchBoxRef}>
+            <Input
+              type="text"
+              className={styles.searchInput}
+              placeholder="Axtarış"
+              prefix={<FiSearch className={styles.searchIcon} />}
+              value={search}
+              onChange={handleSearchChange}
+              onFocus={() => setIsDropdownOpen(true)}
+            />
+
+            {isDropdownOpen && trimmedQuery && (
+              <div className={styles.searchDropdown}>
+                {results.length > 0 ? (
+                  results.map((product) => (
+                    <button
+                      key={product.id}
+                      type="button"
+                      className={styles.searchResultItem}
+                      onClick={() => handleResultClick(product.id)}
+                    >
+                      <img
+                        src={product.image.src}
+                        alt={product.title}
+                        className={styles.searchResultImage}
+                      />
+                      <span className={styles.searchResultInfo}>
+                        <span className={styles.searchResultTitle}>{product.title}</span>
+                        <span className={styles.searchResultPrice}>{product.price} AZN</span>
+                      </span>
+                    </button>
+                  ))
+                ) : (
+                  <div className={styles.searchNoResults}>Nəticə tapılmadı</div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       )}
 

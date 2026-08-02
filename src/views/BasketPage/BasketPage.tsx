@@ -1,18 +1,47 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import {
   BasketList,
   OrderSummary,
-  MOCK_BASKET_PRODUCTS,
   BASKET_BREADCRUMB_ITEMS,
 } from '@/features/Basket';
+import { EmptyBasket } from '@/shared/components/BasketCard/EmptyBasket';
+import { useBasket } from '@/shared/store';
 import styles from './BasketPage.module.css';
 
 export function BasketPage() {
-  const handleClear = () => {
-    console.log('onClear not implemented');
+  const router = useRouter();
+  const { items, increment, decrement, clearBasket } = useBasket();
+
+  const products = items.map((item) => ({
+    id: item.id,
+    name: item.title,
+    price: item.price,
+    quantity: item.quantity,
+    image: item.image,
+  }));
+
+  const handleCheckout = () => {
+    router.push('/checkout');
   };
+
+  if (products.length === 0) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.listColumn}>
+          <Breadcrumb items={BASKET_BREADCRUMB_ITEMS} />
+
+          <div className={styles.listHeading}>
+            <h2 className={styles.listTitle}>Səbətim</h2>
+          </div>
+
+          <EmptyBasket />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
@@ -24,13 +53,13 @@ export function BasketPage() {
           <button
             type="button"
             className={styles.clearButton}
-            onClick={handleClear}
+            onClick={clearBasket}
           >
             Səbəti təmizlə
           </button>
         </div>
 
-        <BasketList products={MOCK_BASKET_PRODUCTS} />
+        <BasketList products={products} onIncrease={increment} onDecrease={decrement} />
       </div>
 
       <div className={styles.summaryColumn}>
@@ -40,7 +69,7 @@ export function BasketPage() {
 
         <h2 className={styles.summaryTitle}>Yekun məbləğ</h2>
 
-        <OrderSummary products={MOCK_BASKET_PRODUCTS} />
+        <OrderSummary products={products} onCheckout={handleCheckout} />
       </div>
     </div>
   );

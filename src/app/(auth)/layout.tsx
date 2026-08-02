@@ -1,9 +1,14 @@
+import { AuthLayout } from "@/shared/components/AuthLayout";
 import { PageTransition } from "@/shared/components/PageTransition";
 
-export default function AuthLayout({
+export default function AuthRouteLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <PageTransition>{children}</PageTransition>;
+  return (
+    <AuthLayout>
+      <PageTransition>{children}</PageTransition>
+    </AuthLayout>
+  );
 }

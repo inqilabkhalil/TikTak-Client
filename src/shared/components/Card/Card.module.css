@@ -14,7 +14,7 @@
   justify-content: center;
   gap: 0.5rem;
   cursor: pointer;
-  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-family: var(--font-roboto), 'Roboto', sans-serif;
 }
 
 .imageWrapper {

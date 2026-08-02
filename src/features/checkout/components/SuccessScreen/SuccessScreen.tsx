@@ -6,6 +6,7 @@ import successIcon from "@/shared/assets/success.png";
 export const SuccessScreen = ({
     title = "Sifariş uğurla tamamlandı",
     description = "Əməkdaşlarımız sizinlə əlaqə saxlayıb sifarişinizi göndərəcəklər.",
+    orderNumber,
 }: SuccessScreenProps) => {
   return (
     <div className={styles.container}>
@@ -20,6 +21,9 @@ export const SuccessScreen = ({
             </div>
             <h2 className={styles.title}>{title}</h2>
             <p className={styles.description}>{description}</p>
+            {orderNumber && (
+                <p className={styles.orderNumber}>Sifariş nömrəsi: #{orderNumber}</p>
+            )}
         </div>
     </div>
   )

@@ -1,0 +1,47 @@
+.card {
+  border: 1px solid #e5e5e5;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 9rem;
+}
+
+.value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.label {
+  font-size: 0.9375rem;
+  color: #888;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    min-height: 7rem;
+  }
+
+  .value {
+    font-size: 1.75rem;
+  }
+
+  .label {
+    font-size: 0.8125rem;
+  }
+}

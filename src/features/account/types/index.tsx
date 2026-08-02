@@ -1,34 +1,56 @@
-export interface OrderItem {
-  key: string;
-  no: string;
-  date: string;
-  address: string;
-  quantity: number;
-  total: string;
-  status: "Tamamlandı" | "Ləğv edildi" | "Sifariş verildi" | "Gözləyir";
-}
-
-
-export interface ProductItem {
-  id: string;
-  name: string;
-  image: string;
-  quantity: number;
+export interface Product {
+  id: number;
+  title: string;
+  img_url: string;
+  description: string;
   price: string;
+  type: string;
+  created_at: string;
+  category: {
+    id: number;
+    name: string;
+    img_url: string;
+    description: string;
+    created_at: string;
+  };
 }
 
- export interface OrderDetailsProps {
-  orderId: string;
-  orderDate: string;
+export interface OrderProductItem {
+  id: number;
+  quantity: number;
+  total_price: string;
+  product: Product;
+}
+
+export interface OrderItem {
+  id: number;
+  orderNumber: string;
+  total: string;
+  deliveryFee: string;
+  paymentMethod: string;
+  status: "PENDING" | "COMPLETED" | "CANCELLED" | "Tamamlandı" | "Ləğv edildi"; // Backend-dən gələn statuslara görə
+  note: string;
   address: string;
-  products: ProductItem[];
-}
-
- export interface PersonalInfoFormValues {
-  name: string;
   phone: string;
-  email: string;
+  createdAt: string;
+  updatedAt: string;
+  items: OrderProductItem[];
+}
+
+export interface UserProfile {
+  id: number;
+  full_name: string;
+  phone: string;
   address: string;
+  img_url: string;
+  role: string;
+}
+
+export interface PersonalInfoFormValues {
+  name?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
   newPassword?: string;
   confirmPassword?: string;
 }

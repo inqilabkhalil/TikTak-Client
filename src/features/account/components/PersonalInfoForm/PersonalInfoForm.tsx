@@ -1,34 +1,67 @@
-// src/features/account/components/PersonalInfo/PersonalInfoForm.tsx
+// src/features/account/components/PersonalInfoForm/PersonalInfoForm.tsx
 'use client';
 
-import React from 'react';
-import { Form, Input, message } from 'antd';
+import React, { useEffect } from 'react';
+import { Form, Input, App } from 'antd';
 import { Button } from '@/shared/components/Button';
 import styles from './PersonalInfoForm.module.css';
-import { PersonalInfoFormValues } from '../../types';
+// Komanda yoldaşının yazdığı store-u import edirik:
 
 
+export interface PersonalInfoFormValues {
+  name?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  newPassword?: string;
+  confirmPassword?: string;
+}
 
 export function PersonalInfoForm() {
   const [form] = Form.useForm<PersonalInfoFormValues>();
+  
+  // Komanda yoldaşının store-undan lazım olanları çəkirik
+  // const { user, isLoading, fetchProfile } = useProfileStore();
+  
+  // const { message } = App.useApp();
 
-  const onFinish = (values: PersonalInfoFormValues) => {
-    console.log('Form data:', values);
-    message.success('Məlumatlar uğurla yeniləndi!');
-  };
+  // useEffect(() => {
+  //   if (!user) {
+  //     fetchProfile();
+  //   }
+  // }, [fetchProfile, user]);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     form.setFieldsValue({
+  //       name: user.full_name || '',
+  //       phone: user.phone || '',
+  //       email: user.email || '',
+  //       address: user.address || '',
+  //     });
+  //   }
+  // }, [user, form]);
+
+  // const onFinish = async (values: PersonalInfoFormValues) => {
+  //   try {
+  //     if (values.newPassword && values.newPassword !== values.confirmPassword) {
+  //       message.error('Şifrələr bir-biri ilə eyni deyil!');
+  //       return;
+  //     }
+
+  //     // Əgər profil yeniləmə servisi komanda yoldaşı tərəfindən hələ yazılmayıbsa, 
+  //     // buraya öz update funksiyanı əlavə edə bilərsən.
+  //     message.success('Məlumatlar uğurla yeniləndi!');
+  //   } catch (err: any) {
+  //     message.error(err.message || 'Yenilənmə zamanı xəta baş verdi');
+  //   }
+  // };
 
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.sectionTitle}>Əlaqə məlumatlarınız</h2>
 
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={onFinish}
-        initialValues={{
-          email: 'rahimlisarkhan@gmail.com', // Nümunə məlumat (şəkildən)
-        }}
-      >
+      <Form form={form} layout="vertical" onFinish={onFinish}>
         <div className={styles.gridRow}>
           <Form.Item
             label="Adınız"
@@ -60,11 +93,11 @@ export function PersonalInfoForm() {
           </Form.Item>
 
           <Form.Item
-            label="Unvan"
+            label="Ünvan"
             name="address"
             rules={[{ required: true, message: 'Ünvanı daxil edin!' }]}
           >
-            <Input placeholder="Unvaniniz" className={styles.inputField} />
+            <Input placeholder="Ünvanınız" className={styles.inputField} />
           </Form.Item>
         </div>
 
@@ -85,7 +118,7 @@ export function PersonalInfoForm() {
 
         <div className={styles.buttonWrapper}>
           <Button htmlType="submit" color="#84cc16" className={styles.submitButton}>
-            Məlumatları yenilə
+            {isLoading ? 'Yüklənir...' : 'Məlumatları yenilə'}
           </Button>
         </div>
       </Form>

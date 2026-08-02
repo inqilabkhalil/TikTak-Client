@@ -1,0 +1,107 @@
+.page {
+  --category-top-offset: 20px;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 375px;
+  gap: 24px;
+
+  align-items: start;
+  align-content: start;
+}
+
+.sidebar,
+.cartPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar {
+  position: sticky;
+  top: var(--category-top-offset);
+}
+
+.discountBannerWrapper {
+  margin-top: 12px;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f6fff2 0%, #e8f7e2 100%);
+  border: 1px solid #e2f2db;
+}
+
+.bannerText {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2f9e44;
+}
+
+.content {
+  min-width: 0;
+  align-self: start;
+  text-align: left;
+  padding-left: 0;
+}
+
+.categoryTitle {
+  margin: 8px 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary, #2b3043);
+}
+
+.cartPanel {
+  width: 375px;
+  min-width: 375px;
+  max-width: 375px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+
+  align-self: start;
+}
+.cartTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cartText {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+@media (max-width: 1200px) {
+  .page {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .cartPanel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .cartPanel {
+    grid-column: auto;
+  }
+}

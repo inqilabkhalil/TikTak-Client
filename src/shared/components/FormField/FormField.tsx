@@ -1,12 +1,6 @@
-import { ReactNode } from "react";
 import styles from "./FormField.module.css";
+import { FormFieldProps } from "@/shared/types";
 
-interface FormFieldProps {
-  label: string;
-  error?: string;
-  touched?: boolean;
-  children: ReactNode;
-}
 
 export const FormField = ({
   label,

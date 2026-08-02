@@ -18,19 +18,16 @@ export const ConfirmModal = ({
   const { formattedTime, reset } = useCountdown(duration, onClose, isOpen);
 
   useEffect(() => {
-    if (isOpen) reset();
-  }, [isOpen]);
+    if (isOpen) {
+      reset();
+    }
+  }, [isOpen, reset]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={styles.container}>
         <div className={styles.iconWrapper}>
-          <Image
-            src={clockIcon}
-            alt="Clock"
-            width={160}
-            height={160}
-          />
+          <Image src={clockIcon} alt="Clock" width={160} height={160} />
         </div>
 
         <div className={styles.textWrapper}>
