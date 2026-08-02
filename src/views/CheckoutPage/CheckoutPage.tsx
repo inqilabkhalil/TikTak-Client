@@ -1,15 +1,73 @@
-'use client';
+"use client";
 
-import { OrderSummary } from '@/features/checkout/components/OrderSummary';
-import { ConfirmModal } from '@/features/checkout/components/ConfirmModal';
-import { useCheckout } from '@/features/checkout/hooks';
-import { MOCK_USER, MOCK_SUMMARY } from './mockData';
-import styles from './CheckoutPage.module.css';
-import { CheckoutForm } from '@/features/checkout/components/CheckoutForm/CheckoutForm';
+import { useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { OrderSummary } from "@/features/checkout/components/OrderSummary";
+import { ConfirmModal } from "@/features/checkout/components/ConfirmModal";
+import { CheckoutForm } from "@/features/checkout/components/CheckoutForm/CheckoutForm";
+import { useCheckout } from "@/features/checkout/hooks";
+import {
+  mapUserToCheckoutInfo,
+  mapBasketToSummary,
+} from "@/features/checkout/utils";
+import { useAuthStore } from "@/features/auth/store";
+import { useBasketStore } from "@/shared/store";
+import { ROUTES } from "@/shared/constants";
+import styles from "./CheckoutPage.module.css";
 
 export const CheckoutPage = () => {
-  const { isModalOpen, handleFormSubmit, handleConfirm, handleCancel } =
-    useCheckout();
+  const router = useRouter();
+  const { user, isInitialized } = useAuthStore();
+  const { items, total, fetchBasket, isLoading: isBasketLoading } =
+    useBasketStore();
+
+  const checkoutUser = useMemo(
+    () =>
+      user
+        ? mapUserToCheckoutInfo(user)
+        : { name: "", address: "", phone: "" },
+    [user]
+  );
+
+  const summaryData = useMemo(
+    () => mapBasketToSummary(items, total),
+    [items, total]
+  );
+
+  const {
+    isModalOpen,
+    isLoading,
+    error,
+    handleFormSubmit,
+    handleConfirm,
+    handleCancel,
+  } = useCheckout({ user: checkoutUser });
+
+  useEffect(() => {
+    if (isInitialized && user) {
+      fetchBasket();
+    }
+  }, [isInitialized, user, fetchBasket]);
+
+  useEffect(() => {
+    if (isInitialized && !user) {
+      router.replace(ROUTES.LOGIN);
+    }
+  }, [isInitialized, user, router]);
+
+  useEffect(() => {
+    if (isInitialized && user && !isBasketLoading && items.length === 0) {
+      router.replace(ROUTES.BASKET ?? "/basket");
+    }
+  }, [isInitialized, user, isBasketLoading, items.length, router]);
+
+  if (!isInitialized || !user) {
+    return <div className={styles.container}>Yüklənir...</div>;
+  }
+
+  if (isBasketLoading || items.length === 0) {
+    return <div className={styles.container}>Yüklənir...</div>;
+  }
 
   return (
     <>
@@ -23,12 +81,17 @@ export const CheckoutPage = () => {
         <div className={styles.content}>
           <div className={styles.formSection}>
             <h2 className={styles.mobileTitle}>Sifarişin tamamlanması</h2>
-            <CheckoutForm user={MOCK_USER} onSubmit={handleFormSubmit} />
+            <CheckoutForm
+              user={checkoutUser}
+              onSubmit={handleFormSubmit}
+              isLoading={isLoading}
+              error={error}
+            />
           </div>
 
           <div className={styles.summarySection}>
             <h2 className={styles.mobileTitle}>Xülasə</h2>
-            <OrderSummary data={MOCK_SUMMARY} />
+            <OrderSummary data={summaryData} />
           </div>
         </div>
       </div>
@@ -38,6 +101,7 @@ export const CheckoutPage = () => {
         onClose={handleCancel}
         onConfirm={handleConfirm}
         duration={180}
+        isLoading={isLoading}
       />
     </>
   );

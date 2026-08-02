@@ -4,9 +4,12 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  min-height: 260px;
+  min-height: 460px;
   width: 100%;
   padding: 40px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
 }
 
 .iconCircle {

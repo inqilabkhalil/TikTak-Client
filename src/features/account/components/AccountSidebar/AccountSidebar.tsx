@@ -1,7 +1,7 @@
 // src/features/account/components/AccountSidebar/AccountSidebar.tsx
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UserOutlined, HomeOutlined } from '@ant-design/icons';
@@ -11,6 +11,12 @@ import { ROUTES } from '@/shared/constants';
 
 export function AccountSidebar() {
   const pathname = usePathname();
+
+  // TEMP DEBUG — remount testi üçün, sınadıqdan sonra sil
+  useEffect(() => {
+    console.log('MOUNTED: AccountSidebar');
+    return () => console.log('UNMOUNTED: AccountSidebar');
+  }, []);
 
   return (
     <div className={styles.sidebarCard}>

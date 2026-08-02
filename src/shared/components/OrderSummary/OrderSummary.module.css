@@ -1,0 +1,169 @@
+.card {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  background-color: #ffffff;
+  border-radius: 0.625rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.label {
+  font-family: var(--font-roboto);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.value {
+  font-family: var(--font-roboto);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1a1d28;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ececf3;
+  margin: 1rem 0 0.5rem;
+}
+
+.totalLabel {
+  font-family: var(--font-roboto);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1d28;
+}
+
+.totalValue {
+  font-family: var(--font-roboto);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1d28;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.checkoutButton {
+  margin-top: 1.25rem;
+  width: 100%;
+  height: 2.875rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--primarybuttoncolor);
+  color: #ffffff;
+  font-family: var(--font-roboto);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.checkoutButton:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.125rem 1.25rem 1.25rem;
+  }
+
+  .checkoutButton {
+    margin-top: 1.125rem;
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+  }
+
+  .label,
+  .value {
+    font-size: 0.8125rem;
+  }
+
+  .totalLabel,
+  .totalValue {
+    font-size: 0.9375rem;
+  }
+
+  .checkoutButton {
+    width: 100%;
+    height: 2.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* compact variant — used inside the sidebar mini-basket (BasketWidget) */
+
+.compactCard {
+  margin-top: 24px;
+  padding-top: 0;
+}
+
+.compactRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.compactLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8fa3;
+}
+
+.compactValue {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5060;
+}
+
+.compactTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #ececec;
+}
+
+.compactTotalLabel,
+.compactTotalValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #262b3d;
+}
+
+.compactCheckoutButton {
+  width: 100%;
+  height: 52px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 14px;
+  background: var(--primarybuttoncolor, #92d871);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.compactCheckoutButton:hover {
+  opacity: 0.9;
+}

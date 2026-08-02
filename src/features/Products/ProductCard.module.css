@@ -1,4 +1,15 @@
+/* Figma "Category detail" card is 187x251 (~0.745 ratio); shared Card.module.css
+   sets a fixed height, so aspect-ratio/shadow are overridden here with !important
+   since both classes land on the same element with equal CSS-module specificity. */
+.card {
+  aspect-ratio: 187 / 251 !important;
+  height: auto !important;
+  padding: 12px 10px !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.11) !important;
+}
+
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,8 +17,35 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  padding: 12px 10px 10px;
+  padding: 0;
   gap: 8px;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.favoriteBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.favoriteActive {
+  fill: #f28b94;
+  color: #f28b94;
 }
 
 .linkArea {
@@ -25,12 +63,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 92px;
+  min-height: 88px;
 }
 
 .image {
-  width: 90px;
-  height: 90px;
+  width: 84px;
+  height: 84px;
   object-fit: contain;
 }
 
@@ -38,7 +76,7 @@
   margin: 0;
   font-size: 14px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.3;
   color: var(--color-text-primary, #1f2937);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -50,12 +88,24 @@
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-  color: #2f9e44;
+  color: #262b3d;
 }
 
 .outOfStock {
+  position: absolute;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
   margin: 0;
-  font-size: 13px;
+  padding: 0;
+  font-size: 11px;
   font-weight: 600;
   color: #e03131;
+  white-space: nowrap;
+}
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  border-radius: 8px;
 }

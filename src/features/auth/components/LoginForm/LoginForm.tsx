@@ -1,27 +1,43 @@
 "use client";
 
-import { useFormik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Input as AntInput } from "antd";
-import { Input } from "@/shared/components/Input/Input";
 import { Button } from "@/shared/components/Button/Button";
 import { FormField } from "@/shared/components/FormField";
-import { loginSchema } from "../../utils/validation";
-import styles from "../../styles/AuthForm.module.css";
 import { AuthTabs } from "../AuthTabs";
+import { PhoneField } from "../PhoneField";
 import { useAuthForm } from "../../hooks/useAuthForm";
-import { LoginValues } from "../../types/authType";
+import { useAuthStore } from "@/features/auth/store";
+import { loginSchema } from "../../utils/validation";
+import { AUTH_MESSAGES } from "../../constants";
+import { ROUTES } from "@/shared/constants";
+import type { LoginValues } from "@/features/auth/types/authType";
+import styles from "../../styles/AuthForm.module.css";
 
 export const LoginForm = () => {
   const router = useRouter();
+  const login = useAuthStore((state) => state.login);
 
-  const { formik, getFieldProps, getFieldError } = useAuthForm<LoginValues>({
+  const {
+    formik,
+    getFieldProps,
+    getFieldError,
+    getPhoneFieldProps,
+    isLoading,
+    error,
+  } = useAuthForm<LoginValues>({
     initialValues: { phone: "", password: "" },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      console.log("Login data:", values);
-      router.push("/home");
+    onSubmit: async (values, { setErrors }) => {
+      const payload = { ...values, phone: `+994${values.phone}` };
+      const success = await login(payload);
+
+      if (success) {
+        router.push(ROUTES.LANDING);
+      } else {
+        setErrors({ password: AUTH_MESSAGES.LOGIN_ERROR });
+      }
     },
   });
 
@@ -29,23 +45,12 @@ export const LoginForm = () => {
     <form className={styles.form} onSubmit={formik.handleSubmit}>
       <AuthTabs active="login" />
 
-      <FormField
-        label="Telefon nömrəsi"
+      <PhoneField
         {...getFieldError("phone")}
-      >
-        <Input
-          type="tel"
-          placeholder="(+994) __ / __ / __ / __"
-          size="large"
-          className={styles.input}
-          {...getFieldProps("phone")}
-        />
-      </FormField>
+        {...getPhoneFieldProps("phone")}
+      />
 
-      <FormField
-        label="Parol"
-        {...getFieldError("password")}
-      >
+      <FormField label="Parol" {...getFieldError("password")}>
         <AntInput.Password
           placeholder="********************"
           size="large"
@@ -54,13 +59,20 @@ export const LoginForm = () => {
         />
       </FormField>
 
-      <Button htmlType="submit" block className={styles.submitButton}>
+      {error && <p className={styles.errorText}>{error}</p>}
+
+      <Button
+        htmlType="submit"
+        loading={isLoading}
+        block
+        className={styles.submitButton}
+      >
         Daxil ol
       </Button>
 
       <p className={styles.bottomText}>
         Hesabın yoxdursa
-        <Link href="/register" className={styles.link}>
+        <Link href={ROUTES.REGISTER} className={styles.link}>
           Qeydiyyatdan keç
         </Link>
       </p>

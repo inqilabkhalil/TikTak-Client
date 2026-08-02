@@ -1,14 +1,12 @@
-import type { StaticImageData } from "next/image";
-
-export type BannerTheme = "green" | "red";
+// src/features/landing/types/index.ts
+import type { StaticImageData } from 'next/image';
 
 export interface Banner {
   id: number;
   title: string;
   subtitle: string;
   image: string;
-  theme: BannerTheme;
-  href: string;
+  theme: 'green' | 'red' | string;
 }
 
 export interface Offer {
@@ -16,14 +14,6 @@ export interface Offer {
   title: string;
   date: string;
   image: string;
-  href: string;
-}
-
-export interface Stat {
-  id: number;
-  value: string;
-  label: string;
-  icon: StaticImageData;
 }
 
 export interface BannerCardProps {
@@ -32,6 +22,13 @@ export interface BannerCardProps {
 
 export interface OfferCardProps {
   offer: Offer;
+}
+
+export interface Stat {
+  id: number;
+  value: string;
+  label: string;
+  icon: StaticImageData;
 }
 
 export interface StatCardProps {

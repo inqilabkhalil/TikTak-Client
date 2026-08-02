@@ -1,44 +1,54 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import type { CheckoutFormValues } from '@/features/checkout/types';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCheckoutStore } from "@/features/checkout/store";
+import { useBasketStore } from "@/shared/store";
+import type {
+  CheckoutFormValues,
+  UseCheckoutProps,
+} from "@/features/checkout/types";
 
-const generateOrderNumber = () =>
-  Math.floor(100000 + Math.random() * 900000).toString();
-
-export const useCheckout = () => {
+export const useCheckout = ({ user }: UseCheckoutProps) => {
   const router = useRouter();
+  const { createOrder, isLoading, error, resetOrder } = useCheckoutStore();
+  const { clearBasket } = useBasketStore();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formValues, setFormValues] = useState<CheckoutFormValues | null>(null);
 
-  /**
-   * sifaris tamamlananda acilandi
-   */
   const handleFormSubmit = (values: CheckoutFormValues) => {
     setFormValues(values);
     setIsModalOpen(true);
   };
 
-  /**
-   tesdiqle duymesine basanda
-   */
-  const handleConfirm = () => {
-    console.log('Sifariş göndərildi:', formValues);
+  const handleConfirm = async () => {
+    if (!formValues) return;
+
+    const order = await createOrder({
+      paymentMethod: formValues.paymentMethod,
+      note: formValues.note,
+      address: user.address,
+      phone: user.phone,
+    });
+
     setIsModalOpen(false);
-    const orderNumber = generateOrderNumber();
-    router.push(`/order-success?orderNumber=${orderNumber}`);
+
+    if (order) {
+      await clearBasket();
+      resetOrder();
+      router.push(`/order-success?orderNumber=${order.orderNumber}`);
+    }
   };
 
-  /**
-   * İndi yox düyməsinə basanda
-   */
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
   return {
     isModalOpen,
+    isLoading,
+    error,
     handleFormSubmit,
     handleConfirm,
     handleCancel,

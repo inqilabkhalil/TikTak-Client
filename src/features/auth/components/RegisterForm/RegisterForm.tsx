@@ -1,22 +1,41 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Input as AntInput } from "antd";
 import { Input } from "@/shared/components/Input/Input";
 import { Button } from "@/shared/components/Button/Button";
 import { FormField } from "@/shared/components/FormField";
-import { registerSchema } from "../../utils/validation";
-import styles from "../../styles/AuthForm.module.css";
 import { AuthTabs } from "../AuthTabs";
+import { PhoneField } from "../PhoneField";
 import { useAuthForm } from "../../hooks/useAuthForm";
-import { RegisterValues } from "../../types/authType";
+import { useAuthStore } from "@/features/auth/store";
+import { registerSchema } from "../../utils/validation";
+import { ROUTES } from "@/shared/constants";
+import type { RegisterValues } from "@/features/auth/types/authType";
+import styles from "../../styles/AuthForm.module.css";
 
 export const RegisterForm = () => {
-  const { formik, getFieldProps, getFieldError } = useAuthForm<RegisterValues>({
-    initialValues: { name: "", phone: "", password: "" },
+  const router = useRouter();
+  const register = useAuthStore((state) => state.register);
+
+  const {
+    formik,
+    getFieldProps,
+    getFieldError,
+    getPhoneFieldProps,
+    isLoading,
+    error,
+  } = useAuthForm<RegisterValues>({
+    initialValues: { full_name: "", phone: "", password: "" },
     validationSchema: registerSchema,
-    onSubmit: (values) => {
-      console.log("Register data:", values);
+    onSubmit: async (values) => {
+      const payload = { ...values, phone: `+994${values.phone}` };
+      const success = await register(payload);
+
+      if (success) {
+        router.push(ROUTES.LOGIN);
+      }
     },
   });
 
@@ -24,25 +43,20 @@ export const RegisterForm = () => {
     <form className={styles.form} onSubmit={formik.handleSubmit}>
       <AuthTabs active="register" />
 
-      <FormField label="Ad" {...getFieldError("name")}>
+      <FormField label="Ad" {...getFieldError("full_name")}>
         <Input
           type="text"
           placeholder="Ad, Soyad"
           size="large"
           className={styles.input}
-          {...getFieldProps("name")}
+          {...getFieldProps("full_name")}
         />
       </FormField>
 
-      <FormField label="Telefon nömrəsi" {...getFieldError("phone")}>
-        <Input
-          type="tel"
-          placeholder="(+994) __ / __ / __ / __"
-          size="large"
-          className={styles.input}
-          {...getFieldProps("phone")}
-        />
-      </FormField>
+      <PhoneField
+        {...getFieldError("phone")}
+        {...getPhoneFieldProps("phone")}
+      />
 
       <FormField label="Parol" {...getFieldError("password")}>
         <AntInput.Password
@@ -53,13 +67,20 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <Button htmlType="submit" block className={styles.submitButton}>
+      {error && <p className={styles.errorText}>{error}</p>}
+
+      <Button
+        htmlType="submit"
+        loading={isLoading}
+        block
+        className={styles.submitButton}
+      >
         Tamamla
       </Button>
 
       <p className={styles.bottomText}>
         Hesabın varsa
-        <Link href="/login" className={styles.link}>
+        <Link href={ROUTES.LOGIN} className={styles.link}>
           Daxil ol
         </Link>
       </p>

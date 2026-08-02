@@ -14,6 +14,7 @@ export const ConfirmModal = ({
   onClose,
   onConfirm,
   duration = 180,
+  isLoading = false,
 }: ConfirmModalProps) => {
   const { formattedTime, reset } = useCountdown(duration, onClose, isOpen);
 
@@ -38,14 +39,19 @@ export const ConfirmModal = ({
         </div>
 
         <div className={styles.buttons}>
-          <Button onClick={onConfirm} className={styles.confirmButton}>
-            Təsdiqlə
+          <Button 
+          onClick={onConfirm} 
+          className={styles.confirmButton}
+          disabled={isLoading}
+          >
+            {isLoading ? "Göndərilir..." : "Təsdiqlə"}
           </Button>
 
           <Button
             color="#FFFFFF"
             onClick={onClose}
             className={styles.cancelButton}
+            disabled={isLoading}
           >
             İndi yox
           </Button>

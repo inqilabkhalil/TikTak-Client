@@ -15,12 +15,14 @@
   });
 
   // Token vaxtı bitəndə (401) avtomatik logout edir — LOGIN sorğularını istisna edir
+  // Token heç olmayıbsa (qonaq istifadəçi) redirect etmir, sadəcə reject edir
   api.interceptors.response.use(
     (response) => response,
     (error) => {
       const isAuthEndpoint = error.config?.url?.includes('/auth/login');
+      const hadToken = Boolean(localStorage.getItem('access_token'));
 
-      if (error.response?.status === 401 && !isAuthEndpoint) {
+      if (error.response?.status === 401 && !isAuthEndpoint && hadToken) {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         window.location.href = ROUTES.LOGIN;

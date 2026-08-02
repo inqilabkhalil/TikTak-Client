@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
-import { BasketProvider } from "@/shared/store";
+import { FavoritesProvider } from "@/shared/store";
+import { AuthInitializer } from "@/shared/components/AuthInitializer";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <BasketProvider>{children}</BasketProvider>
+        <FavoritesProvider>
+          <AuthInitializer>{children}</AuthInitializer>
+        </FavoritesProvider>
       </body>
     </html>
   );

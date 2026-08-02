@@ -1,43 +1,47 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
-import {
-  BasketList,
-  OrderSummary,
-  BASKET_BREADCRUMB_ITEMS,
-} from '@/features/Basket';
-import { EmptyBasket } from '@/shared/components/BasketCard/EmptyBasket';
-import { useBasket } from '@/shared/store';
+import { BasketList } from '@/shared/components/BasketList';
+import { OrderSummary } from '@/shared/components/OrderSummary';
+import { EmptyState } from '@/shared/components/EmptyState';
+import { useBasketStore } from '@/shared/store';
+import { BASKET_BREADCRUMB_ITEMS } from '@/shared/constants/basket.constants';
 import styles from './BasketPage.module.css';
 
 export function BasketPage() {
   const router = useRouter();
-  const { items, increment, decrement, clearBasket } = useBasket();
 
-  const products = items.map((item) => ({
-    id: item.id,
-    name: item.title,
-    price: item.price,
-    quantity: item.quantity,
-    image: item.image,
-  }));
+  const items = useBasketStore((state) => state.items);
+  const total = useBasketStore((state) => state.total);
+  const fetchBasket = useBasketStore((state) => state.fetchBasket);
+  const clearBasket = useBasketStore((state) => state.clearBasket);
+  const addItem = useBasketStore((state) => state.addItem);
+  const decreaseItem = useBasketStore((state) => state.decreaseItem);
+
+  useEffect(() => {
+    fetchBasket();
+  }, [fetchBasket]);
 
   const handleCheckout = () => {
     router.push('/checkout');
   };
 
-  if (products.length === 0) {
+  if (items.length === 0) {
     return (
-      <div className={styles.page}>
-        <div className={styles.listColumn}>
-          <Breadcrumb items={BASKET_BREADCRUMB_ITEMS} />
+      <div className={styles.emptyPage}>
+        <Breadcrumb items={BASKET_BREADCRUMB_ITEMS} />
 
-          <div className={styles.listHeading}>
-            <h2 className={styles.listTitle}>Səbətim</h2>
-          </div>
+        <div className={styles.listHeading}>
+          <h2 className={styles.listTitle}>Səbətim</h2>
+        </div>
 
-          <EmptyBasket />
+        <div className={styles.emptyCard}>
+          <EmptyState
+            title="Səbətiniz boşdur"
+            description="Sifariş vermək üçün səbətinizə məhsul əlavə edin"
+          />
         </div>
       </div>
     );
@@ -59,7 +63,11 @@ export function BasketPage() {
           </button>
         </div>
 
-        <BasketList products={products} onIncrease={increment} onDecrease={decrement} />
+        <BasketList
+          products={items}
+          onIncrease={addItem}
+          onDecrease={decreaseItem}
+        />
       </div>
 
       <div className={styles.summaryColumn}>
@@ -69,7 +77,7 @@ export function BasketPage() {
 
         <h2 className={styles.summaryTitle}>Yekun məbləğ</h2>
 
-        <OrderSummary products={products} onCheckout={handleCheckout} />
+        <OrderSummary total={total} onCheckout={handleCheckout} />
       </div>
     </div>
   );

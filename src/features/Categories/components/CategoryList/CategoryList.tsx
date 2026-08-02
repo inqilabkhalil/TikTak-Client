@@ -1,5 +1,8 @@
+'use client';
+
+import { useEffect } from 'react';
 import { CategoryItem } from '../CategoryItem';
-import { CATEGORIES } from '@/shared/data/catalog';
+import { useCategoryStore } from '@/shared/store';
 import styles from './CategoryList.module.css';
 
 interface CategoryListProps {
@@ -7,17 +10,24 @@ interface CategoryListProps {
 }
 
 export const CategoryList = ({ activeSlug }: CategoryListProps) => {
+  const categories = useCategoryStore((state) => state.categories);
+  const fetchCategories = useCategoryStore((state) => state.fetchCategories);
+
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
+
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Kateqoriyalar</h3>
 
       <div className={styles.list}>
-        {CATEGORIES.map((category) => (
+        {categories.map((category) => (
           <CategoryItem
-            key={category.slug}
+            key={category.id}
             title={category.name}
-            href={`/category/${category.slug}`}
-            active={category.slug === activeSlug}
+            href={`/category/${category.id}`}
+            active={String(category.id) === activeSlug}
           />
         ))}
       </div>
