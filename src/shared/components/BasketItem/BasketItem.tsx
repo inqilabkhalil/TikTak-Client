@@ -40,11 +40,15 @@ export const BasketItem = ({
   if (variant === "compact") {
     return (
        <div className={styles.compactItem}>
-      <img
-        src={product.image}
-        alt={product.name}
-        className={styles.compactImage}
-      />
+      {hasImage ? (
+        <img
+          src={product.image}
+          alt={product.name}
+          className={styles.compactImage}
+        />
+      ) : (
+        <div className={styles.compactImagePlaceholder} />
+      )}
 
       <div className={styles.compactInfo}>
         <h4 className={styles.compactName}>{product.name}</h4>

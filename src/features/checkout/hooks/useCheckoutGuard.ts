@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/features/auth/store";
+import { useProfileStore } from "@/shared/store/profileStore";
 import { useBasketStore } from "@/shared/store";
 import { ROUTES } from "@/shared/constants";
 
@@ -19,8 +19,8 @@ import { ROUTES } from "@/shared/constants";
 export const useCheckoutGuard = () => {
   const router = useRouter();
 
-  const user = useAuthStore((s) => s.user);
-  const isInitialized = useAuthStore((s) => s.isInitialized);
+  const user = useProfileStore((s) => s.user);
+  const isInitialized = useProfileStore((s) => s.isInitialized);
 
   const items = useBasketStore((s) => s.items);
   const isBasketLoading = useBasketStore((s) => s.isLoading);
