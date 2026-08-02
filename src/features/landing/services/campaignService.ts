@@ -1,5 +1,3 @@
-import api from '../../../shared/services/api';
-
 // API-dən gələn bir kampaniyanın tipi
 export interface CampaignApiResponse {
   id: number;
@@ -16,10 +14,19 @@ export interface CampaignListResponse {
   result: boolean;
 }
 
-// Service obyekti
+// Server Component-lərdən çağırılır — browser-only `localStorage`-a etibar edən
+// paylaşılan axios instance-ından asılı deyil, ona görə həm serverdə, həm client-də işləyir.
 export const campaignService = {
   getList: async (): Promise<CampaignApiResponse[]> => {
-    const response = await api.get<CampaignListResponse>('/campaigns');
-    return response.data.data;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/campaigns`, {
+      next: { revalidate: 60 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Campaigns sorğusu uğursuz oldu: ${res.status}`);
+    }
+
+    const json: CampaignListResponse = await res.json();
+    return json.data;
   },
 };
