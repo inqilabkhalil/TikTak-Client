@@ -3,12 +3,11 @@ import { create } from "zustand";
 import { authService } from "@/features/auth/services";
 import { setCookie, removeCookie } from "@/features/auth/utils";
 import { STORAGE_KEYS, AUTH_MESSAGES } from "@/features/auth/constants";
+import { useProfileStore } from "@/shared/store/profileStore";
 import type { AuthState } from "@/features/auth/types/authType";
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
   isLoading: false,
-  isInitialized: false,
   error: null,
 
   login: async (values) => {
@@ -22,7 +21,8 @@ export const useAuthStore = create<AuthState>((set) => ({
       localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
       setCookie(STORAGE_KEYS.ACCESS_TOKEN, access_token);
 
-      set({ user: data.profile, isLoading: false, isInitialized: true });
+      useProfileStore.getState().setProfile(data.profile);
+      set({ isLoading: false });
       return true;
     } catch (err: unknown) {
       const errorMessage = axios.isAxiosError(err)
@@ -59,27 +59,12 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  fetchProfile: async () => {
-    const token = localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
-
-    if (!token) {
-      set({ isInitialized: true });
-      return;
-    }
-
-    try {
-      const user = await authService.getProfile();
-      set({ user, isInitialized: true });
-    } catch {
-      set({ user: null, isInitialized: true });
-    }
-  },
-
   logout: () => {
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
     localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
     removeCookie(STORAGE_KEYS.ACCESS_TOKEN);
-    set({ user: null, error: null });
+    useProfileStore.getState().clearProfile();
+    set({ error: null });
   },
 
   clearError: () => set({ error: null }),

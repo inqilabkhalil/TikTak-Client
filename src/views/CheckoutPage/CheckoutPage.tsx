@@ -10,14 +10,14 @@ import {
   mapUserToCheckoutInfo,
   mapBasketToSummary,
 } from "@/features/checkout/utils";
-import { useAuthStore } from "@/features/auth/store";
+import { useProfileStore } from "@/shared/store/profileStore";
 import { useBasketStore } from "@/shared/store";
 import { ROUTES } from "@/shared/constants";
 import styles from "./CheckoutPage.module.css";
 
 export const CheckoutPage = () => {
   const router = useRouter();
-  const { user, isInitialized } = useAuthStore();
+  const { user, isInitialized } = useProfileStore();
   const { items, total, fetchBasket, isLoading: isBasketLoading } =
     useBasketStore();
 
