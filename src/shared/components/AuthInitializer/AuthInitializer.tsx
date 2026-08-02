@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAuthStore } from "@/features/auth/store";
+import { useProfileStore } from "@/shared/store/profileStore";
 
 interface AuthInitializerProps {
   children: React.ReactNode;
 }
 
 export const AuthInitializer = ({ children }: AuthInitializerProps) => {
-  const fetchProfile = useAuthStore((state) => state.fetchProfile);
+  const fetchProfile = useProfileStore((state) => state.fetchProfile);
 
   useEffect(() => {
     fetchProfile();
