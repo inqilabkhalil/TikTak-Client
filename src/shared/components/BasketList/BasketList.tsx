@@ -19,6 +19,23 @@ export const BasketList = ({
   onRemove,  
   variant = "full",
 }: BasketListProps) => {
+  if (variant === "compact") {
+    return (
+      <div className={styles.compactList}>
+        {products.map((product) => (
+          <BasketItem
+            key={product.id}
+            product={product}
+            onIncrease={onIncrease}
+            onDecrease={onDecrease}
+            onRemove={onRemove}
+            variant="compact"
+          />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <section className={styles.card}>
       <div className={styles.list}>
@@ -28,7 +45,7 @@ export const BasketList = ({
             product={product}
             onIncrease={onIncrease}
             onDecrease={onDecrease}
-            onRemove={onRemove}  
+            onRemove={onRemove}
             variant={variant}
           />
         ))}
