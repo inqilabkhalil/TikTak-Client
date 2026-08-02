@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { isAxiosError } from "axios";
 import { basketService } from "@/shared/services/basketService";
 import { BASKET_MESSAGES } from "@/shared/constants/basket.constants";
 import type { BasketState, BasketServiceResponse } from "@/shared/types/basket.types";
@@ -17,9 +18,12 @@ export const useBasketStore = create<BasketState>((set) => {
         count: data.count,
         isLoading: false,
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const message = isAxiosError(err)
+        ? (err.response?.data?.message as string | undefined)
+        : undefined;
       set({
-        error: err?.response?.data?.message ?? errorMessage,
+        error: message ?? errorMessage,
         isLoading: false,
       });
     }
