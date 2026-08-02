@@ -159,6 +159,7 @@
 /* compact variant — used inside the sidebar mini-basket (BasketWidget) */
 
 .compactItem {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -230,4 +231,32 @@
   font-size: 15px;
   font-weight: 700;
   color: #ffffff;
+}
+
+.compactRemoveBtn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #00000036;   
+  cursor: pointer;
+  padding: 0;
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  z-index: 1;
+}
+
+.compactRemoveBtn:hover {
+  color: #ef4444;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.compactRemoveBtn:active {
+  transform: scale(0.9);
 }

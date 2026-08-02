@@ -1,3 +1,8 @@
+:root {
+  --brand-green: #76cb4f;
+  --brand-green-rgb: 118, 203, 79;
+}
+
 .card {
   border: 1px solid #e5e5e5;
   border-radius: 0.75rem;
@@ -6,12 +11,18 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 9rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--brand-green);
+  background-color: rgba(var(--brand-green-rgb), 0.06);
 }
 
 .value {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1b5e20;
+  color: #000000;
 }
 
 .bottom {
@@ -29,6 +40,9 @@
 .icon {
   width: 1.25rem;
   height: 1.25rem;
+  /* İkon SVG-lər next/image ilə <img> kimi render olunur (stroke="currentColor"),
+     ona görə CSS `color`-a tabe deyil — filter ilə #76CB4F-ə uyğunlaşdırılıb. */
+  filter: invert(58%) sepia(100%) saturate(316%) hue-rotate(57deg) brightness(109%) contrast(72%);
 }
 
 @media (max-width: 768px) {
