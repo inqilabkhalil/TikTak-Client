@@ -4,7 +4,7 @@ import { adaptProducts } from '@/shared/utils/productAdapter';
 
 export const productService = {
   getProducts: async (): Promise<Product[]> => {
-    const response = await api.get<ProductListApiResponse>('/admin/products');
+    const response = await api.get<ProductListApiResponse>('/products');
     return adaptProducts(response.data.data);
   },
 };
