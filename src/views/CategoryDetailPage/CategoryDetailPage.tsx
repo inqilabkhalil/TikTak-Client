@@ -10,7 +10,8 @@ interface CategoryDetailPageProps {
   categorySlug: string;
 }
 
-export const CategoryDetailPage = ({ categorySlug }: CategoryDetailPageProps) => {
+export const 
+CategoryDetailPage = ({ categorySlug }: CategoryDetailPageProps) => {
   const category = getCategoryBySlug(categorySlug);
   const categoryName = category?.name ?? '';
 
