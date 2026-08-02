@@ -18,6 +18,7 @@ export const PhoneField = ({
         <Input
           type="tel"
           placeholder="__ ___ __ __"
+          maxLength={12}
           size="large"
           className={styles.phoneInput}
           {...inputProps}

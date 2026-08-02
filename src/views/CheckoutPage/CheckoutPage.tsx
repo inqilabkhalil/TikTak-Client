@@ -1,38 +1,24 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { OrderSummary } from "@/features/checkout/components/OrderSummary";
 import { ConfirmModal } from "@/features/checkout/components/ConfirmModal";
 import { CheckoutForm } from "@/features/checkout/components/CheckoutForm/CheckoutForm";
-import { useCheckout } from "@/features/checkout/hooks";
+import { useCheckout, useCheckoutGuard } from "@/features/checkout/hooks";
 import {
   mapUserToCheckoutInfo,
   mapBasketToSummary,
 } from "@/features/checkout/utils";
-import { useAuthStore } from "@/features/auth/store";
 import { useBasketStore } from "@/shared/store";
-import { ROUTES } from "@/shared/constants";
+import { Loader } from "@/shared/components/Loader";
 import styles from "./CheckoutPage.module.css";
 
 export const CheckoutPage = () => {
-  const router = useRouter();
-  const { user, isInitialized } = useAuthStore();
-  const { items, total, fetchBasket, isLoading: isBasketLoading } =
-    useBasketStore();
+  const { user, isReady } = useCheckoutGuard();
 
-  const checkoutUser = useMemo(
-    () =>
-      user
-        ? mapUserToCheckoutInfo(user)
-        : { name: "", address: "", phone: "" },
-    [user]
-  );
-
-  const summaryData = useMemo(
-    () => mapBasketToSummary(items, total),
-    [items, total]
-  );
+  const items = useBasketStore((s) => s.items);
+  const total = useBasketStore((s) => s.total);
+  const checkoutUser = user ? mapUserToCheckoutInfo(user) : null;
+  const summaryData = mapBasketToSummary(items, total);
 
   const {
     isModalOpen,
@@ -41,38 +27,19 @@ export const CheckoutPage = () => {
     handleFormSubmit,
     handleConfirm,
     handleCancel,
-  } = useCheckout({ user: checkoutUser });
+  } = useCheckout({
+    user: checkoutUser ?? { name: "", address: "", phone: "" },
+  });
 
-  useEffect(() => {
-    if (isInitialized && user) {
-      fetchBasket();
-    }
-  }, [isInitialized, user, fetchBasket]);
-
-  useEffect(() => {
-    if (isInitialized && !user) {
-      router.replace(ROUTES.LOGIN);
-    }
-  }, [isInitialized, user, router]);
-
-  useEffect(() => {
-    if (isInitialized && user && !isBasketLoading && items.length === 0) {
-      router.replace(ROUTES.BASKET ?? "/basket");
-    }
-  }, [isInitialized, user, isBasketLoading, items.length, router]);
-
-  if (!isInitialized || !user) {
-    return <div className={styles.container}>Yüklənir...</div>;
-  }
-
-  if (isBasketLoading || items.length === 0) {
-    return <div className={styles.container}>Yüklənir...</div>;
+  if (!isReady || !checkoutUser) {
+    return <Loader />;
   }
 
   return (
     <>
       <div className={styles.container}>
         <p className={styles.breadcrumb}>Ana səhifə / Meyvələr</p>
+
         <div className={styles.headerRow}>
           <h2 className={styles.formTitle}>Sifarişin tamamlanması</h2>
           <h2 className={styles.summaryTitle}>Xülasə</h2>

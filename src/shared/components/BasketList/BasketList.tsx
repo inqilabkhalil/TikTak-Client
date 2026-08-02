@@ -8,7 +8,7 @@ interface BasketListProps {
   products: BasketProduct[];
   onIncrease?: (id: number) => void;
   onDecrease?: (id: number) => void;
-  onRemove?: (id: number) => void;  
+  onRemove?: (id: number) => void;
   variant?: "full" | "compact";
 }
 
@@ -16,19 +16,21 @@ export const BasketList = ({
   products,
   onIncrease,
   onDecrease,
-  onRemove,  
+  onRemove,
   variant = "full",
 }: BasketListProps) => {
+  const isCompact = variant === "compact";
+
   return (
-    <section className={styles.card}>
-      <div className={styles.list}>
+    <section className={isCompact ? styles.compactCard : styles.card}>
+      <div className={isCompact ? styles.compactList : styles.list}>
         {products.map((product) => (
           <BasketItem
             key={product.id}
             product={product}
             onIncrease={onIncrease}
             onDecrease={onDecrease}
-            onRemove={onRemove}  
+            onRemove={onRemove}
             variant={variant}
           />
         ))}
