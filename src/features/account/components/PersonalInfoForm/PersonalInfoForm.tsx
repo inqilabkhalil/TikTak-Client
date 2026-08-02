@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Form, Input, message } from 'antd';
+import { App, Form, Input } from 'antd';
 import { Button } from '@/shared/components/Button';
 import styles from './PersonalInfoForm.module.css';
 
@@ -16,6 +16,7 @@ interface PersonalInfoFormValues {
 }
 
 export function PersonalInfoForm() {
+  const { message } = App.useApp();
   const [form] = Form.useForm<PersonalInfoFormValues>();
 
   const onFinish = (values: PersonalInfoFormValues) => {

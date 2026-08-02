@@ -1,6 +1,6 @@
 'use client';
 
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Card } from '@/shared/components/Card';
 import { AddToBasketControl } from '@/shared/components/AddToBasketControl';
 import { formatPrice } from '@/shared/utils';
@@ -10,16 +10,22 @@ interface FavoriteCardProps {
   id: number;
   title: string;
   price: number;
-  image: StaticImageData;
+  imgUrl: string;
   className?: string;
 }
 
-export const FavoriteCard = ({ id, title, price, image, className }: FavoriteCardProps) => {
+export const FavoriteCard = ({ id, title, price, imgUrl, className }: FavoriteCardProps) => {
+  const hasImage = Boolean(imgUrl);
+
   return (
     <Card className={className}>
       <div className={styles.content}>
         <div className={styles.image}>
-          <Image src={image} alt={title} width={80} height={80} className={styles.imageEl} />
+          {hasImage ? (
+            <Image src={imgUrl} alt={title} width={80} height={80} className={styles.imageEl} />
+          ) : (
+            <div className={styles.imageEl} />
+          )}
         </div>
 
         <h3 className={styles.title}>{title}</h3>
@@ -28,7 +34,7 @@ export const FavoriteCard = ({ id, title, price, image, className }: FavoriteCar
 
         <AddToBasketControl
           id={id}
-          image={image.src}
+          image={imgUrl}
           title={title}
           price={price}
           inStock

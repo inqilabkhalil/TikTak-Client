@@ -1,3 +1,4 @@
+import axios from "axios";
 import { create } from "zustand";
 import { isAxiosError } from "axios";
 import { basketService } from "@/shared/services/basketService";

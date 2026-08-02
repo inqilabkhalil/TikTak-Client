@@ -70,11 +70,13 @@ export const Footer = () => {
         {columns.map((col) => (
           <div key={col.title} className={styles.column}>
             <h4>{col.title}</h4>
-            {col.links.map((link) => (
-              <Link key={link.label} href={link.href}>
-                {link.label}
-              </Link>
-            ))}
+            <ul className={styles.linkList}>
+              {col.links.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
 
@@ -100,20 +102,21 @@ export const Footer = () => {
           Azərbaycan
         </span>
 
-        <div className={styles.socials}>
+        <ul className={styles.socials}>
           {socials.map((s) => (
-            <a
-              key={s.name}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label={s.name}
-            >
-              <s.Icon size={16} />
-            </a>
+            <li key={s.name}>
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label={s.name}
+              >
+                <s.Icon size={16} />
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </footer>
   );

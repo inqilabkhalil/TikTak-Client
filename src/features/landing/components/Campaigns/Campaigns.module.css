@@ -186,7 +186,8 @@
 
 .moreBtn:hover {
   background-color: rgba(var(--brand-green-rgb), 0.08);
-  border-color: var(--brand-green);
+  border-color: rgba(255, 255, 255, 0.9);
+  color:  rgba(255, 255, 255, 0.9);
 }
 
 .moreBtn:focus-visible {
@@ -305,8 +306,12 @@
 
   .slide {
     flex: 0 0 85%;
-    height: 22.75rem;
+    height: 18rem;
     min-width: 16rem;
+  }
+
+  .bannerCard {
+    min-height: 18rem;
   }
 
   .navBtn {
@@ -376,6 +381,23 @@
 @media (max-width: 480px) {
   .slide {
     flex: 0 0 90%;
-    height: 22.75rem;
+    height: 16rem;
+  }
+
+  .bannerCard {
+    min-height: 16rem;
+  }
+
+  .bannerText h3 {
+    font-size: 1.125rem;
+  }
+
+  .bannerText p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin-bottom: 0.625rem;
   }
 }

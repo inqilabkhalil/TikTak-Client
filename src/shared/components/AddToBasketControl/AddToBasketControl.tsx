@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { message } from 'antd';
+import { App } from 'antd';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { Button } from '@/shared/components/Button';
 import { useBasketStore } from '@/shared/store';
@@ -17,6 +17,7 @@ interface AddToBasketControlProps {
 }
 
 export const AddToBasketControl = ({ id, inStock, unitLabel }: AddToBasketControlProps) => {
+  const { message } = App.useApp();
   const addItem = useBasketStore((state) => state.addItem);
   const decreaseItem = useBasketStore((state) => state.decreaseItem);
   const quantity = useBasketStore(
