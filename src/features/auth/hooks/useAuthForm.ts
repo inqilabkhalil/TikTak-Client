@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { useFormik, FormikConfig, FormikValues } from "formik";
 import { useAuthStore } from "@/features/auth/store";
+import { formatAzPhone } from "../utils";
 
-export const useAuthForm = <T extends FormikValues>(config: FormikConfig<T>) => {
+export const useAuthForm = <T extends FormikValues>(
+  config: FormikConfig<T>,
+) => {
   const formik = useFormik<T>(config);
-  
+
   const isLoading = useAuthStore((state) => state.isLoading);
   const error = useAuthStore((state) => state.error);
   const clearError = useAuthStore((state) => state.clearError);
@@ -36,6 +39,7 @@ export const useAuthForm = <T extends FormikValues>(config: FormikConfig<T>) => 
 
   const getPhoneFieldProps = (name: keyof T) => ({
     ...getFieldProps(name),
+    value: formatAzPhone(formik.values[name] as string),
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
       const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 9);
       formik.setFieldValue(name as string, digitsOnly);

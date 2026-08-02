@@ -31,10 +31,40 @@
 
 /* compact variant — used inside the sidebar mini-basket (BasketWidget) */
 
-.compactList {
-  flex: 1;
+
+.compactCard {
+  flex: 1 1 auto;
+  min-height: 0;           
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  overflow: hidden;       
+}
+
+.compactList {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   overflow-y: auto;
+  padding-right: 6px;       
+}
+
+.compactList::-webkit-scrollbar {
+  width: 3px;
+}
+.compactList::-webkit-scrollbar-track {
+  background: transparent;
+}
+.compactList::-webkit-scrollbar-thumb {
+  background: #d9dbe4;
+  border-radius: 2px;
+}
+.compactList::-webkit-scrollbar-thumb:hover {
+  background: #b8bbc7;
+}
+
+.compactList {
+  scrollbar-width: thin;
+  scrollbar-color: #d9dbe4 transparent;
 }
