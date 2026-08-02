@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import { AuthInitializer } from "@/shared/components/AuthInitializer";
+import { AntdAppProvider } from "@/shared/components/AntdAppProvider";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <AuthInitializer>{children}</AuthInitializer>
+        <AntdAppProvider>
+          <AuthInitializer>{children}</AuthInitializer>
+        </AntdAppProvider>
       </body>
     </html>
   );
