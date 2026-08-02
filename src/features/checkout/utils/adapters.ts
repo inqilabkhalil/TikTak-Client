@@ -1,4 +1,4 @@
-import type { User } from "@/features/auth/types/authType";
+import type { User } from "@/shared/types/profile.types";
 import { BasketProduct } from "@/shared/types/basket.types";
 
 import type {

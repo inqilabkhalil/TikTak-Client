@@ -47,6 +47,9 @@
   align-self: start;
   text-align: left;
   padding-left: 0;
+  /* No heading of its own here, so push down by the height of the
+     "Kateqoriyalar" / "Səbətim" headings (24px line-height + 16px margin)
+     to align the product grid with the sidebar and cart panel boxes. */
   margin-top: 40px;
 }
 

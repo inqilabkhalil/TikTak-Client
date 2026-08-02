@@ -20,6 +20,8 @@ export const BasketItem = ({
   onRemove,
   variant = "full",
 }: BasketItemProps) => {
+  const hasImage = Boolean(product.image);
+
   const handleIncrease = () => {
     if (onIncrease) onIncrease(product.productId);
     else console.log("onIncrease not implemented", product.id);
@@ -88,11 +90,13 @@ export const BasketItem = ({
     <div className={styles.item}>
       <div className={styles.info}>
         <div className={styles.imageWrapper}>
-          <img
-            src={product.image}
-            alt={product.name}
-            className={styles.image}
-          />
+          {hasImage && (
+            <img
+              src={product.image}
+              alt={product.name}
+              className={styles.image}
+            />
+          )}
         </div>
 
         <div className={styles.details}>

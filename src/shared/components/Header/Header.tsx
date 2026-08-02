@@ -7,19 +7,20 @@ import { useRouter } from 'next/navigation';
 import { FiSearch, FiUser, FiHeart, FiShoppingCart, FiX } from 'react-icons/fi';
 import { Logo } from '@/shared/components/Logo';
 import { Input } from '@/shared/components/Input/Input';
+import { AddressDisplay } from '@/shared/components/AddressDisplay';
 import { HeaderProps } from '@/shared/types';
 import { searchProducts } from '@/shared/data/catalog';
 import { useClickOutside } from '@/shared/hooks';
+import { useProfileStore } from '@/shared/store/profileStore';
 import { ROUTES } from '@/shared/constants';
 import styles from './Header.module.css';
-
-const MOCK_ADDRESS = '55 Zarifa Əliyeva, Bakı, Azərbaycan';
 
 export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
   const [search, setSearch] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
   const searchBoxRef = useRef<HTMLDivElement>(null);
+  const user = useProfileStore((state) => state.user);
 
   useClickOutside(searchBoxRef, () => setIsDropdownOpen(false));
 
@@ -58,10 +59,12 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
           <Logo />
         </Link>
 
-        {showPlace && (
+        {showPlace && user && (
           <div className={styles.addressBlock}>
             <span className={styles.addressLabel}>Unvan</span>
-            <span className={styles.addressText}>{MOCK_ADDRESS}</span>
+            <span className={styles.addressText}>
+              <AddressDisplay />
+            </span>
           </div>
         )}
 

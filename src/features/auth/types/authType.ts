@@ -1,3 +1,5 @@
+import type { User } from "@/shared/types/profile.types";
+
 export interface LoginValues {
   phone: string;
   password: string;
@@ -13,36 +15,20 @@ export interface AuthTabsProps {
   active: "login" | "register";
 }
 
-
-export interface User {
-  id: number;
-  full_name: string;
-  phone: string;
-  email: string | null;
-  address: string | null;
-  img_url: string | null;
-  role: string;
-  created_at: string;
-}
-export interface ProfileResponse {
-  message: string;
-  data: User;
-  result: boolean;
-}
 // Token pair
 export interface AuthTokens {
   access_token: string;
   refresh_token: string;
 }
 
-// Response data 
+// Response data
 export interface LoginResponseData {
   tokens: AuthTokens;
   profile: User;
   result: boolean;
 }
 
-// Backend-in tam cavabı 
+// Backend-in tam cavabı
 export interface LoginResponse {
   message: string;
   data: LoginResponseData;
@@ -53,16 +39,13 @@ export interface RegisterResponse {
   result: boolean;
 }
 
-// STORE TYPE
+// STORE TYPE — yalnız token/auth vəziyyəti, profil datası shared/store/profileStore.ts-dədir
 export interface AuthState {
-  user: User | null;
   isLoading: boolean;
-  isInitialized: boolean;   
   error: string | null;
 
   login: (values: LoginValues) => Promise<boolean>;
   register: (values: RegisterValues) => Promise<boolean>;
-  fetchProfile: () => Promise<void>;  
   logout: () => void;
   clearError: () => void;
 }
