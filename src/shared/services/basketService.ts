@@ -39,7 +39,7 @@ export const basketService = {
 
   removeItem: async (productId: number): Promise<BasketServiceResponse> => {
     const response = await api.delete<BasketApiResponse>(
-      `/basket/${productId}/remove`
+      `/basket/${productId}/remove-all`
     );
     return transformResponse(response);
   },
