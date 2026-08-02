@@ -176,6 +176,14 @@
   flex-shrink: 0;
 }
 
+.compactImagePlaceholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background-color: #f6f5fb;
+  flex-shrink: 0;
+}
+
 .compactInfo {
   flex: 1;
   min-width: 0;
