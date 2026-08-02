@@ -17,14 +17,16 @@ export const BannerCard = ({ banner }: BannerCardProps) => {
 
   return (
     <div className={styles.card}>
-      <Image
-        src={image}
-        alt={title}
-        fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className={styles.bgImage}
-        priority
-      />
+      {image && (
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className={styles.bgImage}
+          priority
+        />
+      )}
 
       <div className={`${styles.overlay} ${styles[theme]}`} />
 
