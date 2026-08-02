@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useProfileStore } from "@/shared/store/profileStore"
+import { useProfileStore } from "@/shared/store/profileStore";
 import { useBasketStore } from "@/shared/store";
 import { ROUTES } from "@/shared/constants";
 

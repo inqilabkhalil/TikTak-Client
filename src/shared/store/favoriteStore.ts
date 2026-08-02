@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { create } from 'zustand';
 import { favoriteService } from '@/shared/services/favoriteService';
 import { FAVORITE_MESSAGES } from '@/shared/constants/favorite.constants';
@@ -20,11 +21,12 @@ export const useFavorites = create<FavoriteState>((set, get) => ({
     try {
       const products = await favoriteService.getFavorites();
       set({ products, isLoading: false });
-    } catch (err: any) {
-      set({
-        error: err?.response?.data?.message ?? FAVORITE_MESSAGES.FETCH_ERROR,
-        isLoading: false,
-      });
+    } catch (err: unknown) {
+      const message = axios.isAxiosError(err)
+        ? ((err.response?.data as { message?: string } | undefined)?.message ?? FAVORITE_MESSAGES.FETCH_ERROR)
+        : FAVORITE_MESSAGES.FETCH_ERROR;
+
+      set({ error: message, isLoading: false });
     }
   },
 
@@ -35,10 +37,12 @@ export const useFavorites = create<FavoriteState>((set, get) => ({
     try {
       await favoriteService.toggleFavorite(id);
       await get().fetchFavorites();
-    } catch (err: any) {
-      set({
-        error: err?.response?.data?.message ?? FAVORITE_MESSAGES.TOGGLE_ERROR,
-      });
+    } catch (err: unknown) {
+      const message = axios.isAxiosError(err)
+        ? ((err.response?.data as { message?: string } | undefined)?.message ?? FAVORITE_MESSAGES.TOGGLE_ERROR)
+        : FAVORITE_MESSAGES.TOGGLE_ERROR;
+
+      set({ error: message });
     }
   },
 }));
