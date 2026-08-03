@@ -1,11 +1,18 @@
 // src/features/account/components/PersonalInfoForm/PersonalInfoForm.tsx
 "use client";
 
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { Form, Input, App } from "antd";
 import { Button } from "@/shared/components/Button";
 import styles from "./PersonalInfoForm.module.css";
 // Komanda yoldaşının yazdığı store-u import edirik:
+=======
+import React from 'react';
+import { App, Form, Input } from 'antd';
+import { Button } from '@/shared/components/Button';
+import styles from './PersonalInfoForm.module.css';
+>>>>>>> fdfd3a926c5a14a5db0be2caed1a26f3ff13c425
 
 export interface PersonalInfoFormValues {
   name?: string;
@@ -17,6 +24,7 @@ export interface PersonalInfoFormValues {
 }
 
 export function PersonalInfoForm() {
+  const { message } = App.useApp();
   const [form] = Form.useForm<PersonalInfoFormValues>();
 
   // Komanda yoldaşının store-undan lazım olanları çəkirik

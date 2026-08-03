@@ -1,6 +1,6 @@
 .wrapper {
-  width: 420px;
-  max-width: 420px;
+  width: 375px;
+  max-width: 375px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -15,8 +15,8 @@
 }
 
 .container {
-  width: 420px;
-  max-width: 420px;
+  width: 375px;
+  max-width: 375px;
   height: 29.125rem;
   background: #ffffff;
   border-radius: 0.625rem;
@@ -24,7 +24,9 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  gap: 16px;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .emptyBasket {

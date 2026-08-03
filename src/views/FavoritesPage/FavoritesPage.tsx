@@ -1,22 +1,23 @@
 'use client';
 
+import { useEffect } from 'react';
 import { FavoriteList } from '@/shared/components/FavoriteCard';
 import { BasketWidget } from '@/shared/components/BasketWidget';
 import { useFavorites } from '@/shared/store';
-import { getProductById } from '@/shared/data/catalog';
 import styles from './FavoritesPage.module.css';
 
 export const FavoritesPage = () => {
-  const { ids } = useFavorites();
+  const products = useFavorites((state) => state.products);
+  const fetchFavorites = useFavorites((state) => state.fetchFavorites);
 
-  const favorites = ids
-    .map((id) => getProductById(id))
-    .filter((product): product is NonNullable<typeof product> => Boolean(product));
+  useEffect(() => {
+    fetchFavorites();
+  }, [fetchFavorites]);
 
   return (
     <div className={styles.page}>
       <div className={styles.favoritesColumn}>
-        <FavoriteList favorites={favorites} />
+        <FavoriteList favorites={products} />
       </div>
 
       <div className={styles.cartColumn}>

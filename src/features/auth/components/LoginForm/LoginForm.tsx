@@ -59,8 +59,6 @@ export const LoginForm = () => {
         />
       </FormField>
 
-      {error && <p className={styles.errorText}>{error}</p>}
-
       <Button
         htmlType="submit"
         loading={isLoading}

@@ -20,6 +20,8 @@ export const BasketItem = ({
   onRemove,
   variant = "full",
 }: BasketItemProps) => {
+  const hasImage = Boolean(product.image);
+
   const handleIncrease = () => {
     if (onIncrease) onIncrease(product.productId);
     else console.log("onIncrease not implemented", product.id);
@@ -37,26 +39,19 @@ export const BasketItem = ({
 
   if (variant === "compact") {
     return (
-      <div className={styles.compactItem}>
-        <button
-          type="button"
-          className={styles.compactRemoveBtn}
-          onClick={handleRemove}
-          aria-label="Məhsulu sil"
-        >
-          <FiTrash2 size={16} />
-        </button>
-
+       <div className={styles.compactItem}>
+      {hasImage ? (
         <img
           src={product.image}
           alt={product.name}
           className={styles.compactImage}
         />
+      ) : (
+        <div className={styles.compactImagePlaceholder} />
+      )}
 
-        <div className={styles.compactInfo}>
-          <h4 className={styles.compactName}>{product.name}</h4>
-          <p className={styles.compactPrice}>{formatPrice(product.price)}</p>
-        </div>
+      <div className={styles.compactInfo}>
+        <h4 className={styles.compactName}>{product.name}</h4>
 
         <div className={styles.compactQty}>
           <button
@@ -78,6 +73,20 @@ export const BasketItem = ({
           </button>
         </div>
       </div>
+
+      <div className={styles.compactPriceWrapper}>
+        <p className={styles.compactPrice}>{formatPrice(product.price)}</p>
+      </div>
+
+      <button
+        type="button"
+        className={styles.compactRemoveBtn}
+        onClick={handleRemove}
+        aria-label="Məhsulu sil"
+      >
+        <FiTrash2 size={16} />
+      </button>
+    </div>
     );
   }
 
@@ -85,11 +94,13 @@ export const BasketItem = ({
     <div className={styles.item}>
       <div className={styles.info}>
         <div className={styles.imageWrapper}>
-          <img
-            src={product.image}
-            alt={product.name}
-            className={styles.image}
-          />
+          {hasImage && (
+            <img
+              src={product.image}
+              alt={product.name}
+              className={styles.image}
+            />
+          )}
         </div>
 
         <div className={styles.details}>

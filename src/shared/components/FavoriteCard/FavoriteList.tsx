@@ -1,10 +1,10 @@
-import type { Product } from '@/shared/data/catalog';
+import type { Product } from '@/shared/types/product.types';
 import { FavoriteCard } from './FavoriteCard';
 import { EmptyFavorites } from './EmptyFavorites';
 import styles from './FavoriteList.module.css';
 
 interface FavoriteListProps {
-  favorites: Pick<Product, 'id' | 'title' | 'price' | 'image'>[];
+  favorites: Pick<Product, 'id' | 'title' | 'price' | 'imgUrl'>[];
 }
 
 export const FavoriteList = ({ favorites }: FavoriteListProps) => {
@@ -20,7 +20,7 @@ export const FavoriteList = ({ favorites }: FavoriteListProps) => {
               id={favorite.id}
               title={favorite.title}
               price={favorite.price}
-              image={favorite.image}
+              imgUrl={favorite.imgUrl}
               className={styles.card}
             />
           ))}

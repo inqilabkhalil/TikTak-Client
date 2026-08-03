@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { create } from 'zustand';
 import { categoryService } from '@/shared/services/categoryService';
 import { CATEGORY_MESSAGES } from '@/shared/constants/category.constants';
@@ -12,11 +13,12 @@ export const useCategoryStore = create<CategoryState>((set) => {
     try {
       const categories = await action();
       set({ categories, isLoading: false });
-    } catch (err: any) {
-      set({
-        error: err?.response?.data?.message ?? errorMessage,
-        isLoading: false,
-      });
+    } catch (err: unknown) {
+      const message = axios.isAxiosError(err)
+        ? ((err.response?.data as { message?: string } | undefined)?.message ?? errorMessage)
+        : errorMessage;
+
+      set({ error: message, isLoading: false });
     }
   };
 

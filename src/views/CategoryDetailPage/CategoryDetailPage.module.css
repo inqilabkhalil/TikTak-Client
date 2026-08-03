@@ -20,9 +20,6 @@
 .sidebar {
   position: sticky;
   top: var(--category-top-offset);
-  /* CategoryList's heading (24px line-height + 16px margin = 40px) is shorter
-     than BasketWidget's (64px), so push the sidebar box down to match */
-  margin-top: 24px;
 }
 
 .discountBannerWrapper {
@@ -50,7 +47,10 @@
   align-self: start;
   text-align: left;
   padding-left: 0;
-  margin-top: 64px;
+  /* No heading of its own here, so push down by the height of the
+     "Kateqoriyalar" / "Səbətim" headings (24px line-height + 16px margin)
+     to align the product grid with the sidebar and cart panel boxes. */
+  margin-top: 40px;
 }
 
 .cartPanel {
