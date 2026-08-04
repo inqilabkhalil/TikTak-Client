@@ -1,19 +1,12 @@
 // src/features/account/components/PersonalInfoForm/PersonalInfoForm.tsx
 "use client";
 
-<<<<<<< HEAD
 import React, { useEffect } from "react";
-import { Form, Input, App } from "antd";
+import { App, Form, Input } from "antd";
 import { Button } from "@/shared/components/Button";
 import styles from "./PersonalInfoForm.module.css";
-// Komanda yoldaşının yazdığı store-u import edirik:
-=======
-import React from 'react';
-import { App, Form, Input } from 'antd';
-import { Button } from '@/shared/components/Button';
-import styles from './PersonalInfoForm.module.css';
->>>>>>> fdfd3a926c5a14a5db0be2caed1a26f3ff13c425
-
+import { useProfileStore } from "@/shared/store";
+import { profileService } from "@/shared/services/profileService";
 export interface PersonalInfoFormValues {
   name?: string;
   phone?: string;
@@ -24,12 +17,9 @@ export interface PersonalInfoFormValues {
 }
 
 export function PersonalInfoForm() {
-  const { message } = App.useApp();
   const [form] = Form.useForm<PersonalInfoFormValues>();
 
-  // Komanda yoldaşının store-undan lazım olanları çəkirik
-  const { user, isLoading, fetchProfile } = useProfileStore();
-
+const { user, isLoading, fetchProfile, setProfile } = useProfileStore();
   const { message } = App.useApp();
 
   useEffect(() => {
@@ -55,9 +45,13 @@ export function PersonalInfoForm() {
         message.error("Şifrələr bir-biri ilə eyni deyil!");
         return;
       }
-
-      // Əgər profil yeniləmə servisi komanda yoldaşı tərəfindən hələ yazılmayıbsa,
-      // buraya öz update funksiyanı əlavə edə bilərsən.
+      const updatedUser = await profileService.updateProfile({
+        full_name: values.name,
+        phone: values.phone,
+        email: values.email,
+        address: values.address,
+      });
+      setProfile(updatedUser);
       message.success("Məlumatlar uğurla yeniləndi!");
     } catch (err: any) {
       message.error(err.message || "Yenilənmə zamanı xəta baş verdi");
