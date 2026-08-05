@@ -14,7 +14,6 @@ export function AccountSidebar() {
 
   // TEMP DEBUG — remount testi üçün, sınadıqdan sonra sil
   useEffect(() => {
-    console.log('MOUNTED: AccountSidebar');
     return () => console.log('UNMOUNTED: AccountSidebar');
   }, []);
 

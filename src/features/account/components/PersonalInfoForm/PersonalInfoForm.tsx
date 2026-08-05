@@ -1,46 +1,73 @@
-// src/features/account/components/PersonalInfo/PersonalInfoForm.tsx
-'use client';
+// src/features/account/components/PersonalInfoForm/PersonalInfoForm.tsx
+"use client";
 
-import React from 'react';
-import { App, Form, Input } from 'antd';
-import { Button } from '@/shared/components/Button';
-import styles from './PersonalInfoForm.module.css';
-
-interface PersonalInfoFormValues {
-  name: string;
-  phone: string;
-  email: string;
-  address: string;
+import React, { useEffect } from "react";
+import { App, Form, Input } from "antd";
+import { Button } from "@/shared/components/Button";
+import styles from "./PersonalInfoForm.module.css";
+import { useProfileStore } from "@/shared/store";
+import { profileService } from "@/shared/services/profileService";
+export interface PersonalInfoFormValues {
+  name?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
   newPassword?: string;
   confirmPassword?: string;
 }
 
 export function PersonalInfoForm() {
-  const { message } = App.useApp();
   const [form] = Form.useForm<PersonalInfoFormValues>();
 
-  const onFinish = (values: PersonalInfoFormValues) => {
-    console.log('Form data:', values);
-    message.success('Məlumatlar uğurla yeniləndi!');
+const { user, isLoading, fetchProfile, setProfile } = useProfileStore();
+  const { message } = App.useApp();
+
+  useEffect(() => {
+    if (!user) {
+      fetchProfile();
+    }
+  }, [fetchProfile, user]);
+
+  useEffect(() => {
+    if (user) {
+      form.setFieldsValue({
+        name: user.full_name || "",
+        phone: user.phone || "",
+        email: user.email || "",
+        address: user.address || "",
+      });
+    }
+  }, [user, form]);
+
+  const onFinish = async (values: PersonalInfoFormValues) => {
+    try {
+      if (values.newPassword && values.newPassword !== values.confirmPassword) {
+        message.error("Şifrələr bir-biri ilə eyni deyil!");
+        return;
+      }
+      const updatedUser = await profileService.updateProfile({
+        full_name: values.name,
+        phone: values.phone,
+        email: values.email,
+        address: values.address,
+      });
+      setProfile(updatedUser);
+      message.success("Məlumatlar uğurla yeniləndi!");
+    } catch (err: any) {
+      message.error(err.message || "Yenilənmə zamanı xəta baş verdi");
+    }
   };
 
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.sectionTitle}>Əlaqə məlumatlarınız</h2>
 
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={onFinish}
-        initialValues={{
-          email: 'rahimlisarkhan@gmail.com', // Nümunə məlumat (şəkildən)
-        }}
-      >
+      <Form form={form} layout="vertical" onFinish={onFinish}>
         <div className={styles.gridRow}>
           <Form.Item
             label="Adınız"
             name="name"
-            rules={[{ required: true, message: 'Adınızı daxil edin!' }]}
+            rules={[{ required: true, message: "Adınızı daxil edin!" }]}
           >
             <Input placeholder="Adınız" className={styles.inputField} />
           </Form.Item>
@@ -48,9 +75,14 @@ export function PersonalInfoForm() {
           <Form.Item
             label="Telefon nömrəsi"
             name="phone"
-            rules={[{ required: true, message: 'Telefon nömrəsini daxil edin!' }]}
+            rules={[
+              { required: true, message: "Telefon nömrəsini daxil edin!" },
+            ]}
           >
-            <Input placeholder="(+994) __ ___ __ __" className={styles.inputField} />
+            <Input
+              placeholder="(+994) __ ___ __ __"
+              className={styles.inputField}
+            />
           </Form.Item>
         </div>
 
@@ -59,19 +91,19 @@ export function PersonalInfoForm() {
             label="E-mail"
             name="email"
             rules={[
-              { required: true, message: 'E-mail daxil edin!' },
-              { type: 'email', message: 'Düzgün e-mail daxil edin!' },
+              { required: true, message: "E-mail daxil edin!" },
+              { type: "email", message: "Düzgün e-mail daxil edin!" },
             ]}
           >
             <Input placeholder="E-mail" className={styles.inputField} />
           </Form.Item>
 
           <Form.Item
-            label="Unvan"
+            label="Ünvan"
             name="address"
-            rules={[{ required: true, message: 'Ünvanı daxil edin!' }]}
+            rules={[{ required: true, message: "Ünvanı daxil edin!" }]}
           >
-            <Input placeholder="Unvaniniz" className={styles.inputField} />
+            <Input placeholder="Ünvanınız" className={styles.inputField} />
           </Form.Item>
         </div>
 
@@ -81,18 +113,28 @@ export function PersonalInfoForm() {
 
           <div className={styles.gridRow}>
             <Form.Item label="Yeni Şifrə" name="newPassword">
-              <Input.Password placeholder="Yeni Şifrə" className={styles.inputField} />
+              <Input.Password
+                placeholder="Yeni Şifrə"
+                className={styles.inputField}
+              />
             </Form.Item>
 
             <Form.Item label="Yeni Şifrənin təkrarı" name="confirmPassword">
-              <Input.Password placeholder="Yeni Şifrənin təkrarı" className={styles.inputField} />
+              <Input.Password
+                placeholder="Yeni Şifrənin təkrarı"
+                className={styles.inputField}
+              />
             </Form.Item>
           </div>
         </div>
 
         <div className={styles.buttonWrapper}>
-          <Button htmlType="submit" color="#84cc16" className={styles.submitButton}>
-            Məlumatları yenilə
+          <Button
+            htmlType="submit"
+            color="#84cc16"
+            className={styles.submitButton}
+          >
+            {isLoading ? "Yüklənir..." : "Məlumatları yenilə"}
           </Button>
         </div>
       </Form>

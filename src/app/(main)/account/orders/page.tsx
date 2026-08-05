@@ -1,5 +1,7 @@
-import type { Metadata } from 'next';
-import { OrdersTable } from '@/features/account';
+
+import OrdersTable from "@/features/account/components/OrdersTable/OrdersTable";
+import type { Metadata } from "next";
+
 
 export const metadata: Metadata = {
   title: 'Sifarişlərim | TikTak',

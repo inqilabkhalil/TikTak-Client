@@ -1,128 +1,173 @@
-// src/features/account/components/OrderTable/OrdersTable.tsx
+// src/features/account/components/OrdersTable/OrdersTable.tsx
 "use client";
 
-import React from "react";
-import { Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { Modal, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import styles from "./OrdersTable.module.css";
+import OrderDetails from "../OrderDetailModal/OrderDetailModal";
+import { OrderItem } from "../../types";
+import Loading from "@/app/loading";
+import { orderService } from "../../api/orderService";
 
-interface OrderItem {
-  key: string;
-  no: string;
-  date: string;
-  address: string;
-  quantity: number;
-  total: string;
-  status: "Tamamlandı" | "Ləğv edildi" | "Sifariş verildi" | "Gözləyir";
-}
+export default function OrdersTable() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
+  const [orders, setOrders] = useState<OrderItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-export function OrdersTable() {
+  // Düyməyə kliklədikdə işləyən funksiya
+  const handleOpenDetails = (record: any) => {
+    setSelectedOrder(record);
+    setIsModalOpen(true);
+  };
+
+useEffect(() => {
+  const fetchOrders = async () => {
+    setIsLoading(true);
+
+    try {
+      const data = await orderService.getOrders();
+      setOrders(data);
+    } catch (error) {
+      console.error("Sifarişləri gətirərkən xəta baş verdi:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchOrders();
+}, []);
+
+
+  // const columns: ColumnsType<OrderItem> = [
+  //   {
+  //     title: "No",
+  //     dataIndex: "no",
+  //     key: "no",
+  //   },
+  //   {
+  //     title: "Tarix",
+  //     dataIndex: "date",
+  //     key: "date",
+  //   },
+  //   {
+  //     title: "Çatdırılma ünvanı",
+  //     dataIndex: "address",
+  //     key: "address",
+  //   },
+  //   {
+  //     title: "Məhsul sayı",
+  //     dataIndex: "quantity",
+  //     key: "quantity",
+  //   },
+  //   {
+  //     title: "Subtotal/Çatdırılma",
+  //     dataIndex: "total",
+  //     key: "total",
+  //   },
+  //   {
+  //     title: "Status",
+  //     dataIndex: "status",
+  //     key: "status",
+  //     render: (status: string) => {
+  //       let statusClass = "";
+
+  //       if (status === "Tamamlandı") {
+  //         statusClass = styles.statusCompleted;
+  //       } else if (status === "Ləğv edildi") {
+  //         statusClass = styles.statusCancelled;
+  //       }
+
+  //       return <span className={statusClass}>{status}</span>;
+  //     },
+  //   },
+  //  {
+  //     title: "",
+  //     key: "action",
+  //     render: (_, record) => (
+  //       <span
+  //         className={styles.detailButton}
+  //         onClick={() => handleOpenDetails(record)}
+  //         style={{ cursor: 'pointer' }}
+  //       >
+  //         detallar
+  //       </span>
+  //     ),
+  //   },
+  // ];
+
   const columns: ColumnsType<OrderItem> = [
-    {
-      title: "No",
-      dataIndex: "no",
-      key: "no",
-    },
+    { title: "Sifariş No", dataIndex: "orderNumber", key: "orderNumber" },
     {
       title: "Tarix",
-      dataIndex: "date",
-      key: "date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (date: string) => new Date(date).toLocaleDateString(), // Tarixi səliqəli göstərmək üçün
     },
+    { title: "Çatdırılma ünvanı", dataIndex: "address", key: "address" },
     {
-      title: "Çatdırılma ünvanı",
-      dataIndex: "address",
-      key: "address",
-    },
-    {
-      title: "Məhsul sayı",
-      dataIndex: "quantity",
-      key: "quantity",
-    },
-    {
-      title: "Subtotal/Çatdırılma",
+      title: "Məbləğ",
       dataIndex: "total",
       key: "total",
+      render: (total) => `${total} AZN`,
     },
     {
       title: "Status",
       dataIndex: "status",
       key: "status",
-      render: (status: string) => {
-        let statusClass = "";
-
-        if (status === "Tamamlandı") {
-          statusClass = styles.statusCompleted;
-        } else if (status === "Ləğv edildi") {
-          statusClass = styles.statusCancelled;
-        }
-
-        return <span className={statusClass}>{status}</span>;
-      },
+      render: (status: string) => (
+        <span
+          className={
+            status === "PENDING" ? styles.statusPending : styles.statusCompleted
+          }
+        >
+          {status}
+        </span>
+      ),
     },
     {
       title: "",
       key: "action",
-      render: () => <a className={styles.detailLink}>detallar</a>,
-    },
-  ];
-
-  const data: OrderItem[] = [
-    {
-      key: "1",
-      no: "#321321",
-      date: "10.09.2021",
-      address: "Zərifə Əliyeva 55, Azer...",
-      quantity: 10,
-      total: "30m/pulsuz",
-      status: "Tamamlandı",
-    },
-    {
-      key: "2",
-      no: "#321321",
-      date: "10.09.2021",
-      address: "Zərifə Əliyeva 55, Azer...",
-      quantity: 10,
-      total: "30m/pulsuz",
-      status: "Ləğv edildi",
-    },
-    {
-      key: "3",
-      no: "#321321",
-      date: "10.09.2021",
-      address: "Zərifə Əliyeva 55, Azer...",
-      quantity: 10,
-      total: "30m/pulsuz",
-      status: "Tamamlandı",
-    },
-    {
-      key: "4",
-      no: "#321321",
-      date: "10.09.2021",
-      address: "Zərifə Əliyeva 55, Azer...",
-      quantity: 10,
-      total: "30m/pulsuz",
-      status: "Tamamlandı",
-    },
-    {
-      key: "5",
-      no: "#321321",
-      date: "10.09.2021",
-      address: "Zərifə Əliyeva 55, Azer...",
-      quantity: 10,
-      total: "30m/pulsuz",
-      status: "Tamamlandı",
+      render: (_, record) => (
+        <span
+          className={styles.detailButton}
+          onClick={() => handleOpenDetails(record)}
+          style={{ cursor: "pointer" }}
+        >
+          detallar &gt;
+        </span>
+      ),
     },
   ];
 
   return (
     <div className={styles.tableContainer}>
       <h2 className={styles.sectionTitle}>Sifariş Tarixçəsi</h2>
-      <Table
-        columns={columns}
-        dataSource={data}
-        pagination={false}
-        className={styles.customTable}
-      />
+
+     {isLoading ? (
+  <div className={styles.pageLoader}>
+    <Loading />
+  </div>
+) : (
+  <Table
+    columns={columns}
+    dataSource={orders}
+    rowKey="id"
+    pagination={false}
+    className={styles.customTable}
+  />
+)}
+
+      <Modal
+        title="Sifariş detalları"
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        footer={null}
+        width={800}
+      >
+        <OrderDetails orderData={selectedOrder} />
+      </Modal>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 // src/app/(main)/account/layout.tsx
 import React from 'react';
-import { AccountSidebar } from '@/features/account';
 import styles from './AccountLayout.module.css';
+import { AccountSidebar } from '@/features/account/components/AccountSidebar';
 
 export default function AccountLayout({
   children,
