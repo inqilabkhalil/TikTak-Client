@@ -14,9 +14,12 @@ import { registerSchema } from "../../utils/validation";
 import { ROUTES } from "@/shared/constants";
 import type { RegisterValues } from "@/features/auth/types/authType";
 import styles from "../../styles/AuthForm.module.css";
+import { useToast } from "@/shared/hooks";
+import { AUTH_MESSAGES, translateAuthError } from "../../constants";
 
 export const RegisterForm = () => {
   const router = useRouter();
+  const toast = useToast();
   const register = useAuthStore((state) => state.register);
 
   const {
@@ -25,7 +28,6 @@ export const RegisterForm = () => {
     getFieldError,
     getPhoneFieldProps,
     isLoading,
-    error,
   } = useAuthForm<RegisterValues>({
     initialValues: { full_name: "", phone: "", password: "" },
     validationSchema: registerSchema,
@@ -34,7 +36,11 @@ export const RegisterForm = () => {
       const success = await register(payload);
 
       if (success) {
+        toast.success(AUTH_MESSAGES.REGISTER_SUCCESS);
         router.push(ROUTES.LOGIN);
+      }else {
+        const errorMsg = useAuthStore.getState().error;
+        toast.error(translateAuthError(errorMsg ?? AUTH_MESSAGES.REGISTER_ERROR));
       }
     },
   });

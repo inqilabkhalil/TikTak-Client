@@ -10,13 +10,15 @@ import { PhoneField } from "../PhoneField";
 import { useAuthForm } from "../../hooks/useAuthForm";
 import { useAuthStore } from "@/features/auth/store";
 import { loginSchema } from "../../utils/validation";
-import { AUTH_MESSAGES } from "../../constants";
+import { AUTH_MESSAGES, translateAuthError } from "../../constants";
 import { ROUTES } from "@/shared/constants";
 import type { LoginValues } from "@/features/auth/types/authType";
 import styles from "../../styles/AuthForm.module.css";
+import { useToast } from "@/shared/hooks";
 
 export const LoginForm = () => {
   const router = useRouter();
+  const toast = useToast();
   const login = useAuthStore((state) => state.login);
 
   const {
@@ -25,18 +27,19 @@ export const LoginForm = () => {
     getFieldError,
     getPhoneFieldProps,
     isLoading,
-    error,
   } = useAuthForm<LoginValues>({
     initialValues: { phone: "", password: "" },
     validationSchema: loginSchema,
-    onSubmit: async (values, { setErrors }) => {
+    onSubmit: async (values) => {
       const payload = { ...values, phone: `+994${values.phone}` };
       const success = await login(payload);
 
       if (success) {
+        toast.success(AUTH_MESSAGES.LOGIN_SUCCESS);
         router.push(ROUTES.LANDING);
       } else {
-        setErrors({ password: AUTH_MESSAGES.LOGIN_ERROR });
+        const errorMsg = useAuthStore.getState().error;
+        toast.error(translateAuthError(errorMsg ?? AUTH_MESSAGES.LOGIN_ERROR))
       }
     },
   });
