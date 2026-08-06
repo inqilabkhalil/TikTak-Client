@@ -19,7 +19,7 @@ export interface PersonalInfoFormValues {
 export function PersonalInfoForm() {
   const [form] = Form.useForm<PersonalInfoFormValues>();
 
-const { user, isLoading, fetchProfile, setProfile } = useProfileStore();
+  const { user, isLoading, fetchProfile, setProfile } = useProfileStore();
   const { message } = App.useApp();
 
   useEffect(() => {
@@ -50,8 +50,12 @@ const { user, isLoading, fetchProfile, setProfile } = useProfileStore();
         phone: values.phone,
         email: values.email,
         address: values.address,
+     password: values.newPassword,
+  password_repeat: values.confirmPassword,
       });
+      console.log("UPDATED USER:", updatedUser);
       setProfile(updatedUser);
+      form.resetFields(["newPassword", "confirmPassword"]);
       message.success("Məlumatlar uğurla yeniləndi!");
     } catch (err: any) {
       message.error(err.message || "Yenilənmə zamanı xəta baş verdi");
