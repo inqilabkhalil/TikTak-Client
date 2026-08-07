@@ -1,5 +1,5 @@
 import api from "@/shared/services/api";
-import type { ProfileResponse, User } from "@/shared/types/profile.types";
+import type { ProfileResponse, User, UpdateProfilePayload } from "@/shared/types/profile.types";
 
 export const profileService = {
   getProfile: async (): Promise<User> => {
@@ -7,7 +7,7 @@ export const profileService = {
     return response.data.data;
   },
 
-  updateProfile: async (data: Partial<User>) => {
+  updateProfile: async (data: UpdateProfilePayload) => {
     const response = await api.put<ProfileResponse>("/profile", data);
     return response.data.data;
   },

@@ -1,20 +1,13 @@
 // src/features/account/components/PersonalInfoForm/PersonalInfoForm.tsx
 "use client";
 
-import React, { useEffect } from "react";
-import { App, Form, Input } from "antd";
-import { Button } from "@/shared/components/Button";
-import styles from "./PersonalInfoForm.module.css";
-import { useProfileStore } from "@/shared/store";
-import { profileService } from "@/shared/services/profileService";
-export interface PersonalInfoFormValues {
-  name?: string;
-  phone?: string;
-  email?: string;
-  address?: string;
-  newPassword?: string;
-  confirmPassword?: string;
-}
+import { useEffect } from 'react';
+import { App, Form, Input } from 'antd';
+import { Button } from '@/shared/components/Button';
+import type { PersonalInfoFormValues } from '../../types';
+import { useProfileStore } from '@/shared/store/profileStore';
+import { profileService } from '@/shared/services/profileService';
+import styles from './PersonalInfoForm.module.css';
 
 export function PersonalInfoForm() {
   const [form] = Form.useForm<PersonalInfoFormValues>();

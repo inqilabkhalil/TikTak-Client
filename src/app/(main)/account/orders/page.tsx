@@ -1,5 +1,5 @@
 
-import OrdersTable from "@/features/account/components/OrdersTable/OrdersTable";
+import { OrdersTable } from "@/features/account/components/OrdersTable/OrdersTable";
 import type { Metadata } from "next";
 
 

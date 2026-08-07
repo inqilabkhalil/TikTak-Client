@@ -5,7 +5,7 @@ export const ROUTES = {
   LANDING: '/landing',
   LOGIN: '/login',
   REGISTER: '/register',
-  CATEGORIES: "/categories",
+  CATEGORY: "/category",
   BASKET: "/basket",
   ACCOUNT: '/account',
   ACCOUNT_ORDERS: '/account/orders',

@@ -1,40 +1,36 @@
 'use client';
 
-import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiHeart, FiArrowLeft } from 'react-icons/fi';
-import { CategoryList } from '@/features/Categories';
+import { CategoryList } from '@/features/category';
 import { BasketWidget } from '@/shared/components/BasketWidget';
 import { DiscountBanner } from '@/shared/components/DiscountBanner/DiscountBanner';
 import { Breadcrumb } from '@/shared/components/Breadcrumb';
 import { AddToBasketControl } from '@/shared/components/AddToBasketControl';
-import { useFavorites, useProductStore } from '@/shared/store';
+import { useFavorites } from '@/shared/store';
+import { Category } from '@/shared/types/category.types';
+import { Product } from '@/shared/types/product.types';
 import { formatPrice } from '@/shared/utils';
 import styles from './ProductDetailPage.module.css';
 
 interface ProductDetailPageProps {
   productId: number;
+  categories: Category[];
+  products: Product[];
 }
 
-export const ProductDetailPage = ({ productId }: ProductDetailPageProps) => {
+export const ProductDetailPage = ({
+  productId,
+  categories,
+  products,
+}: ProductDetailPageProps) => {
   const { isFavorite, toggleFavorite } = useFavorites();
-  const products = useProductStore((s) => s.products);
-  const fetchProducts = useProductStore((s) => s.fetchProducts);
-  const isLoading = useProductStore((s) => s.isLoading);
-
-  useEffect(() => {
-    if (products.length === 0) {
-      fetchProducts();
-    }
-  }, [products.length, fetchProducts]);
 
   const product = products.find((p) => p.id === productId);
 
   if (!product) {
-    return isLoading ? null : (
-      <p className={styles.notFound}>Məhsul tapılmadı</p>
-    );
+    return <p className={styles.notFound}>Məhsul tapılmadı</p>;
   }
 
   const favorite = isFavorite(product.id);
@@ -45,7 +41,10 @@ export const ProductDetailPage = ({ productId }: ProductDetailPageProps) => {
 
       <div className={styles.page}>
         <aside className={styles.sidebar}>
-          <CategoryList activeSlug={String(product.categoryId)} />
+          <CategoryList
+            activeSlug={String(product.categoryId)}
+            categories={categories}
+          />
           <div className={styles.discountBannerWrapper}>
             <DiscountBanner />
           </div>
@@ -54,7 +53,10 @@ export const ProductDetailPage = ({ productId }: ProductDetailPageProps) => {
         <section className={styles.content}>
           <div className={styles.card}>
             <div className={styles.cardHeader}>
-              <Link href={`/category/${product.categoryId}`} className={styles.backLink}>
+              <Link
+                href={`/category/${product.categoryId}`}
+                className={styles.backLink}
+              >
                 <FiArrowLeft /> geri qayıt
               </Link>
 
@@ -65,7 +67,9 @@ export const ProductDetailPage = ({ productId }: ProductDetailPageProps) => {
                 aria-pressed={favorite}
                 onClick={() => toggleFavorite(product.id)}
               >
-                <FiHeart className={favorite ? styles.favoriteActive : undefined} />
+                <FiHeart
+                  className={favorite ? styles.favoriteActive : undefined}
+                />
               </button>
             </div>
 

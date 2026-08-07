@@ -1,5 +1,4 @@
 import { SuccessScreen } from '@/features/checkout/components/SuccessScreen';
-import { ROUTES } from '@/shared/constants';
 
 type OrderSuccessPageProps = {
   orderNumber?: string;

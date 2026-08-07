@@ -16,14 +16,6 @@ export interface Offer {
   image: string;
 }
 
-export interface BannerCardProps {
-  banner: Banner;
-}
-
-export interface OfferCardProps {
-  offer: Offer;
-}
-
 export interface Stat {
   id: number;
   value: string;
@@ -33,4 +25,20 @@ export interface Stat {
 
 export interface StatCardProps {
   stat: Stat;
+}
+
+export interface BannerSlideProps {
+  banner: Banner;
+  href: string;
+  priority: boolean;
+}
+
+export interface OfferTileProps {
+  offer: Offer;
+  href: string;
+}
+
+export interface CampaignsViewProps {
+  banners: Banner[];
+  offers: Offer[];
 }

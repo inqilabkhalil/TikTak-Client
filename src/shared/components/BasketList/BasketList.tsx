@@ -20,10 +20,17 @@ export const BasketList = ({
   variant = "full",
 }: BasketListProps) => {
   const isCompact = variant === "compact";
+  const isScrollable = !isCompact && products.length > 3;
 
   return (
     <section className={isCompact ? styles.compactCard : styles.card}>
-      <div className={isCompact ? styles.compactList : styles.list}>
+      <div
+        className={
+          isCompact
+            ? styles.compactList
+            : [styles.list, isScrollable && styles.scrollable].filter(Boolean).join(" ")
+        }
+      >
         {products.map((product) => (
           <BasketItem
             key={product.id}

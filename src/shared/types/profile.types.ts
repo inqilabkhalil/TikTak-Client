@@ -9,6 +9,15 @@ export interface User {
   created_at: string;
 }
 
+export interface UpdateProfilePayload {
+  full_name?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  password?: string;
+  password_repeat?: string;
+}
+
 export interface ProfileResponse {
   message: string;
   data: User;

@@ -1,11 +1,6 @@
 import type { StaticImageData } from 'next/image';
 import apple from '@/shared/assets/alma.png';
 
-export type Category = {
-  slug: string;
-  name: string;
-};
-
 export type Product = {
   id: number;
   categorySlug: string;
@@ -18,17 +13,6 @@ export type Product = {
 
 const PLACEHOLDER_DESCRIPTION =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.";
-
-export const CATEGORIES: Category[] = [
-  { slug: 'meyveler', name: 'Meyvələr' },
-  { slug: 'terevezler', name: 'Tərəvəzlər' },
-  { slug: 'qis-meyveleri', name: 'Qış meyvələri' },
-  { slug: 'dietik-batonlar', name: 'Dietik batonlar' },
-  { slug: 'xleb', name: 'Xleb' },
-  { slug: 'diabetik-mehsullar', name: 'Diabetik məhsullar' },
-  { slug: 'dietik-ickiler', name: 'Dietik içkilər' },
-  { slug: 'qlutensiz-mehsullar', name: 'Qlütensiz məhsullar' },
-];
 
 export const PRODUCTS: Product[] = [
   // Meyvələr
@@ -69,15 +53,6 @@ export const PRODUCTS: Product[] = [
 
   // Qlütensiz məhsullar — intentionally empty to demo the empty-category state
 ];
-
-export const getCategoryBySlug = (slug: string): Category | undefined =>
-  CATEGORIES.find((category) => category.slug === slug);
-
-export const getProductsByCategory = (categorySlug: string): Product[] =>
-  PRODUCTS.filter((product) => product.categorySlug === categorySlug);
-
-export const getProductById = (id: number): Product | undefined =>
-  PRODUCTS.find((product) => product.id === id);
 
 export const searchProducts = (query: string, limit = 6): Product[] => {
   const normalized = query.trim().toLowerCase();

@@ -4,13 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/shared/components/Card';
 import { AddToBasketControl } from '@/shared/components/AddToBasketControl';
-import type { Product } from '@/shared/types/product.types';
+import type { ProductCardProps } from '../../types';
 import { formatPrice } from '@/shared/utils';
 import styles from './ProductCard.module.css';
-
-interface ProductCardProps {
-  product: Product;
-}
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { id, imgUrl, title, price } = product;
