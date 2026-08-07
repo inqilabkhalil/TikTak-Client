@@ -4,14 +4,8 @@ import { memo, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuthAwareHref } from '@/features/landing/hooks';
-import type { Banner, Offer } from '@/features/landing/types';
+import type { BannerSlideProps, OfferTileProps, CampaignsViewProps } from '@/features/landing/types';
 import styles from './Campaigns.module.css';
-
-interface BannerSlideProps {
-  banner: Banner;
-  href: string;
-  priority: boolean;
-}
 
 const BannerSlide = memo(({ banner, href, priority }: BannerSlideProps) => (
   <div className={styles.slide}>
@@ -47,11 +41,6 @@ const BannerSlide = memo(({ banner, href, priority }: BannerSlideProps) => (
 ));
 BannerSlide.displayName = 'BannerSlide';
 
-interface OfferTileProps {
-  offer: Offer;
-  href: string;
-}
-
 const OfferTile = memo(({ offer, href }: OfferTileProps) => (
   <Link href={href} className={styles.offerCard}>
     {offer.image ? (
@@ -77,11 +66,6 @@ const OfferTile = memo(({ offer, href }: OfferTileProps) => (
   </Link>
 ));
 OfferTile.displayName = 'OfferTile';
-
-interface CampaignsViewProps {
-  banners: Banner[];
-  offers: Offer[];
-}
 
 export const CampaignsView = ({ banners, offers }: CampaignsViewProps) => {
   const moreHref = useAuthAwareHref();

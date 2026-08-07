@@ -17,15 +17,31 @@
   border-bottom: 1px solid #ececf3;
 }
 
+/* BasketItem sətir hündürlüyü: 4.5rem şəkil + 1.5rem*2 padding = 7.5rem/sətir */
+.scrollable {
+  max-height: calc(3 * 7.5rem);
+  overflow-y: auto;
+}
+
 @media (max-width: 768px) {
   .card {
     padding: 1.125rem 1.25rem;
+  }
+
+  /* BasketItem 768px-də: 3.75rem şəkil + 1.125rem*2 padding = 6rem/sətir */
+  .scrollable {
+    max-height: calc(3 * 6rem);
   }
 }
 
 @media (max-width: 480px) {
   .card {
     padding: 1rem;
+  }
+
+  /* BasketItem 480px-də flex-wrap olur (şəkil+info üstdə, sayğac altda) — sətir daha hündür olur: ~8rem/sətir */
+  .scrollable {
+    max-height: calc(3 * 8rem);
   }
 }
 

@@ -1,17 +1,21 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState, type ChangeEvent } from 'react';
+import { useRef, useState, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FiSearch, FiUser, FiHeart, FiShoppingCart, FiX } from 'react-icons/fi';
+import { FiSearch, FiUser, FiHeart, FiShoppingCart, FiX, FiLogOut } from 'react-icons/fi';
 import { Logo } from '@/shared/components/Logo';
 import { Input } from '@/shared/components/Input/Input';
 import { AddressDisplay } from '@/shared/components/AddressDisplay';
+import { CountBadge } from '@/shared/components/CountBadge';
+import { Button } from '@/shared/components/Button';
 import { HeaderProps } from '@/shared/types';
 import { searchProducts } from '@/shared/data/catalog';
 import { useClickOutside } from '@/shared/hooks';
 import { useProfileStore } from '@/shared/store/profileStore';
+import { useBasketStore } from '@/shared/store/basketStore';
+import { useAuthStore } from '@/features/auth/store/authStore';
 import { ROUTES } from '@/shared/constants';
 import styles from './Header.module.css';
 
@@ -21,14 +25,15 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
   const router = useRouter();
   const searchBoxRef = useRef<HTMLDivElement>(null);
   const user = useProfileStore((state) => state.user);
+  const basketCount = useBasketStore((state) => state.count);
+  const logout = useAuthStore((state) => state.logout);
 
   useClickOutside(searchBoxRef, () => setIsDropdownOpen(false));
 
-  // TEMP DEBUG — remount testi üçün, sınadıqdan sonra sil
-  useEffect(() => {
-    console.log('MOUNTED: Header');
-    return () => console.log('UNMOUNTED: Header');
-  }, []);
+  const handleLogout = () => {
+    logout();
+    router.push(ROUTES.LANDING);
+  };
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -55,7 +60,7 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
       )}
 
       <header className={styles.header}>
-        <Link href={ROUTES.LANDING} className={styles.logoLink} aria-label="TIK TAK">
+        <Link href={ROUTES.CATEGORY} className={styles.logoLink} aria-label="TIK TAK">
           <Logo />
         </Link>
 
@@ -123,18 +128,37 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
         )}
 
         <nav className={styles.actions} aria-label="user actions">
-          <Link href="/account" className={styles.actionLink}>
-            <FiUser className={styles.actionIcon} />
-            <span className={styles.actionLabel}>Hesabım</span>
-          </Link>
-          <Link href="/favorites" className={styles.actionLink}>
-            <FiHeart className={styles.actionIcon} />
-            <span className={styles.actionLabel}>Siyahılarım</span>
-          </Link>
-          <Link href="/basket" className={styles.actionLink}>
-            <FiShoppingCart className={styles.actionIcon} />
-            <span className={styles.actionLabel}>Səbətim</span>
-          </Link>
+          {user ? (
+            <>
+              <Link href="/account" className={styles.actionLink}>
+                <FiUser className={styles.actionIcon} />
+                <span className={styles.actionLabel}>Hesabım</span>
+              </Link>
+              <Link href="/favorites" className={styles.actionLink}>
+                <FiHeart className={styles.actionIcon} />
+                <span className={styles.actionLabel}>Siyahılarım</span>
+              </Link>
+              <Link href="/basket" className={styles.actionLink}>
+                <span className={styles.actionIconWrapper}>
+                  <FiShoppingCart className={styles.actionIcon} />
+                  <CountBadge count={basketCount} />
+                </span>
+                <span className={styles.actionLabel}>Səbətim</span>
+              </Link>
+              <button
+                type="button"
+                className={styles.logoutButton}
+                onClick={handleLogout}
+                aria-label="Çıxış"
+              >
+                <FiLogOut className={styles.actionIcon} />
+              </button>
+            </>
+          ) : (
+            <Link href={ROUTES.LOGIN}>
+              <Button size="small">Giriş</Button>
+            </Link>
+          )}
           {/* Hamburger menu for mobile navigation will be added here in the future */}
         </nav>
       </header>
