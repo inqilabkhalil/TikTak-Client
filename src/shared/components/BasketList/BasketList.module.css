@@ -19,7 +19,7 @@
 
 /* BasketItem sətir hündürlüyü: 4.5rem şəkil + 1.5rem*2 padding = 7.5rem/sətir */
 .scrollable {
-  max-height: calc(3 * 7.5rem);
+  max-height: calc(3 * 120px);
   overflow-y: auto;
 }
 
@@ -30,7 +30,7 @@
 
   /* BasketItem 768px-də: 3.75rem şəkil + 1.125rem*2 padding = 6rem/sətir */
   .scrollable {
-    max-height: calc(3 * 6rem);
+    max-height: calc(3 * 96px);
   }
 }
 
@@ -41,7 +41,7 @@
 
   /* BasketItem 480px-də flex-wrap olur (şəkil+info üstdə, sayğac altda) — sətir daha hündür olur: ~8rem/sətir */
   .scrollable {
-    max-height: calc(3 * 8rem);
+    max-height: calc(3 * 128px);
   }
 }
 

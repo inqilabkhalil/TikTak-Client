@@ -58,7 +58,7 @@
 .checkoutButton {
   margin-top: 1.25rem;
   width: 100%;
-  height: 2.875rem;
+  height: 46px;
   border: none;
   border-radius: 0.5rem;
   background-color: var(--primarybuttoncolor);
@@ -81,7 +81,7 @@
 
   .checkoutButton {
     margin-top: 1.125rem;
-    height: 2.75rem;
+    height: 44px;
   }
 }
 
@@ -102,7 +102,7 @@
 
   .checkoutButton {
     width: 100%;
-    height: 2.75rem;
+    height: 44px;
     font-size: 0.875rem;
   }
 }

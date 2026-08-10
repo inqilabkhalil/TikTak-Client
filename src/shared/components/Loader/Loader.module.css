@@ -9,8 +9,8 @@
 }
 
 .spinContent {
-  width: 12rem;
-  height: 6rem;
+  width: 192px;
+  height: 96px;
 }
 
 .wrapper :global(.ant-spin-description) {

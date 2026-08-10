@@ -16,8 +16,8 @@
 .imageWrapper {
   position: relative;
   flex-shrink: 0;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 72px;
+  height: 72px;
   border-radius: 0.5rem;
   overflow: hidden;
   background-color: #f6f5fb;
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 0;
   flex-shrink: 0;
-  height: 2.75rem;
+  height: 44px;
   padding: 0 0.25rem;
   border-radius: 0.5rem;
   background-color: var(--primarybuttoncolor);
@@ -64,8 +64,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 36px;
+  height: 36px;
   border: none;
   background: transparent;
   color: #ffffff;
@@ -79,7 +79,7 @@
 }
 
 .quantity {
-  min-width: 1.5rem;
+  min-width: 24px;
   text-align: center;
   font-family: var(--font-roboto);
   font-size: 1.125rem;
@@ -93,8 +93,8 @@
   }
 
   .imageWrapper {
-    width: 3.75rem;
-    height: 3.75rem;
+    width: 60px;
+    height: 60px;
   }
 
   .name {
@@ -106,12 +106,12 @@
   }
 
   .counter {
-    height: 2.375rem;
+    height: 38px;
   }
 
   .counterButton {
-    width: 2rem;
-    height: 2rem;
+    width: 32px;
+    height: 32px;
   }
 
   .quantity {
@@ -130,8 +130,8 @@
   }
 
   .imageWrapper {
-    width: 3.25rem;
-    height: 3.25rem;
+    width: 52px;
+    height: 52px;
   }
 
   .name {
@@ -143,12 +143,12 @@
   }
 
   .counter {
-    height: 2rem;
+    height: 32px;
   }
 
   .counterButton {
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 28px;
+    height: 28px;
   }
 
   .quantity {
