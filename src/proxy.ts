@@ -12,7 +12,7 @@ const AUTH_ROUTES: string[] = [
   ROUTES.REGISTER,
 ];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {   
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("access_token")?.value;
 
@@ -21,16 +21,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(ROUTES.LANDING, request.url));
   }
 
-
   if (AUTH_ROUTES.includes(pathname) && token) {
     return NextResponse.redirect(new URL(ROUTES.LANDING, request.url));
   }
 
-
   if (PUBLIC_ROUTES.includes(pathname)) {
     return NextResponse.next();
   }
-
 
   if (!token) {
     return NextResponse.redirect(new URL(ROUTES.LOGIN, request.url));

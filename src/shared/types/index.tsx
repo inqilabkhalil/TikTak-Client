@@ -20,3 +20,7 @@ export interface FormFieldProps {
   touched?: boolean;
   children: ReactNode;
 }
+
+export interface AuthInitializerProps {
+  children: React.ReactNode;
+}
