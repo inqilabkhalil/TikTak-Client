@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-  max-width: 100rem;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 3rem 1.5rem 1.5rem;
 }
@@ -109,8 +109,8 @@
 }
 
 .socialIcon {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(46, 125, 50, 0.1);
   color: #2e7d32;
@@ -182,7 +182,7 @@
   }
 
   .socialIcon {
-    width: 2rem;
-    height: 2rem;
+    width: 32px;
+    height: 32px;
   }
 }

@@ -46,7 +46,7 @@
   font-size: 0.8125rem !important;
   color: #2b3043 !important;
   resize: none !important;
-  min-height: 7.5rem !important;
+  min-height: 120px !important;
   width: 100% !important;
 }
 
@@ -156,7 +156,7 @@
   }
 
   .textarea {
-    min-height: 8.75rem !important;
+    min-height: 140px !important;
   }
 
   .label {
@@ -165,7 +165,7 @@
 
   .submitButton {
     width: 100% !important;
-    height: 3.25rem !important;
+    height: 52px !important;
     font-size: 1rem !important;
   }
 }
@@ -183,7 +183,7 @@
   }
 
   .textarea {
-    min-height: 7.5rem !important;
+    min-height: 120px !important;
     font-size: 0.8125rem !important;
   }
 }

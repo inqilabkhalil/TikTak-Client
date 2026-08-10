@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   box-sizing: border-box;
-  min-height: calc(100vh - 5rem);
+  min-height: calc(100vh - 80px);
   padding-top: 15px;
   padding-left: 0.75rem;
   padding-right: 5rem;
@@ -35,7 +35,7 @@
 }
 
 .summaryTitle {
-  width: 22.5rem;
+  width: 360px;
   flex-shrink: 0;
   font-family: var(--font-roboto), "Roboto", sans-serif;
   color: #2b3043;
@@ -55,7 +55,7 @@
 .formSection {
   flex: 1;
   min-width: 0;
-  width: 62.25rem;
+  width: 996px;
   
 }
 
@@ -87,7 +87,7 @@
 
   .summaryTitle,
   .summarySection {
-    width: 20rem;
+    width: 320px;
   }
 
   .content,
@@ -104,7 +104,7 @@
 
   .summaryTitle,
   .summarySection {
-    width: 18.75rem;
+    width: 300px;
   }
 
   .formTitle,

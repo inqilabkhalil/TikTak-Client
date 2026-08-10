@@ -156,7 +156,7 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
             </>
           ) : (
             <Link href={ROUTES.LOGIN}>
-              <Button size="small">Giriş</Button>
+              <Button size="middle" className={styles.loginButton}>Giriş</Button>
             </Link>
           )}
           {/* Hamburger menu for mobile navigation will be added here in the future */}

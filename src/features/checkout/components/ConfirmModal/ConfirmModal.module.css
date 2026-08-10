@@ -49,7 +49,7 @@
 
 .confirmButton {
   flex: 1;
-  height: 2.875rem !important;
+  height: 46px !important;
   border-radius: .625rem !important;
   font-size: .9375rem !important;
   font-weight: 600 !important;
@@ -72,7 +72,7 @@
 }
 .cancelButton {
   flex: 1;
-  height: 2.875rem !important;
+  height: 46px !important;
   border-radius: .625rem !important;
   font-size: 0.9375rem !important;
   font-weight: 600 !important;
@@ -132,7 +132,7 @@
 
   .confirmButton,
   .cancelButton {
-    height: 2.75rem !important;
+    height: 44px !important;
     font-size: .875rem !important;
   }
 }

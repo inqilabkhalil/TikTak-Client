@@ -7,8 +7,8 @@
 
 .page > :first-child {
   flex: 0 0 24.1875rem;
-  width: 24.1875rem;
-  height: 36.875rem;
+  width: 387px;
+  height: 590px;
 }
 
 .page > :last-child {

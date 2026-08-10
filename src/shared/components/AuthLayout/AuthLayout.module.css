@@ -77,7 +77,7 @@
 }
 .rightSide > * {          
   width: 100%;
-  max-width: 26.25rem;
+  max-width: 420px;
   display: flex;
   justify-content: center;
 }
@@ -95,7 +95,7 @@
   .leftSide {
     width: 100%;
     flex: initial;
-    min-height: 18.75rem;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;

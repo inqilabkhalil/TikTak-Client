@@ -55,7 +55,7 @@
   display: flex;
   gap: 2rem; /* Sidebar ilə sağ panel arasındakı məsafə (Figma-ya uyğun) */
   width: 100%;
-  max-width: 93.75rem;
+  max-width: 1500px;
   margin: 2.5rem auto;
   padding: 0 1.5rem;
   box-sizing: border-box;
@@ -63,7 +63,7 @@
 }
 
 .sidebarWrapper {
-  width: 18.75rem; /* Sidebar-ın figma ölçüsünə uyğun sabit eni */
+  width: 300px; /* Sidebar-ın figma ölçüsünə uyğun sabit eni */
   flex-shrink: 0;
 }
 
