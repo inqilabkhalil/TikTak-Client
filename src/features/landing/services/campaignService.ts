@@ -14,7 +14,7 @@ export interface CampaignListResponse {
   result: boolean;
 }
 
-// Server Component-lərdən çağırılır — browser-only `localStorage`-a etibar edən
+// Server Component-lərdən çağırılır — browser-only `cookies`-ə etibar edən
 // paylaşılan axios instance-ından asılı deyil, ona görə həm serverdə, həm client-də işləyir.
 export const campaignService = {
   getList: async (): Promise<CampaignApiResponse[]> => {

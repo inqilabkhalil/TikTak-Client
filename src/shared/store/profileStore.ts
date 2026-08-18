@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { profileService } from '@/shared/services/profileService';
+import { getCookie } from '@/features/auth/utils';
 import { STORAGE_KEYS } from '@/features/auth/constants';
 import type { ProfileState, User } from '@/shared/types/profile.types';
 
@@ -10,7 +11,7 @@ export const useProfileStore = create<ProfileState>((set) => ({
   error: null,
 
   fetchProfile: async () => {
-    const token = localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
+    const token = getCookie(STORAGE_KEYS.ACCESS_TOKEN);
 
     if (!token) {
       set({ isInitialized: true });

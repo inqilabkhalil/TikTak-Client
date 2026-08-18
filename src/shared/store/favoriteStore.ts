@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { create } from 'zustand';
 import { favoriteService } from '@/shared/services/favoriteService';
+import { getCookie } from '@/features/auth/utils';
 import { FAVORITE_MESSAGES } from '@/shared/constants/favorite.constants';
 import { STORAGE_KEYS } from '@/features/auth/constants';
 import type { FavoriteState } from '@/shared/types/favorite.types';
@@ -11,7 +12,7 @@ export const useFavorites = create<FavoriteState>((set, get) => ({
   error: null,
 
   fetchFavorites: async () => {
-    const token = localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
+    const token = getCookie(STORAGE_KEYS.ACCESS_TOKEN);
     if (!token) {
       set({ products: [] });
       return;
