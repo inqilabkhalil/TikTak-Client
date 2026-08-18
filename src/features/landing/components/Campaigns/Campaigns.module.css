@@ -19,9 +19,8 @@
 /* Hero banner carousel */
 .heroWrapper {
   position: relative;
-  padding: 1rem 1.5rem;
+  padding-top: 2.2rem;
   width: 100%;
-  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -29,11 +28,13 @@
   display: flex;
   gap: 1rem;
   width: 100%;
-  padding: 0.75rem 0;
+  padding: 0;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  margin-left: 0.18rem;
+  margin-right: 0.18rem;
 }
 
 .bannerGrid::-webkit-scrollbar {
@@ -92,7 +93,7 @@
 }
 
 .bannerCard:hover {
-  transform: scale(1.01);
+  transform: scale(1.005);
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
 }
 
@@ -204,9 +205,8 @@
 /* Special offers */
 .offersWrapper {
   width: 100%;
-  max-width: 1600px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding-top: 1.5rem;
 }
 
 .title {
@@ -285,7 +285,7 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .heroWrapper {
-    padding: 1rem;
+   padding-left: 0; padding-right: 0;
   }
 
   .slide {
@@ -294,14 +294,14 @@
   }
 
   .offersWrapper {
-    padding: 1rem;
+   padding-left: 0; padding-right: 0;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .heroWrapper {
-    padding: 0.75rem;
+   padding-left: 0; padding-right: 0;
   }
 
   .slide {
@@ -347,7 +347,7 @@
   }
 
   .offersWrapper {
-    padding: 0.75rem;
+    padding-left: 0; padding-right: 0;
   }
 
   .title {
