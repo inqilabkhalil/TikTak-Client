@@ -57,7 +57,7 @@
   width: 100%;
   max-width: 1500px;
   margin: 2.5rem auto;
-  padding: 0 1.5rem;
+  padding: 0;
   box-sizing: border-box;
   align-items: flex-start;
 }

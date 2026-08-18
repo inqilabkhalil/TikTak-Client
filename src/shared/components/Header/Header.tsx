@@ -60,6 +60,7 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
       )}
 
       <header className={styles.header}>
+        <div className={styles.headerContainer}>
         <Link href={ROUTES.CATEGORY} className={styles.logoLink} aria-label="TIK TAK">
           <Logo />
         </Link>
@@ -161,6 +162,7 @@ export const Header = ({ showPlace = true, showInput = true }: HeaderProps) => {
           )}
           {/* Hamburger menu for mobile navigation will be added here in the future */}
         </nav>
+        </div>
       </header>
     </>
   );
