@@ -36,6 +36,7 @@ export const LoginForm = () => {
 
       if (success) {
         toast.success(AUTH_MESSAGES.LOGIN_SUCCESS);
+        router.refresh();
         router.push(ROUTES.LANDING);
       } else {
         const errorMsg = useAuthStore.getState().error;
