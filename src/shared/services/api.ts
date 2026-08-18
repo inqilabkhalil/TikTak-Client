@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie, removeCookie } from '@/features/auth/utils';
 import { ROUTES } from '@/shared/constants';
 
 const api = axios.create({
@@ -8,7 +9,7 @@ const api = axios.create({
 // Hər sorğuda avtomatik token əlavə edir
 api.interceptors.request.use((config) => {
   if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('access_token');
+    const token = getCookie('access_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -23,11 +24,11 @@ api.interceptors.response.use(
   (error) => {
     if (typeof window !== 'undefined') {
       const isAuthEndpoint = error.config?.url?.includes('/auth/login');
-      const hadToken = Boolean(localStorage.getItem('access_token'));
+      const hadToken = Boolean(getCookie('access_token'));
 
       if (error.response?.status === 401 && !isAuthEndpoint && hadToken) {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
+        removeCookie('access_token');
+        removeCookie('refresh_token');
         window.location.href = ROUTES.LOGIN;
       }
     }

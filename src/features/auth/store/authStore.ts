@@ -17,9 +17,8 @@ export const useAuthStore = create<AuthState>((set) => ({
       const data = await authService.login(values);
       const { access_token, refresh_token } = data.tokens;
 
-      localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, access_token);
-      localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
       setCookie(STORAGE_KEYS.ACCESS_TOKEN, access_token);
+      setCookie(STORAGE_KEYS.REFRESH_TOKEN, refresh_token);
 
       useProfileStore.getState().setProfile(data.profile);
       set({ isLoading: false });
@@ -60,9 +59,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: () => {
-    localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
-    localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
     removeCookie(STORAGE_KEYS.ACCESS_TOKEN);
+    removeCookie(STORAGE_KEYS.REFRESH_TOKEN);
     useProfileStore.getState().clearProfile();
     set({ error: null });
   },
