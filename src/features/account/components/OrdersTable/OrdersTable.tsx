@@ -6,16 +6,22 @@ import { Modal, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { OrderItem } from "../../types";
 import styles from "./OrdersTable.module.css";
-import OrderDetails from "../OrderDetailModal/OrderDetailModal";
+import dynamic from "next/dynamic";
 import Loading from "@/app/loading";
 import { orderService } from "../../api/orderService";
+
+  const OrderDetails = dynamic(
+  () => import("../OrderDetailModal/OrderDetailModal"),
+  {
+    loading: () => <p style={{ padding: 20, textAlign: "center" }}>Yüklənir...</p>,
+  }
+);
 
 export function OrdersTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<OrderItem | null>(null);
   const [orders, setOrders] = useState<OrderItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const handleOpenDetails = (record: OrderItem) => {
     setSelectedOrder(record);
     setIsModalOpen(true);

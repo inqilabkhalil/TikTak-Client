@@ -1,7 +1,7 @@
 "use client";
 
 import { OrderSummary } from "@/features/checkout/components/OrderSummary";
-import { ConfirmModal } from "@/features/checkout/components/ConfirmModal";
+import dynamic from "next/dynamic";
 import { CheckoutForm } from "@/features/checkout/components/CheckoutForm/CheckoutForm";
 import { useCheckout, useCheckoutGuard } from "@/features/checkout/hooks";
 import {
@@ -11,6 +11,14 @@ import {
 import { useBasketStore } from "@/shared/store";
 import { Loader } from "@/shared/components/Loader";
 import styles from "./CheckoutPage.module.css";
+
+const ConfirmModal = dynamic(
+  () =>
+    import("@/features/checkout/components/ConfirmModal").then(
+      (mod) => mod.ConfirmModal,
+    ),
+  { ssr: false },
+);
 
 export const CheckoutPage = () => {
   const { user, isReady } = useCheckoutGuard();

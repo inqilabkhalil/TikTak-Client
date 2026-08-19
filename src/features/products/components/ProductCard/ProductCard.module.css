@@ -2,7 +2,7 @@
    sets a fixed height, so aspect-ratio/shadow are overridden here with !important
    since both classes land on the same element with equal CSS-module specificity. */
 .card {
-  aspect-ratio: 187 / 251 !important;
+  min-height: 250px;
   height: auto !important;
   padding: 12px 10px !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.11) !important;
@@ -55,6 +55,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  min-height: 36px;
 }
 
 .price {
