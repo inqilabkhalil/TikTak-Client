@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './OrderDetailModal.module.css'; // Haradan gəlir: Mövcud stil faylından
 import { OrderItem } from '../../types'; // Haradan gəlir: Real API interfeysindən
+import { getOrderStatusLabel } from '@/shared/constants/order.constants';
 
 interface OrderDetailsProps {
   orderData: OrderItem | null;
@@ -43,7 +44,7 @@ export default function OrderDetails({ orderData }: OrderDetailsProps) {
 
         <div className={styles.infoItem}>
           <span className={styles.label}>Status</span>
-          <span className={styles.value}>{orderData.status}</span>
+          <span className={styles.value}>{getOrderStatusLabel(orderData.status)}</span>
         </div>
 
         <div className={styles.infoItem}>

@@ -1,8 +1,7 @@
 import { StaticImageData } from "next/image";
+import { OrderStatus } from "@/shared/types/order.types";
 
 export type PaymentMethodType = "CASH" | "CARD";
-
-export type OrderStatus = "PENDING" | "CONFIRMED" | "DELIVERED" | "CANCELLED";
 
 export interface CheckoutRequest {
   paymentMethod: PaymentMethodType;

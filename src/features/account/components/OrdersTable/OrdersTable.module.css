@@ -76,3 +76,15 @@
   background-color: #fef2f2;
   color: #dc2626;
 }
+
+/* 4. Təsdiqləndi üçün mavi rəng */
+.statusConfirmed {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+/* 5. Çatdırıldı üçün bənövşəyi rəng */
+.statusDelivered {
+  background-color: #f5f3ff;
+  color: #7c3aed;
+}

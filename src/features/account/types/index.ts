@@ -1,3 +1,5 @@
+import { OrderStatus } from "@/shared/types/order.types";
+
 export interface Product {
   id: number;
   title: string;
@@ -28,7 +30,7 @@ export interface OrderItem {
   total: string;
   deliveryFee: string;
   paymentMethod: string;
-  status: "PENDING" | "COMPLETED" | "CANCELLED" | "Tamamlandı" | "Ləğv edildi"; // Backend-dən gələn statuslara görə
+  status: OrderStatus;
   note: string;
   address: string;
   phone: string;

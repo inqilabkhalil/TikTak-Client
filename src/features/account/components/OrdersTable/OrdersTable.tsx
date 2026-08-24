@@ -9,6 +9,11 @@ import styles from "./OrdersTable.module.css";
 import dynamic from "next/dynamic";
 import Loading from "@/app/loading";
 import { orderService } from "../../api/orderService";
+import {
+  getOrderStatusLabel,
+  normalizeOrderStatus,
+  ORDER_STATUS_BADGE_CLASS,
+} from "@/shared/constants/order.constants";
 
   const OrderDetails = dynamic(
   () => import("../OrderDetailModal/OrderDetailModal"),
@@ -65,10 +70,10 @@ export function OrdersTable() {
       render: (status: string) => (
         <span
           className={
-            status === "PENDING" ? styles.statusPending : styles.statusCompleted
+            styles[ORDER_STATUS_BADGE_CLASS[normalizeOrderStatus(status)]]
           }
         >
-          {status}
+          {getOrderStatusLabel(status)}
         </span>
       ),
     },
